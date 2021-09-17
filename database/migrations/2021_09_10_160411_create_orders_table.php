@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->float('sub_total');
             $table->bigInteger('user_id');
             $table->string('sale');
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(1); //1=Pending, 2=Processing, 3= Sent, 4=Received, 5= Cancel
             $table->tinyInteger('payment_type');
             $table->dateTime('warranty');
             $table->softDeletes();

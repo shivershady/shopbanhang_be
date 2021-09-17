@@ -17,11 +17,9 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->bigInteger('parent_id');
-            $table->string('icon');
-            $table->tinyInteger('active');
+            $table->bigInteger('parent_id')->default(0);
+            $table->string('status');
             $table->integer('total_product');
-            $table->string('home');
             $table->bigInteger('author_id');
             $table->softDeletes();
             $table->timestamps();

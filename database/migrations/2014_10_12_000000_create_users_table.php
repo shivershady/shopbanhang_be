@@ -19,10 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('phone');
             $table->string('password');
-            $table->string('first_name');
-            $table->string('last_name');
             $table->timestamp('email_veryfied_at');
-            $table->integer('user_seller');
+            $table->integer('user_seller')->default(1);
             $table->softDeletes();
             $table->timestamps();
         });
