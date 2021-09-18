@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\VariantController;
 Route::prefix('/admin')->group(function () {
 
     Route::prefix('/category')->group(function () {
@@ -32,6 +33,15 @@ Route::prefix('/admin')->group(function () {
         Route::get('/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
         Route::post('/edit/{id}', [UserController::class, 'doEdit'])->name('admin.user.doEdit');
         Route::get('/delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete');
+    });
+
+    Route::prefix('/variant')->group(function () {
+        Route::get('/', [VariantController::class, 'list'])->name('admin.variant.list');
+        Route::get('/add', [VariantController::class, 'add'])->name('admin.variant.add');
+        Route::post('/do-add', [VariantController::class, 'doAdd'])->name('admin.variant.doAdd');
+        Route::get('/edit/{id}', [VariantController::class, 'edit'])->name('admin.variant.edit');
+        Route::post('/edit/{id}', [VariantController::class, 'doEdit'])->name('admin.variant.doEdit');
+        Route::get('/delete/{id}', [VariantController::class, 'delete'])->name('admin.variant.delete');
     });
 });
 

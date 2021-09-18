@@ -14,10 +14,10 @@
                             <th>id</th>
                             <th>name</th>
                             <th>slug</th>
-                            <th>parent_id</th>
+                            <th>parent category</th>
                             <th>status</th>
-                            <th>total_product</th>
-                            <th>author_id</th>
+                            <th>total product</th>
+                            <th>author</th>
                             <th>action</th>
                         </tr>
                         </thead>
@@ -27,7 +27,14 @@
                                 <td>{{$item->id}}</td>
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->slug}}</td>
-                                <td>{{$item->parent_id}}</td>
+                                <td>
+                                    @if($item->parentCategory)
+                                        <span class="badge badge-primary">{{$item->parentCategory->name}}</span>
+                                    @endif
+                                        @if(!$item->parentCategory)
+                                            <span class="badge badge-primary">Do not have parent</span>
+                                        @endif
+                                </td>
                                 <td>{{$item->status}}</td>
                                 <td>{{$item->total_product}}</td>
                                 <td>{{$item->author_id}}</td>

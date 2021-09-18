@@ -18,7 +18,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>PassWord</label>
+                        <label>Password</label>
                         <input type="password" class="form-control" id="" placeholder="Password"
                                name="password" value="{{old('password')}}">
                         <span style="color: red"> @error('password') {{$message}} @enderror </span>
@@ -39,10 +39,11 @@
                     </div>
 
                     <div class="form-group">
-                        <label>user_seller</label>
+                        <label>User Seller</label>
                         <select name="user_seller" class="form-control">
-                            <option value="0">Admin</option>
                             <option value="1">User</option>
+                            <option value="0">Admin</option>
+                            <option value="2">Seller</option>
                         </select>
                         <span style="color: red"> @error('user_seller') {{$message}} @enderror </span>
                     </div>

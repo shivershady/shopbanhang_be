@@ -37,18 +37,19 @@
                         </div>
                         <div class="form-group">
                             <label for="">status</label>
-                            <input type="text" name="status" class="form-control" placeholder="Enter status"
-                                   value="{{old('status')}}">
+                          <select name="status" class="form-control" placeholder="status">
+                              <option value="0">On</option>
+                              <option value="1">Off</option>
+                          </select>
                             <span style="color: red"> @error('status') {{$message}} @enderror </span>
 
                         </div>
                         <div class="form-group">
-                            <label for="">Total_product</label>
+                            <label for="">Total product</label>
                             <input type="number" name="total_product" class="form-control"
                                    placeholder="Enter Total product"
                                    value="{{old('total_product')}}">
-                            <span style="color: red"> @error('total_product') {{$message}} @enderror </span>
-
+                            <span style="color: red">@error('total_product') {{$message}} @enderror</span>
                         </div>
 
                         <div class="form-group">

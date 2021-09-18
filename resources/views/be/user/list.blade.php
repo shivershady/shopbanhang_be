@@ -15,7 +15,7 @@
                            <th>Username</th>
                            <th>Email</th>
                            <th>phone</th>
-                           <th>user_seller</th>
+                           <th>user seller</th>
                            <th>action</th>
                        </tr>
                        </thead>
