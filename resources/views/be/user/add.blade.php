@@ -4,7 +4,7 @@
         <!-- general form elements -->
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Quick Example</h3>
+                <h3 class="card-title">Form Add User</h3>
             </div>
             <!-- form start -->
             <form method="post" action="{{route('admin.user.doAdd')}}" enctype="multipart/form-data">
@@ -14,7 +14,7 @@
                         <label>Name</label>
                         <input type="text" class="form-control" id="" placeholder="Name" name="name"
                                value="{{old('name')}}">
-                          <span style="color: red"> @error('name') {{$message}} @enderror </span>
+                        <span style="color: red"> @error('name') {{$message}} @enderror </span>
                     </div>
 
                     <div class="form-group">

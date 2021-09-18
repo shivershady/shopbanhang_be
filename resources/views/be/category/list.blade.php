@@ -4,7 +4,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Expandable Table</h3>
+                    <h3 class="card-title"> Category</h3>
                 </div>
                 <!-- ./card-header -->
                 <div class="card-body">
@@ -31,9 +31,9 @@
                                     @if($item->parentCategory)
                                         <span class="badge badge-primary">{{$item->parentCategory->name}}</span>
                                     @endif
-                                        @if(!$item->parentCategory)
-                                            <span class="badge badge-primary">Do not have parent</span>
-                                        @endif
+                                    @if(!$item->parentCategory)
+                                        <span class="badge badge-primary">Do not have parent</span>
+                                    @endif
                                 </td>
                                 <td>{{$item->status}}</td>
                                 <td>{{$item->total_product}}</td>

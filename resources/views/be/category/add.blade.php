@@ -37,10 +37,10 @@
                         </div>
                         <div class="form-group">
                             <label for="">status</label>
-                          <select name="status" class="form-control" placeholder="status">
-                              <option value="0">On</option>
-                              <option value="1">Off</option>
-                          </select>
+                            <select name="status" class="form-control" placeholder="status">
+                                <option value="0">On</option>
+                                <option value="1">Off</option>
+                            </select>
                             <span style="color: red"> @error('status') {{$message}} @enderror </span>
 
                         </div>
