@@ -47,11 +47,11 @@ class ProductController extends Controller implements ICRUD
                 $image = new Image();
                 $image->imageable_id = $product->id;
                 $image->imageable_type = Product::class;
-                $image->path = 'storage/products/' . $fileName;
+                $image->url = 'storage/products/' . $fileName;
                 $image->save();
             }
             DB::commit();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $request->validate([
                 'name' => 'required', 'slug' => 'required', 'category_id' => 'required',
                 'quantity' => 'required', 'price' => 'required', 'discount_id' => 'required',
@@ -61,7 +61,7 @@ class ProductController extends Controller implements ICRUD
             ]);
             DB::rollBack();
             return redirect()->back()->with('error', 'thêm thất bại');
-             echo $e->getMessage();
+          //   echo $e->getMessage();
         }
         return redirect(route('admin.product.list'))->with('success', 'thêm thành công');
     }
@@ -79,6 +79,12 @@ class ProductController extends Controller implements ICRUD
     public function delete($id)
     {
         // TODO: Implement delete() method.
+        try {
+            Product::find($id)->delete();
+        }catch (\Exception $e){
+            return redirect()->back()->with('error','xóa thất bại');
+        }
+        return redirect()->back()->with('success','xóa thành công');
     }
 
     public function search()

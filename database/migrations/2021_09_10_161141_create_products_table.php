@@ -26,7 +26,7 @@ class CreateProductsTable extends Migration
             $table->string('iHot');
             $table->string('iPay');
             $table->string('warranty');
-            $table->integer('view');
+            $table->string('view');
             $table->longText('description');
             $table->text('description_seo');
             $table->string('keyword_seo');
