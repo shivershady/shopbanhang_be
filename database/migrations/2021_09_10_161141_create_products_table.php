@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->integer('quantity');
             $table->float('price');
             $table->bigInteger('discount_id');
-            $table->bigInteger('author_id');
+//            $table->bigInteger('author_id');
             $table->tinyInteger('active');
             $table->string('iHot');
             $table->string('iPay');

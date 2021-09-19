@@ -10,4 +10,18 @@ class Product extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $fillable=[
+        'name','slug','category_id','quantity',
+        'price','discount_id','active','iHot','iPay','warranty','view',
+        'description','description_seo','title_seo','content','keyword_seo'
+    ];
+    public function images(){
+        return $this->morphMany(Image::class,'imageable');
+    }
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
+    public function discount(){
+        return $this->belongsTo(Discount::class);
+    }
 }
