@@ -25,7 +25,8 @@
                     </div>
                     <div class="form-group">
                         <label>discount percent</label>
-                        <input type="text" class="form-control" id="" placeholder="discount percent" name="discount_percent"
+                        <input type="number" class="form-control" id="" placeholder="discount percent"
+                               name="discount_percent"
                                value="{{old('discount_percent')}}">
                         <span style="color: red"> @error('discount_percent') {{$message}} @enderror </span>
                     </div>
