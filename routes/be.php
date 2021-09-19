@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\VariantController;
+use App\Http\Controllers\Admin\VariantValueController;
+use App\Http\Controllers\Admin\DiscountController;
 Route::prefix('/admin')->group(function () {
 
     Route::prefix('/category')->group(function () {
@@ -43,6 +45,25 @@ Route::prefix('/admin')->group(function () {
         Route::post('/edit/{id}', [VariantController::class, 'doEdit'])->name('admin.variant.doEdit');
         Route::get('/delete/{id}', [VariantController::class, 'delete'])->name('admin.variant.delete');
     });
+
+    Route::prefix('/variant_value')->group(function () {
+        Route::get('/', [VariantValueController::class, 'list'])->name('admin.variant_value.list');
+        Route::get('/add', [VariantValueController::class, 'add'])->name('admin.variant_value.add');
+        Route::post('/do-add', [VariantValueController::class, 'doAdd'])->name('admin.variant_value.doAdd');
+        Route::get('/edit/{id}', [VariantValueController::class, 'edit'])->name('admin.variant_value.edit');
+        Route::post('/edit/{id}', [VariantValueController::class, 'doEdit'])->name('admin.variant_value.doEdit');
+        Route::get('/delete/{id}', [VariantValueController::class, 'delete'])->name('admin.variant_value.delete');
+    });
+
+    Route::prefix('/discount')->group(function () {
+        Route::get('/', [DiscountController::class, 'list'])->name('admin.discount.list');
+        Route::get('/add', [DiscountController::class, 'add'])->name('admin.discount.add');
+        Route::post('/do-add', [DiscountController::class, 'doAdd'])->name('admin.discount.doAdd');
+        Route::get('/edit/{id}', [DiscountController::class, 'edit'])->name('admin.discount.edit');
+        Route::post('/edit/{id}', [DiscountController::class, 'doEdit'])->name('admin.discount.doEdit');
+        Route::get('/delete/{id}', [DiscountController::class, 'delete'])->name('admin.discount.delete');
+    });
+
 });
 
 

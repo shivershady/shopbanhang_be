@@ -13,7 +13,8 @@
                         <tr>
                             <th>id</th>
                             <th>name</th>
-                            <th>product</th>
+                            <th>price</th>
+                            <th>variant</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -21,16 +22,17 @@
                             <tr>
                                 <td>{{$item->id}}</td>
                                 <td>{{$item->name}}</td>
+                                <td>{{$item->price}}</td>
                                 <td>
-                                    @if($item->product)
-                                        <span class="badge badge-primary">{{$item->product->name}}</span>
-                                        @endif
+                                    @if($item->variant)
+                                        <span class="badge badge-primary">{{$item->variant->name}}</span>
+                                    @endif
                                 </td>
                                 <td>
                                     <a class="btn btn-warning"
-                                       href="{{route('admin.variant.edit',['id'=>$item->id])}}">Sửa</a>
+                                       href="{{route('admin.variant_value.edit',['id'=>$item->id])}}">Sửa</a>
                                     <a class="btn btn-danger" onclick="return confirm('Bạn có muốn xoá ?')"
-                                       href="{{route('admin.variant.delete',['id'=>$item->id])}}">Xoá</a>
+                                       href="{{route('admin.variant_value.delete',['id'=>$item->id])}}">Xoá</a>
                                 </td>
                             </tr>
                         @endforeach
