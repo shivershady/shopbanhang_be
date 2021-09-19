@@ -16,6 +16,7 @@
                             <th>Description</th>
                             <th>discount percent</th>
                             <th>Active</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>

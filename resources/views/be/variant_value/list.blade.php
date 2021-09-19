@@ -15,6 +15,7 @@
                             <th>name</th>
                             <th>price</th>
                             <th>variant</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>

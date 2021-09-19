@@ -14,6 +14,7 @@
                             <th>id</th>
                             <th>name</th>
                             <th>product</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
