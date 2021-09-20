@@ -27,7 +27,7 @@
                                 <td>{{$item->id}}</td>
                                 <td>
                                     @if($item->images && count($item->images)>0)
-                                        <img width="100px" src="storage/{{$item->images[0]->url}}"
+                                        <img width="100px" src="{{asset($item->images[0]->url)}}"
                                              alt="{{$item->name}}"/>
                                     @else
                                         <img src="https://via.placeholder.com/150
