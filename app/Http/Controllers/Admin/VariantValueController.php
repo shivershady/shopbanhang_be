@@ -39,7 +39,7 @@ class VariantValueController extends Controller implements ICRUD
             return redirect()->back()->with('error', 'thêm không thành công');
 //            echo $e->getMessage();
         }
-        return redirect()->back()->with('success', 'thêm thành công');
+        return redirect(route('admin.variant_value.list'))->with('success', 'thêm thành công');
     }
 
     public function edit($id)
