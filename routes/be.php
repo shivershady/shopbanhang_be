@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\VariantController;
 use App\Http\Controllers\Admin\VariantValueController;
 use App\Http\Controllers\Admin\DiscountController;
+use App\Http\Controllers\Admin\KeywordController;
 Route::prefix('/admin')->group(function () {
 
     Route::prefix('/category')->group(function () {
@@ -62,6 +63,15 @@ Route::prefix('/admin')->group(function () {
         Route::get('/edit/{id}', [DiscountController::class, 'edit'])->name('admin.discount.edit');
         Route::post('/edit/{id}', [DiscountController::class, 'doEdit'])->name('admin.discount.doEdit');
         Route::get('/delete/{id}', [DiscountController::class, 'delete'])->name('admin.discount.delete');
+    });
+
+    Route::prefix('/keyword')->group(function () {
+        Route::get('/', [KeywordController::class, 'list'])->name('admin.keyword.list');
+        Route::get('/add', [KeywordController::class, 'add'])->name('admin.keyword.add');
+        Route::post('/do-add', [KeywordController::class, 'doAdd'])->name('admin.keyword.doAdd');
+        Route::get('/edit/{id}', [KeywordController::class, 'edit'])->name('admin.keyword.edit');
+        Route::post('/edit/{id}', [KeywordController::class, 'doEdit'])->name('admin.keyword.doEdit');
+        Route::get('/delete/{id}', [KeywordController::class, 'delete'])->name('admin.keyword.delete');
     });
 
 });
