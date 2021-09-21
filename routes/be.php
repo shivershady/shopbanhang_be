@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\VariantController;
 use App\Http\Controllers\Admin\VariantValueController;
 use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\KeywordController;
+use App\Http\Controllers\Admin\OrderController;
 Route::prefix('/admin')->group(function () {
 
     Route::prefix('/category')->group(function () {
@@ -72,6 +73,15 @@ Route::prefix('/admin')->group(function () {
         Route::get('/edit/{id}', [KeywordController::class, 'edit'])->name('admin.keyword.edit');
         Route::post('/edit/{id}', [KeywordController::class, 'doEdit'])->name('admin.keyword.doEdit');
         Route::get('/delete/{id}', [KeywordController::class, 'delete'])->name('admin.keyword.delete');
+    });
+
+    Route::prefix('/order')->group(function () {
+        Route::get('/', [OrderController::class, 'list'])->name('admin.order.list');
+        Route::get('/add', [OrderController::class, 'add'])->name('admin.order.add');
+        Route::post('/do-add', [OrderController::class, 'doAdd'])->name('admin.order.doAdd');
+        Route::get('/edit/{id}', [OrderController::class, 'edit'])->name('admin.order.edit');
+        Route::post('/edit/{id}', [OrderController::class, 'doEdit'])->name('admin.order.doEdit');
+        Route::get('/delete/{id}', [OrderController::class, 'delete'])->name('admin.order.delete');
     });
 
 });

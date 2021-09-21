@@ -12,13 +12,12 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control" id="" placeholder="Name" name="name"
+                        <input type="text" class="form-control" id="" placeholder="name" name="name"
                                value="{{old('name')}}">
                         <span style="color: red"> @error('name') {{$message}} @enderror </span>
                     </div>
                 </div>
                 <!-- /.card-body -->
-
                 <div class="card-footer">
                     <button class="btn btn-primary">Submit</button>
                 </div>
