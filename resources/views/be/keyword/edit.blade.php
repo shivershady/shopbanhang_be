@@ -4,7 +4,7 @@
         <!-- general form elements -->
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Form Add Keyword</h3>
+                <h3 class="card-title">Form Edit Keyword</h3>
             </div>
             <!-- form start -->
             <form method="post" action="{{route('admin.keyword.doEdit',['id'=>$obj->id])}}" enctype="multipart/form-data">
