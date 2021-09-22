@@ -21,12 +21,12 @@ class CreateProductsTable extends Migration
             $table->integer('quantity');
             $table->float('price');
             $table->bigInteger('discount_id');
-            $table->bigInteger('author_id');
+//            $table->bigInteger('author_id');
             $table->tinyInteger('active');
             $table->string('iHot');
             $table->string('iPay');
             $table->string('warranty');
-            $table->integer('view');
+            $table->string('view');
             $table->longText('description');
             $table->text('description_seo');
             $table->string('keyword_seo');

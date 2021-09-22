@@ -10,4 +10,7 @@ class Image extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    public function imageable(){
+        return $this->morphTo();
+    }
 }

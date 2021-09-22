@@ -4,11 +4,12 @@
         <div class="col-sm-12">
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">Form Add Category</h3>
+                    <h3 class="card-title">Form Edit Category</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form method="post" action="{{route('admin.category.doEdit',['id'=>$obj->id])}}" enctype="multipart/form-data">
+                <form method="post" action="{{route('admin.category.doEdit',['id'=>$obj->id])}}"
+                      enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
@@ -20,14 +21,18 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="">Parent id</label>
+                            <label for="">Parent Category</label>
                             <select name="parent_id" class="form-control">
-                                <option value="0">No Parent</option>
+                                <option <?php if ($obj->parent_id == 0) {
+                                    echo 'selected="selected"';
+                                }  ?> value="0">No Parent
+                                </option>
                                 @foreach($categories as $category)
-                                    <option  <?php if($obj->parent_id==$category->id){echo 'selected="selected"';}  ?> value="{{$category->id}}">{{$category->name}}</option>
+                                    <option <?php if ($obj->parent_id == $category->id) {
+                                        echo 'selected="selected"';
+                                    }  ?> value="{{$category->id}}">{{$category->name}}</option>
                                 @endforeach
                             </select>
-                            <span style="color: red"> @error('parent_id') {{$message}} @enderror </span>
                         </div>
                         <div class="form-group">
                             <label for="">Slug</label>
@@ -37,8 +42,16 @@
                         </div>
                         <div class="form-group">
                             <label for="">status</label>
-                            <input type="text" name="status" class="form-control" placeholder="Enter status"
-                                   value="{{$obj->status}}">
+                            <select name="status" class="form-control">
+                                <option value="0" <?php if ($obj->status == 0) {
+                                    echo 'selected="selected"';
+                                } ?>>On
+                                </option>
+                                <option value="1" <?php if ($obj->status == 1) {
+                                    echo 'selected="selected"';
+                                }?>>Off
+                                </option>
+                            </select>
                             <span style="color: red"> @error('status') {{$message}} @enderror </span>
 
                         </div>

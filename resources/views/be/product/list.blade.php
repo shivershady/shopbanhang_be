@@ -4,7 +4,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title"> Category</h3>
+                    <h3 class="card-title">Product</h3>
                 </div>
                 <!-- ./card-header -->
                 <div class="card-body">
@@ -12,37 +12,47 @@
                         <thead>
                         <tr>
                             <th>id</th>
+                            <th>Image</th>
                             <th>name</th>
-                            <th>slug</th>
-                            <th>parent category</th>
-                            <th>status</th>
-                            <th>total product</th>
-                            <th>author</th>
-                            <th>action</th>
+                            <th>Category</th>
+                            <th>Discount Percent</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($list as $item)
                             <tr>
                                 <td>{{$item->id}}</td>
-                                <td>{{$item->name}}</td>
-                                <td>{{$item->slug}}</td>
                                 <td>
-                                    @if($item->parentCategory)
-                                        <span class="badge badge-primary">{{$item->parentCategory->name}}</span>
-                                    @endif
-                                    @if(!$item->parentCategory)
-                                        <span class="badge badge-primary">Do not have parent</span>
+                                    @if($item->images && count($item->images)>0)
+                                        <img width="100px" src="{{asset($item->images[0]->url)}}"
+                                             alt="{{$item->name}}"/>
+                                    @else
+                                        <img src="https://via.placeholder.com/150
+C/O https://placeholder.com/"/>
                                     @endif
                                 </td>
-                                <td>{{$item->status}}</td>
-                                <td>{{$item->total_product}}</td>
-                                <td>{{$item->author_id}}</td>
+                                <td>{{$item->name}}</td>
+                                <td>
+                                    @if($item->category)
+                                        <span class="badge badge-primary">{{$item->category->name}}</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($item->discount)
+                                        <span class="badge badge-primary">{{$item->discount->discount_percent}}</span>
+                                    @endif
+                                </td>
+
+                                <td>{{$item->price}}</td>
+                                <td>{{$item->active}}</td>
                                 <td>
                                     <a class="btn btn-warning"
-                                       href="{{route('admin.category.edit',['id'=>$item->id])}}">Sửa</a>
+                                       href="{{route('admin.product.edit',['id'=>$item->id])}}">Sửa</a>
                                     <a class="btn btn-danger" onclick="return confirm('Bạn có muốn xoá ?')"
-                                       href="{{route('admin.category.delete',['id'=>$item->id])}}">Xoá</a>
+                                       href="{{route('admin.product.delete',['id'=>$item->id])}}">Xoá</a>
                                 </td>
                             </tr>
                         @endforeach

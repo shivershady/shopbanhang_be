@@ -10,4 +10,10 @@ class Variant extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $fillable = [
+      'name','product_id'
+    ];
+    public function product(){
+        return $this->belongsTo(Product::class);
+    }
 }

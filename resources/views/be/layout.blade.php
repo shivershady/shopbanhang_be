@@ -210,7 +210,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="index.html" class="nav-link">
+                                <a href="{{route('admin.product.list')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>List</p>
                                 </a>
@@ -223,6 +223,33 @@
                             </li>
                         </ul>
                     <li/>
+
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            {{-- <i class="nav-icon fas fa-tachometer-alt"></i>--}}
+                            <p>
+                                Order
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.order.list')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>List</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.order.add')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Add</p>
+                                </a>
+                            </li>
+                        </ul>
+                    <li/>
+
+
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             {{-- <i class="nav-icon fas fa-tachometer-alt"></i>--}}
@@ -272,6 +299,103 @@
                     <li/>
 
 
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            {{-- <i class="nav-icon fas fa-tachometer-alt"></i>--}}
+                            <p>
+                                Variant
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.variant.list')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>List</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.variant.add')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Add</p>
+                                </a>
+                            </li>
+                        </ul>
+                    <li/>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            {{-- <i class="nav-icon fas fa-tachometer-alt"></i>--}}
+                            <p>
+                                Variant Value
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.variant_value.list')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>List</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.variant_value.add')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Add</p>
+                                </a>
+                            </li>
+                        </ul>
+                    <li/>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            {{-- <i class="nav-icon fas fa-tachometer-alt"></i>--}}
+                            <p>
+                                Discount
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.discount.list')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>List</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.discount.add')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Add</p>
+                                </a>
+                            </li>
+                        </ul>
+                    <li/>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            {{-- <i class="nav-icon fas fa-tachometer-alt"></i>--}}
+                            <p>
+                                Keyword
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.keyword.list')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>List</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.keyword.add')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Add</p>
+                                </a>
+                            </li>
+                        </ul>
+                    <li/>
+
+
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -297,6 +421,32 @@
               </div>
           </div><!-- /.container-fluid -->
       </section>--}}
+
+
+            <div class="col-md-12">
+                <div style="padding:20px">
+
+
+                    @if(\Illuminate\Support\Facades\Session::has('error'))
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" >×</button>
+                            <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                            {{\Illuminate\Support\Facades\Session::get('error')}}
+                        </div>
+                    @endif
+
+                    @if(\Illuminate\Support\Facades\Session::has('success'))
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" >×</button>
+                            <h5><i class="icon fas fa-check"></i> Alert!</h5>
+                            {{\Illuminate\Support\Facades\Session::get('success')}}
+
+                        </div>
+                    @endif
+
+                </div>
+            </div>
+
 
     <!-- Main content -->
         <section class="content">
