@@ -24,19 +24,19 @@ class UserController extends Controller implements ICRUD
 
     public function doAdd(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:5',
+            'phone' => 'required|min:10',
+            'user_seller' => 'required'
+        ]);
 
         try {
             $data = request()->except(['_token']);
             $data['password'] = bcrypt($request->password);
             User::create($data);
         } catch (\Exception $e) {
-            $request->validate([
-                'name' => 'required',
-                'email' => 'required|email|unique:users',
-                'password' => 'required|min:5',
-                'phone' => 'required|min:10',
-                'user_seller' => 'required'
-            ]);
             return redirect()->back()->with('error', 'thêm thất bại');
         }
 
@@ -54,7 +54,7 @@ class UserController extends Controller implements ICRUD
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email',
             'password' => 'required|min:5',
             'phone' => 'required|min:10',
             'user_seller' => 'required'

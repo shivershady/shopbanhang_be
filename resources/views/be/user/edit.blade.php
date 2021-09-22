@@ -20,7 +20,7 @@
                     <div class="form-group">
                         <label>Password</label>
                         <input type="password" class="form-control" id="" placeholder="Password"
-                               name="password" value="{{$obj->password}}">
+                               name="password">
                         <span style="color: red"> @error('password') {{$message}} @enderror </span>
                     </div>
 
@@ -51,7 +51,7 @@
                             </option>
                             <option value="2" <?php if ($obj->user_seller == 2) {
                                 echo 'selected="selected"';
-                            }?>>User
+                            }?>>Seller
                             </option>
                         </select>
                         <span style="color: red"> @error('user_seller') {{$message}} @enderror </span>
