@@ -23,17 +23,16 @@ class CategoryController extends Controller implements ICRUD
 
     public function doAdd(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'slug' => 'required',
+            'parent_id' => 'required',
+            'total_product' => 'required',
+        ]);
         try {
             $data = request()->except(['_token']);
             Category::create($data);
         } catch (\Exception $e) {
-            $request->validate([
-                'name' => 'required',
-                'slug' => 'required',
-                'parent_id' => 'required',
-                'total_product' => 'required',
-                'author_id' => 'required'
-            ]);
             return redirect()->back()->with('error', 'thêm thất bại');
         }
 
@@ -52,17 +51,17 @@ class CategoryController extends Controller implements ICRUD
     public function doEdit($id, Request $request)
     {
         // TODO: Implement doEdit() method.
+        $request->validate([
+            'name' => 'required',
+            'slug' => 'required',
+            'total_product' => 'required',
+        ]);
         try {
 
             $data = request()->except(['_token']);
             Category::where('id', $id)->update($data);
         } catch (\Exception $e) {
-            $request->validate([
-                'name' => 'required',
-                'slug' => 'required',
-                'total_product' => 'required',
-                'author_id' => 'required'
-            ]);
+
             return redirect()->back()->with('error', 'Sửa thất bại');
         }
         return redirect(route('admin.category.list'))->with('success', 'Sửa thành công');
@@ -78,5 +77,13 @@ class CategoryController extends Controller implements ICRUD
         }
         return redirect()->back()->with('success', 'Xoá thành công');
 
+    }
+    public function search(Request $request)
+    {
+        // TODO: Implement search() method.
+        $q = $request->q;
+        // TODO: Implement list() method.
+        $list = Category::where('name','LIKE','%'.$q.'%')->orWhere('slug','LIKE','%'.$q.'%')->orderBy('updated_at', 'DESC')->paginate($this->paginateItems);
+        return view('be.category.list', compact('list'));
     }
 }

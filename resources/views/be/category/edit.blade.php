@@ -31,6 +31,7 @@
                                     <option <?php if ($obj->parent_id == $category->id) {
                                         echo 'selected="selected"';
                                     }  ?> value="{{$category->id}}">{{$category->name}}</option>
+
                                 @endforeach
                             </select>
                         </div>
@@ -56,21 +57,14 @@
 
                         </div>
                         <div class="form-group">
-                            <label for="">Total_product</label>
+                            <label for="">Total Product</label>
                             <input type="number" name="total_product" class="form-control"
-                                   placeholder="Enter Total product"
+                                   placeholder="Enter Total product" step="any"
                                    value="{{$obj->total_product}}">
                             <span style="color: red"> @error('total_product') {{$message}} @enderror </span>
 
                         </div>
 
-                        <div class="form-group">
-                            <label for="">author</label>
-                            <input type="number" name="author_id" class="form-control" placeholder="Enter author"
-                                   value="{{$obj->author_id}}">
-                            <span style="color: red"> @error('author_id') {{$message}} @enderror </span>
-
-                        </div>
 
                     </div>
                     <!-- /.card-body -->

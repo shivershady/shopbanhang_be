@@ -6,11 +6,11 @@
             <div class="card">
                 <div class="card-header">
                     <a class="btn btn-success" href="{{route('admin.user.add')}}">Add</a>
-                       <form class="form-group" style="display: flex; justify-content: flex-end">
-                           <input class="form-control col-md-3" placeholder="Search"/>
-                           <a class="btn btn-success" href="">search</a>
-                       </form>
-
+                    <form class="form-group" style="display: flex; justify-content: flex-end"
+                          action="{{route('admin.user.search')}}" method="get">
+                        <input class="form-control col-md-3" placeholder="Search" name="q"/>
+                        <button class="btn btn-success">search</button>
+                    </form>
                 </div>
                 <!-- ./card-header -->
                 <div class="card-body">
@@ -50,8 +50,8 @@
                 </div>
                 <div class="card-footer clearfix">
 
-                    <div class="float-right">
-                        {{$list->links()}}
+                    <div style="text-align: center">
+                        {{$list->withQueryString()->links()}}
                     </div>
                 </div>
                 <!-- /.card-body -->

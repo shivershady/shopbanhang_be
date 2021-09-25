@@ -18,7 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->bigInteger('parent_id')->default(0);
-            $table->string('status');
+            $table->string('status'); // 0 on 1 off
             $table->integer('total_product');
             $table->bigInteger('author_id');
             $table->softDeletes();

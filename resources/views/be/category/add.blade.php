@@ -20,7 +20,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="">Parent id</label>
+                            <label for="">Parent Category</label>
                             <select name="parent_id" class="form-control">
                                 <option value="0">No Parent</option>
                                 @foreach($categories as $category)
@@ -47,17 +47,9 @@
                         <div class="form-group">
                             <label for="">Total product</label>
                             <input type="number" name="total_product" class="form-control"
-                                   placeholder="Enter Total product"
+                                   placeholder="Enter Total product"  step="any"
                                    value="{{old('total_product')}}">
                             <span style="color: red">@error('total_product') {{$message}} @enderror</span>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="">author</label>
-                            <input type="number" name="author_id" class="form-control" placeholder="Enter author"
-                                   value="{{old('author_id')}}">
-                            <span style="color: red"> @error('author_id') {{$message}} @enderror </span>
-
                         </div>
 
                     </div>
@@ -70,4 +62,5 @@
             </div>
         </div>
     </div>
+
 @endsection

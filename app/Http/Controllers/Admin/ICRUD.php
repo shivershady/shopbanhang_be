@@ -18,6 +18,8 @@ interface ICRUD
 
     public function delete($id);
 
+    public function search(Request  $request);
+
 }
 
 ?>

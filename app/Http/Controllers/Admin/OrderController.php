@@ -67,4 +67,8 @@ class OrderController extends Controller implements ICRUD
         }
         return redirect(route('admin.order.list'))->with('success','xóa thành công');
     }
+    public function search(Request $request)
+    {
+        // TODO: Implement search() method.
+    }
 }

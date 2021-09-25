@@ -83,5 +83,12 @@ class UserController extends Controller implements ICRUD
         }
         return redirect()->back()->with('success', 'Xoá thành công');
     }
-
+public function search(Request $request)
+{
+    // TODO: Implement search() method.
+    $q = $request->q;
+    // TODO: Implement list() method.
+    $list = User::where('name','LIKE','%'.$q.'%')->orWhere('email','LIKE','%'.$q.'%')->orderBy('updated_at', 'DESC')->paginate($this->paginateItems);
+    return view('be.user.list', compact('list'));
+}
 }

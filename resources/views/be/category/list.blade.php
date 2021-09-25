@@ -17,7 +17,6 @@
                             <th>parent category</th>
                             <th>status</th>
                             <th>total product</th>
-                            <th>author</th>
                             <th>action</th>
                         </tr>
                         </thead>
@@ -35,9 +34,11 @@
                                         <span class="badge badge-primary">Do not have parent</span>
                                     @endif
                                 </td>
-                                <td>{{$item->status}}</td>
+                                <td>
+                                    <span class="badge badge-primary">@if($item->status==0) On @endif</span>
+                                    <span class="badge badge-primary">@if($item->status==1) Off @endif</span>
+                                </td>
                                 <td>{{$item->total_product}}</td>
-                                <td>{{$item->author_id}}</td>
                                 <td>
                                     <a class="btn btn-warning"
                                        href="{{route('admin.category.edit',['id'=>$item->id])}}">Sửa</a>
