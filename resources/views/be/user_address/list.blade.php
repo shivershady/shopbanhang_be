@@ -2,16 +2,16 @@
 @section('main-content')
     <div class="row">
         <div class="col-12">
-            <h2>User List</h2>
+            <h2>User Address List</h2>
             <div class="card">
                 <div class="card-header">
                     <form class="form-group" style="display: flex; justify-content: flex-end"
-                          action="{{route('admin.user.search')}}" method="get">
+                          action="{{route('admin.user_address.search')}}" method="get">
                         <input class="form-control col-md-3" placeholder="Search" name="q"/>
                         <button class="btn btn-success">search</button>
                     </form>
                     <div>
-                        <a class="btn btn-success" href="{{route('admin.user.add')}}">ADD</a>
+                        <a class="btn btn-success" href="{{route('admin.user_address.add')}}">ADD</a>
                     </div>
                 </div>
                 <!-- ./card-header -->
@@ -20,30 +20,31 @@
                         <thead>
                         <tr>
                             <th>id</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Level</th>
-                            <th>Action</th>
+                            <th>User</th>
+                            <th>Address 1</th>
+                            <th>Address 2</th>
+                            <th>City</th>
+                            <th>Province</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($list as $item)
                             <tr>
                                 <td>{{$item->id}}</td>
-                                <td>{{$item->name}}</td>
-                                <td>{{$item->email}}</td>
-                                <td>{{$item->phone}}</td>
                                 <td>
-                                    <span class="badge badge-primary">@if($item->user_seller==0)Admin @endif</span>
-                                    <span class="badge badge-primary">@if($item->user_seller==1)User @endif</span>
-                                    <span class="badge badge-primary">@if($item->user_seller==2)Seller @endif</span>
+                                    @if($item->user)
+                                        <span class="badge badge-primary">{{$item->user->name}}</span>
+                                    @endif
                                 </td>
+                                <td>{{$item->address_line1}}</td>
+                                <td>{{$item->address_line2}}</td>
+                                 <td>{{$item->city}}</td>
+                                <td>{{$item->province}}</td>
                                 <td>
                                     <a class="btn btn-warning"
-                                       href="{{route('admin.user.edit',['id'=>$item->id])}}">Sửa</a>
+                                       href="{{route('admin.user_address.edit',['id'=>$item->id])}}">Sửa</a>
                                     <a class="btn btn-danger" onclick="return confirm('Bạn có muốn xoá ?')"
-                                       href="{{route('admin.user.delete',['id'=>$item->id])}}">Xoá</a>
+                                       href="{{route('admin.user_address.delete',['id'=>$item->id])}}">Xoá</a>
                                 </td>
                             </tr>
                         @endforeach

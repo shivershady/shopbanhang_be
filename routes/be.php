@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\VariantValueController;
 use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\KeywordController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\UserAddressController;
 Route::prefix('/admin')->group(function () {
 
     Route::prefix('/category')->group(function () {
@@ -95,6 +96,17 @@ Route::prefix('/admin')->group(function () {
         Route::post('/edit/{id}', [OrderController::class, 'doEdit'])->name('admin.order.doEdit');
         Route::get('/delete/{id}', [OrderController::class, 'delete'])->name('admin.order.delete');
         Route::get('/search',[OrderController::class,'search'])->name('admin.order.search');
+
+    });
+
+    Route::prefix('/user_address')->group(function () {
+        Route::get('/', [UserAddressController::class, 'list'])->name('admin.user_address.list');
+        Route::get('/add', [UserAddressController::class, 'add'])->name('admin.user_address.add');
+        Route::post('/do-add', [UserAddressController::class, 'doAdd'])->name('admin.user_address.doAdd');
+        Route::get('/edit/{id}', [UserAddressController::class, 'edit'])->name('admin.user_address.edit');
+        Route::post('/edit/{id}', [UserAddressController::class, 'doEdit'])->name('admin.user_address.doEdit');
+        Route::get('/delete/{id}', [UserAddressController::class, 'delete'])->name('admin.user_address.delete');
+        Route::get('/search',[UserAddressController::class,'search'])->name('admin.user_address.search');
 
     });
 
