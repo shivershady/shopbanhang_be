@@ -41,6 +41,7 @@ Route::prefix('/admin')->group(function () {
         Route::post('/edit/{id}', [UserController::class, 'doEdit'])->name('admin.user.doEdit');
         Route::get('/delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete');
         Route::get('/search',[UserController::class,'search'])->name('admin.user.search');
+        Route::get('/filter',[UserController::class,'filter'])->name('admin.user.filter');
 
     });
 

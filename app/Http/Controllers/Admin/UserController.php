@@ -83,12 +83,34 @@ class UserController extends Controller implements ICRUD
         }
         return redirect()->back()->with('success', 'Xoá thành công');
     }
-public function search(Request $request)
-{
-    // TODO: Implement search() method.
-    $q = $request->q;
-    // TODO: Implement list() method.
-    $list = User::where('name','LIKE','%'.$q.'%')->orWhere('email','LIKE','%'.$q.'%')->orderBy('updated_at', 'DESC')->paginate($this->paginateItems);
-    return view('be.user.list', compact('list'));
-}
+
+    public function search(Request $request)
+    {
+        // TODO: Implement search() method.
+        $q = $request->q;
+        // TODO: Implement list() method.
+        $list = User::where('name', 'LIKE', '%' . $q . '%')->orWhere('email', 'LIKE', '%' . $q . '%')->orderBy('updated_at', 'DESC')->paginate($this->paginateItems);
+        return view('be.user.list', compact('list'));
+    }
+
+    public function filter(Request $request)
+    {
+        $filter = $request->filter;
+        switch ($filter){
+            case 'DESC':
+                $list = User::orderBy('id', 'DESC')->paginate($this->paginateItems);
+                return view('be.user.list', compact('list'));
+
+            case 'ASC':
+                $list = User::orderBy('id', 'ASC')->paginate($this->paginateItems);
+                return view('be.user.list', compact('list'));
+            case 'a-z':
+                $list = User::orderBy('name', 'ASC')->paginate($this->paginateItems);
+                return view('be.user.list', compact('list'));
+                case 'z-a';
+                    $list = User::orderBy('name', 'DESC')->paginate($this->paginateItems);
+                    return view('be.user.list', compact('list'));
+        }
+    }
+
 }

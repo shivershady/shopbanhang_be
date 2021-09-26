@@ -20,6 +20,8 @@ interface ICRUD
 
     public function search(Request  $request);
 
+    public function filter(Request $request);
+
 }
 
 ?>
