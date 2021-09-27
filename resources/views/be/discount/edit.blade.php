@@ -28,7 +28,7 @@
                         <label>discount percent</label>
                         <input type="number" class="form-control" id="" placeholder="discount percent"
                                name="discount_percent"
-                               value="{{$obj->discount_percent}}">
+                               value="{{$obj->discount_percent}}" step="any">
                         <span style="color: red"> @error('discount_percent') {{$message}} @enderror </span>
                     </div>
 

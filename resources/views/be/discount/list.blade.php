@@ -2,9 +2,32 @@
 @section('main-content')
     <div class="row">
         <div class="col-12">
+            <h2>Discount</h2>
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Variant</h3>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <form class="form-group" style="display: flex; justify-content: flex-end"
+                                      action="{{route('admin.discount.filter')}}" method="get">
+                                    <select class="form-control" name="filter">
+                                        <option value="DESC">Mới Nhất</option>
+                                        <option value="ASC">ID Tăng Dần</option>
+                                        <option value="a-z">Discount Percent Tăng Dần</option>
+                                        <option value="z-a">Discount Percent Giảm Dần</option>
+                                    </select>
+                                    <button class="btn btn-success">filter</button>
+                                </form>
+                            </div>
+                            <div class="col-md-4">
+                                <form class="form-group" style="display: flex; justify-content: flex-end"
+                                      action="{{route('admin.discount.search')}}" method="get">
+                                    <input class="form-control" placeholder="Search" name="q"/>
+                                    <button class="btn btn-success">search</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- ./card-header -->
                 <div class="card-body">
@@ -26,7 +49,10 @@
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->desc}}</td>
                                 <td>{{$item->discount_percent}}</td>
-                                <td>{{$item->active}}</td>
+                                <td>
+                                    <span class="badge badge-primary">@if($item->active==0) On @endif</span>
+                                    <span class="badge badge-primary">@if($item->active==1) Off @endif</span>
+                                </td>
                                 <td>
                                     <a class="btn btn-warning"
                                        href="{{route('admin.discount.edit',['id'=>$item->id])}}">Sửa</a>
