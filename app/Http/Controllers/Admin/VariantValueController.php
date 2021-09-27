@@ -82,4 +82,8 @@ class VariantValueController extends Controller implements ICRUD
     {
         // TODO: Implement search() method.
     }
+    public function filter(Request $request)
+    {
+        // TODO: Implement filter() method.
+    }
 }

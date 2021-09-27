@@ -23,24 +23,26 @@
                         <div class="form-group">
                             <label for="">Parent Category</label>
                             <select name="parent_id" class="form-control">
-                                <option <?php if ($obj->parent_id == 0) {
-                                    echo 'selected="selected"';
-                                }  ?> value="0">No Parent
+                                <option
+                                      value="0" <?php if($obj->parent_id==0){echo 'selected="selected"';} ?> >No Parent
                                 </option>
                                 @foreach($categories as $category)
-                                    <option <?php if ($obj->parent_id == $category->id) {
-                                        echo 'selected="selected"';
-                                    }  ?> value="{{$category->id}}">{{$category->name}}</option>
-
+                                    <option value="{{$category->id}}"
+                                            @if($obj->parent_id==$category->id) selected
+                                            @elseif($obj->id==$category->id) @continue
+                                        @endif >{{$category->name}}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
+
                         <div class="form-group">
-                            <label for="">Slug</label>
+                            <label >Slug</label>
                             <input type="text" name="slug" class="form-control" placeholder="Enter slug"
                                    value="{{$obj->slug}}">
                             <span style="color: red"> @error('slug') {{$message}} @enderror </span>
                         </div>
+
                         <div class="form-group">
                             <label for="">status</label>
                             <select name="status" class="form-control">

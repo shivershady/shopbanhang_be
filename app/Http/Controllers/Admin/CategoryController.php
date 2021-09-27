@@ -86,4 +86,25 @@ class CategoryController extends Controller implements ICRUD
         $list = Category::where('name','LIKE','%'.$q.'%')->orWhere('slug','LIKE','%'.$q.'%')->orderBy('updated_at', 'DESC')->paginate($this->paginateItems);
         return view('be.category.list', compact('list'));
     }
+    public function filter(Request $request)
+    {
+        // TODO: Implement filter() method.
+        $filter = $request->filter;
+        switch ($filter){
+            case 'DESC':
+                $list = Category::orderBy('id', 'DESC')->paginate($this->paginateItems);
+                return view('be.category.list', compact('list'));
+
+            case 'ASC':
+                $list = Category::orderBy('id', 'ASC')->paginate($this->paginateItems);
+                return view('be.category.list', compact('list'));
+            case 'a-z':
+                $list = Category::orderBy('name', 'ASC')->paginate($this->paginateItems);
+                return view('be.category.list', compact('list'));
+            case 'z-a';
+                $list = Category::orderBy('name', 'DESC')->paginate($this->paginateItems);
+                return view('be.category.list', compact('list'));
+
+        }
+    }
 }

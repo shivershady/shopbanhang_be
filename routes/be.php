@@ -20,6 +20,7 @@ Route::prefix('/admin')->group(function () {
         Route::post('/edit/{id}', [CategoryController::class, 'doEdit'])->name('admin.category.doEdit');
         Route::get('/delete/{id}', [CategoryController::class, 'delete'])->name('admin.category.delete');
         Route::get('/search',[CategoryController::class,'search'])->name('admin.category.search');
+        Route::get('/filter',[CategoryController::class,'filter'])->name('admin.category.filter');
     });
 
     Route::prefix('/product')->group(function (){
@@ -31,6 +32,7 @@ Route::prefix('/admin')->group(function () {
         Route::post('/edit/{id}', [ProductController::class, 'doEdit'])->name('admin.product.doEdit');
         Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('admin.product.delete');
         Route::get('/search',[ProductController::class,'search'])->name('admin.product.search');
+        Route::get('/filter',[ProductController::class,'filter'])->name('admin.product.filter');
     });
 
     Route::prefix('/user')->group(function () {
@@ -53,6 +55,7 @@ Route::prefix('/admin')->group(function () {
         Route::post('/edit/{id}', [VariantController::class, 'doEdit'])->name('admin.variant.doEdit');
         Route::get('/delete/{id}', [VariantController::class, 'delete'])->name('admin.variant.delete');
         Route::get('/search',[VariantValueController::class,'search'])->name('admin.variant.search');
+        Route::get('filter',[VariantValueController::class,'filter'])->name('admin.variant.filter');
 
     });
 
@@ -64,6 +67,7 @@ Route::prefix('/admin')->group(function () {
         Route::post('/edit/{id}', [VariantValueController::class, 'doEdit'])->name('admin.variant_value.doEdit');
         Route::get('/delete/{id}', [VariantValueController::class, 'delete'])->name('admin.variant_value.delete');
         Route::get('/search',[VariantValueController::class,'search'])->name('admin.variant.search');
+        Route::get('/filter',[VariantValueController::class,'filter'])->name('admin.variant.filter');
 
     });
 
@@ -75,6 +79,7 @@ Route::prefix('/admin')->group(function () {
         Route::post('/edit/{id}', [DiscountController::class, 'doEdit'])->name('admin.discount.doEdit');
         Route::get('/delete/{id}', [DiscountController::class, 'delete'])->name('admin.discount.delete');
         Route::get('/search',[DiscountController::class,'search'])->name('admin.discount.search');
+        Route::get('/filter',[DiscountController::class,'filter'])->name('admin.discount.filter');
 
     });
 
@@ -86,6 +91,7 @@ Route::prefix('/admin')->group(function () {
         Route::post('/edit/{id}', [KeywordController::class, 'doEdit'])->name('admin.keyword.doEdit');
         Route::get('/delete/{id}', [KeywordController::class, 'delete'])->name('admin.keyword.delete');
         Route::get('/search',[KeywordController::class,'search'])->name('admin.keyword.search');
+        Route::get('/filter',[KeywordController::class,'filter'])->name('admin.keyword.filter');
 
     });
 
@@ -97,6 +103,7 @@ Route::prefix('/admin')->group(function () {
         Route::post('/edit/{id}', [OrderController::class, 'doEdit'])->name('admin.order.doEdit');
         Route::get('/delete/{id}', [OrderController::class, 'delete'])->name('admin.order.delete');
         Route::get('/search',[OrderController::class,'search'])->name('admin.order.search');
+        Route::get('/filter',[OrderController::class,'filter'])->name('admin.order.filter');
 
     });
 
@@ -108,6 +115,7 @@ Route::prefix('/admin')->group(function () {
         Route::post('/edit/{id}', [UserAddressController::class, 'doEdit'])->name('admin.user_address.doEdit');
         Route::get('/delete/{id}', [UserAddressController::class, 'delete'])->name('admin.user_address.delete');
         Route::get('/search',[UserAddressController::class,'search'])->name('admin.user_address.search');
+        Route::get('filter',[UserAddressController::class,'filter'])->name('admin.user_address.filter');
 
     });
 

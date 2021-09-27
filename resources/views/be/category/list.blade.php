@@ -1,10 +1,41 @@
 @extends('be.layout')
 @section('main-content')
+
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title"> Category</h3>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <form class="form-group" style="display: flex; justify-content: flex-end"
+                                      action="{{route('admin.category.filter')}}" method="get">
+                                    <select class="form-control" name="filter">
+                                        <option value="DESC">Mới Nhất</option>
+                                        <option value="ASC"> ID Tăng dần</option>
+                                        <option value="a-z">Name A-Z</option>
+                                        <option value="z-a">Name Z-A</option>
+                                    </select>
+                                    <button class="btn btn-success">filter</button>
+                                </form>
+                            </div>
+                            <div class="col-md-4">
+                                <form class="form-group" style="display: flex; justify-content: flex-end"
+                                      action="{{route('admin.category.search')}}" method="get">
+                                    <input class="form-control" placeholder="Search" name="q"/>
+                                    <button class="btn btn-success">search</button>
+                                </form>
+                            </div>
+                            <div>
+
+                                <div class="col-md-4" >
+                                    <a class="btn btn-success" href="{{route('admin.category.add')}}"
+                                    >ADD</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- ./card-header -->
                 <div class="card-body">
