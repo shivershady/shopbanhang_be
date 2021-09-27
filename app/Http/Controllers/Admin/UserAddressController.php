@@ -73,6 +73,10 @@ class UserAddressController extends Controller implements ICRUD
     public function search(Request $request)
     {
         // TODO: Implement search() method.
+        $q = $request->q;
+        // TODO: Implement list() method.
+        $list = User_address::where('address_line1', 'LIKE', '%' . $q . '%')->orWhere('province', 'LIKE', '%' . $q . '%')->orderBy('updated_at', 'DESC')->paginate($this->paginateItems);
+        return view('be.user_address.list', compact('list'));
     }
 
     public function delete($id)
@@ -88,5 +92,21 @@ class UserAddressController extends Controller implements ICRUD
   public function filter(Request $request)
   {
       // TODO: Implement filter() method.
+      $filter = $request->filter;
+      switch ($filter){
+          case 'DESC':
+              $list = User_address::orderBy('id', 'DESC')->paginate($this->paginateItems);
+              return view('be.User_address.list', compact('list'));
+
+          case 'ASC':
+              $list = User_address::orderBy('id', 'ASC')->paginate($this->paginateItems);
+              return view('be.User_address.list', compact('list'));
+          case 'a-z':
+              $list = User_address::orderBy('address_line1', 'ASC')->paginate($this->paginateItems);
+              return view('be.User_address.list', compact('list'));
+          case 'z-a';
+              $list = User_address::orderBy('address_line2', 'DESC')->paginate($this->paginateItems);
+              return view('be.User_address.list', compact('list'));
+      }
   }
 }

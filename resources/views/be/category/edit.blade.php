@@ -24,12 +24,14 @@
                             <label for="">Parent Category</label>
                             <select name="parent_id" class="form-control">
                                 <option
-                                      value="0" <?php if($obj->parent_id==0){echo 'selected="selected"';} ?> >No Parent
+                                    value="0" <?php if ($obj->parent_id == 0) {
+                                    echo 'selected="selected"';
+                                } ?> >No Parent
                                 </option>
                                 @foreach($categories as $category)
                                     <option value="{{$category->id}}"
                                             @if($obj->parent_id==$category->id) selected
-                                            @elseif($obj->id==$category->id) @continue
+                                    @elseif($obj->id==$category->id) @continue
                                         @endif >{{$category->name}}
                                     </option>
                                 @endforeach
@@ -37,7 +39,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label >Slug</label>
+                            <label>Slug</label>
                             <input type="text" name="slug" class="form-control" placeholder="Enter slug"
                                    value="{{$obj->slug}}">
                             <span style="color: red"> @error('slug') {{$message}} @enderror </span>

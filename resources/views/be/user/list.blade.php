@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-4" style="margin-left: 10px">
                                 <form class="form-group" style="display: flex; justify-content: flex-end"
                                       action="{{route('admin.user.filter')}}" method="get">
                                     <select class="form-control" name="filter">

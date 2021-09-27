@@ -5,13 +5,36 @@
             <h2>User Address List</h2>
             <div class="card">
                 <div class="card-header">
-                    <form class="form-group" style="display: flex; justify-content: flex-end"
-                          action="{{route('admin.user_address.search')}}" method="get">
-                        <input class="form-control col-md-3" placeholder="Search" name="q"/>
-                        <button class="btn btn-success">search</button>
-                    </form>
-                    <div>
-                        <a class="btn btn-success" href="{{route('admin.user_address.add')}}">ADD</a>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <form class="form-group" style="display: flex; justify-content: flex-end"
+                                      action="{{route('admin.user_address.filter')}}" method="get">
+                                    <select class="form-control" name="filter">
+                                        <option value="DESC">Mới Nhất</option>
+                                        <option value="ASC">ID Tăng Dần</option>
+                                        <option value="a-z">Address A-Z</option>
+                                        <option value="z-a">Address Z-A</option>
+                                    </select>
+                                    <button class="btn btn-success">filter</button>
+                                </form>
+                            </div>
+                            <div class="col-md-4">
+                                <form class="form-group" style="display: flex; justify-content: flex-end"
+                                      action="{{route('admin.user_address.search')}}" method="get">
+                                    <input class="form-control" placeholder="Search" name="q"/>
+                                    <button class="btn btn-success">search</button>
+                                </form>
+                            </div>
+                            <div>
+
+                                <div class="col-md-4">
+                                    <a class="btn btn-success" href="{{route('admin.user_address.add')}}"
+                                    >ADD</a>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- ./card-header -->
