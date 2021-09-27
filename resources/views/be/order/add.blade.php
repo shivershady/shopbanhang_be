@@ -7,20 +7,20 @@
                 <h3 class="card-title">Form Add Order</h3>
             </div>
             <!-- form start -->
-            <form method="post" action="{{route('admin.order.doAdd')}}" enctype="multipart/form-data">
+            <form method="post" action="{{route('admin.order.doAdd')}}" enctype="multipart/form-data" >
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
                         <label>Total</label>
                         <input type="number" class="form-control" id="" placeholder="Total" name="total"
-                               value="{{old('total')}}">
+                               value="{{old('total')}}" step="any">
                         <span style="color: red"> @error('total') {{$message}} @enderror </span>
                     </div>
 
                     <div class="form-group">
                         <label>Sub Total</label>
                         <input type="number" class="form-control" id="" placeholder="Sub total" name="sub_total"
-                               value="{{old('sub_total')}}">
+                               value="{{old('sub_total')}}" step="any">
                         <span style="color: red"> @error('sub_total') {{$message}} @enderror </span>
                     </div>
 
