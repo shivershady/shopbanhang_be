@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\KeywordController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UserAddressController;
+use App\Http\Controllers\Admin\StatementController;
+
 Route::prefix('/admin')->group(function () {
 
     Route::prefix('/category')->group(function () {
@@ -116,6 +118,18 @@ Route::prefix('/admin')->group(function () {
         Route::get('/delete/{id}', [UserAddressController::class, 'delete'])->name('admin.user_address.delete');
         Route::get('/search',[UserAddressController::class,'search'])->name('admin.user_address.search');
         Route::get('filter',[UserAddressController::class,'filter'])->name('admin.user_address.filter');
+
+    });
+
+    Route::prefix('/statement')->group(function () {
+        Route::get('/', [StatementController::class, 'list'])->name('admin.statement.list');
+        Route::get('/add', [StatementController::class, 'add'])->name('admin.statement.add');
+        Route::post('/do-add', [StatementController::class, 'doAdd'])->name('admin.statement.doAdd');
+        Route::get('/edit/{id}', [StatementController::class, 'edit'])->name('admin.statement.edit');
+        Route::post('/edit/{id}', [StatementController::class, 'doEdit'])->name('admin.statement.doEdit');
+        Route::get('/delete/{id}', [StatementController::class, 'delete'])->name('admin.statement.delete');
+        Route::get('/search',[StatementController::class,'search'])->name('admin.statement.search');
+        Route::get('filter',[StatementController::class,'filter'])->name('admin.statement.filter');
 
     });
 

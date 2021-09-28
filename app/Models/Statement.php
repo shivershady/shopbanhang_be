@@ -10,4 +10,10 @@ class Statement extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected  $fillable = [
+        'is_sub','amount', 'status', 'order_id'
+    ];
+    public function order(){
+        return $this->belongsTo(Order::class);
+    }
 }
