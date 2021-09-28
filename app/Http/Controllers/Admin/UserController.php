@@ -107,7 +107,7 @@ class UserController extends Controller implements ICRUD
             case 'a-z':
                 $list = User::orderBy('name', 'ASC')->paginate($this->paginateItems);
                 return view('be.user.list', compact('list'));
-                case 'z-a';
+            case 'z-a':
                     $list = User::orderBy('name', 'DESC')->paginate($this->paginateItems);
                     return view('be.user.list', compact('list'));
         }

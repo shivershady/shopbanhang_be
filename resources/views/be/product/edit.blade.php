@@ -5,7 +5,7 @@
         <div class="col-sm-12">
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">Form Add Product</h3>
+                    <h3 class="card-title">Form Edit Product</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
@@ -208,7 +208,6 @@
     <style>
         .thumb {
             width: 100px;
-            height: 80px;
             object-font: cover;
         }
 

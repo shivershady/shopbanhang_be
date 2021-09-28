@@ -65,7 +65,7 @@ class UserAddressController extends Controller implements ICRUD
             User_address::find($id)->update($data);
         }catch (Exception $e){
             return redirect()->back()->with('error','sửa thất bại');
-            echo $e->getMassage();
+           // echo $e->getMassage();
         }
         return  redirect(route('admin.user_address.list'))->with('success','sửa thành công');
     }
@@ -104,7 +104,7 @@ class UserAddressController extends Controller implements ICRUD
           case 'a-z':
               $list = User_address::orderBy('address_line1', 'ASC')->paginate($this->paginateItems);
               return view('be.User_address.list', compact('list'));
-          case 'z-a';
+          case 'z-a':
               $list = User_address::orderBy('address_line2', 'DESC')->paginate($this->paginateItems);
               return view('be.User_address.list', compact('list'));
       }

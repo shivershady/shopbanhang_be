@@ -105,7 +105,7 @@ class OrderController extends Controller implements ICRUD
             case 'a-z':
                 $list = Order::orderBy('total', 'ASC')->paginate($this->paginateItems);
                 return view('be.order.list', compact('list'));
-            case 'z-a';
+            case 'z-a':
                 $list = Order::orderBy('total', 'DESC')->paginate($this->paginateItems);
                 return view('be.order.list', compact('list'));
         }

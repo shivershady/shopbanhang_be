@@ -1,10 +1,36 @@
 @extends('be.layout')
 @section('main-content')
     <div class="row">
+        <h2>Product</h2>
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Product</h3>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <form class="form-group" style="display: flex; justify-content: flex-end"
+                                      action="{{route('admin.product.filter')}}" method="get">
+                                    <select class="form-control" name="filter">
+                                        <option value="" selected hidden>Select Filter</option>
+                                        <option value="DESC">Mới Nhất</option>
+                                        <option value="ASC"> ID Tăng dần</option>
+                                        <option value="a-z">Name A-Z</option>
+                                        <option value="z-a">Name Z-A</option>
+                                        <option value="price-tang">Giá Tăng Dần</option>
+                                        <option value="price-giam">Giá Giảm Dần </option>
+                                    </select>
+                                    <button class="btn btn-success">filter</button>
+                                </form>
+                            </div>
+                            <div class="col-md-4">
+                                <form class="form-group" style="display: flex; justify-content: flex-end"
+                                      action="{{route('admin.product.search')}}" method="get">
+                                    <input class="form-control" placeholder="Search" name="q"/>
+                                    <button class="btn btn-success">search</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- ./card-header -->
                 <div class="card-body">
@@ -47,7 +73,10 @@ C/O https://placeholder.com/"/>
                                 </td>
 
                                 <td>{{$item->price}}</td>
-                                <td>{{$item->active}}</td>
+                                <td>
+                                    <span class="badge badge-primary">@if($item->active==0) On @endif</span>
+                                    <span class="badge badge-primary">@if($item->active==1) Off @endif</span>
+                                </td>
                                 <td>
                                     <a class="btn btn-warning"
                                        href="{{route('admin.product.edit',['id'=>$item->id])}}">Sửa</a>

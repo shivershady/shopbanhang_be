@@ -95,7 +95,7 @@ class DiscountController extends Controller implements ICRUD
             case 'a-z':
                 $list = Discount::orderBy('discount_percent', 'ASC')->paginate($this->paginateItems);
                 return view('be.discount.list', compact('list'));
-            case 'z-a';
+            case 'z-a':
                 $list = Discount::orderBy('discount_percent', 'DESC')->paginate($this->paginateItems);
                 return view('be.discount.list', compact('list'));
 

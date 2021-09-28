@@ -101,7 +101,7 @@ class CategoryController extends Controller implements ICRUD
             case 'a-z':
                 $list = Category::orderBy('name', 'ASC')->paginate($this->paginateItems);
                 return view('be.category.list', compact('list'));
-            case 'z-a';
+            case 'z-a':
                 $list = Category::orderBy('name', 'DESC')->paginate($this->paginateItems);
                 return view('be.category.list', compact('list'));
 
