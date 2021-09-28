@@ -31,7 +31,7 @@
                                 @foreach($categories as $category)
                                     <option value="{{$category->id}}"
                                             @if($obj->parent_id==$category->id) selected
-                                    @elseif($obj->id==$category->id) @continue
+                                    @elseif($obj->id==$category->id) hidden
                                         @endif >{{$category->name}}
                                     </option>
                                 @endforeach

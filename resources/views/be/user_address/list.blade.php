@@ -11,6 +11,7 @@
                                 <form class="form-group" style="display: flex; justify-content: flex-end"
                                       action="{{route('admin.user_address.filter')}}" method="get">
                                     <select class="form-control" name="filter">
+                                        <option value="" selected hidden>Select Filter</option>
                                         <option value="DESC">Mới Nhất</option>
                                         <option value="ASC">ID Tăng Dần</option>
                                         <option value="a-z">Address A-Z</option>

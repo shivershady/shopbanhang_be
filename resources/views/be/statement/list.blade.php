@@ -11,7 +11,7 @@
                                 <form class="form-group" style="display: flex; justify-content: flex-end"
                                       action="{{route('admin.statement.filter')}}" method="get">
                                     <select class="form-control" name="filter">
-                                        <option value="" selected >Select Filter</option>
+                                        <option value="" selected hidden>Select Filter</option>
                                         <option value="DESC">Mới Nhất</option>
                                         <option value="ASC">ID Tăng Dần</option>
                                         <option value="a-z">Amount Tăng Dần </option>
