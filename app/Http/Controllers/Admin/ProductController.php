@@ -162,7 +162,6 @@ class ProductController extends Controller implements ICRUD
             case 'DESC':
                 $list = Product::orderBy('id', 'DESC')->paginate($this->paginateItems);
                 return view('be.product.list', compact('list'));
-
             case 'ASC':
                 $list = Product::orderBy('id', 'ASC')->paginate($this->paginateItems);
                 return view('be.product.list', compact('list'));
@@ -177,6 +176,9 @@ class ProductController extends Controller implements ICRUD
                 return view('be.product.list', compact('list'));
             case 'price-giam':
                 $list = Product::orderBy('price', 'DESC')->paginate($this->paginateItems);
+                return view('be.product.list', compact('list'));
+            case 'active':
+                $list = Product::where('active',0)->paginate($this->paginateItems);
                 return view('be.product.list', compact('list'));
         }
     }
