@@ -25,4 +25,7 @@ class Product extends Model
     public function discount(){
         return $this->belongsTo(Discount::class);
     }
+    public function order(){
+        return $this->belongsToMany(Order::class);
+    }
 }

@@ -19,4 +19,7 @@ class Order extends Model
     public function statement(){
         return $this->hasOne(Statement::class);
     }
+    public function product(){
+        return $this->belongsToMany(Product::class);
+    }
 }

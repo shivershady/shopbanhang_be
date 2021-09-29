@@ -38,10 +38,10 @@ class OrderController extends Controller implements ICRUD
                 'status' => 'required',
                 'payment_type' => 'required'
             ]);
-            return redirect()->back()->with('error','thêm thất bại');
-          //  echo $e->getMessage();
+            return redirect()->back()->with('error', 'thêm thất bại');
+            //  echo $e->getMessage();
         }
-        return redirect(route('admin.order.list'))->with('success','thêm thành công');
+        return redirect(route('admin.order.list'))->with('success', 'thêm thành công');
     }
 
     public function edit($id)
@@ -49,7 +49,7 @@ class OrderController extends Controller implements ICRUD
         // TODO: Implement edit() method.
         $obj = Order::find($id);
         $users = User::all();
-        return view('be.order.edit',compact('obj','users'));
+        return view('be.order.edit', compact('obj', 'users'));
     }
 
     public function doEdit($id, Request $request)
@@ -65,10 +65,10 @@ class OrderController extends Controller implements ICRUD
         try {
             $data = request()->except(['_token']);
             Order::find($id)->update($data);
-        }catch (\Exception $e){
-            return redirect()->back()->with('error','sửa thất bại');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'sửa thất bại');
         }
-        return  redirect(route('admin.order.list'))->with('success','sửa thành công');
+        return redirect(route('admin.order.list'))->with('success', 'sửa thành công');
 
     }
 
@@ -77,26 +77,43 @@ class OrderController extends Controller implements ICRUD
         // TODO: Implement delete() method.
         try {
             Order::find($id)->delete();
-        }catch (\Exception $e){
-            return redirect()->back()->with('error','xóa thành công');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'xóa thành công');
         }
-        return redirect(route('admin.order.list'))->with('success','xóa thành công');
+        return redirect(route('admin.order.list'))->with('success', 'xóa thành công');
     }
+
     public function search(Request $request)
     {
         // TODO: Implement search() method.
         $q = $request->q;
         // TODO: Implement list() method.
-        $list = Order::where( 'total' , 'LIKE', '%' . $q . '%')->orWhere('sub_total','LIKE','%'. $q . '%')->orderBy('updated_at', 'DESC')->paginate($this->paginateItems);
+        $list = Order::where('total', 'LIKE', '%' . $q . '%')->orWhere('sub_total', 'LIKE', '%' . $q . '%')->orderBy('updated_at', 'DESC')->paginate($this->paginateItems);
         return view('be.order.list', compact('list'));
     }
+
     public function filter(Request $request)
     {
         // TODO: Implement filter() method.
         $filter = $request->filter;
-        switch ($filter){
+        switch ($filter) {
             case 'DESC':
                 $list = Order::orderBy('id', 'DESC')->paginate($this->paginateItems);
+                return view('be.order.list', compact('list'));
+            case 'pending':
+                $list = Order::where('status', 1)->paginate($this->paginateItems);
+                return view('be.order.list', compact('list'));
+            case 'processing':
+                $list = Order::where('status', 2)->paginate($this->paginateItems);
+                return view('be.order.list', compact('list'));
+            case 'sent':
+                $list = Order::where('status', 3)->paginate($this->paginateItems);
+                return view('be.order.list', compact('list'));
+            case 'received':
+                $list = Order::where('status', 4)->paginate($this->paginateItems);
+                return view('be.order.list', compact('list'));
+            case 'cancel':
+                $list = Order::where('status', 5)->paginate($this->paginateItems);
                 return view('be.order.list', compact('list'));
 
             case 'ASC':
@@ -108,6 +125,7 @@ class OrderController extends Controller implements ICRUD
             case 'z-a':
                 $list = Order::orderBy('total', 'DESC')->paginate($this->paginateItems);
                 return view('be.order.list', compact('list'));
+
         }
     }
 }

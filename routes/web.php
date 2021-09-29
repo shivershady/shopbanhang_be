@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/',function (){
-return view('be.layout');
+/*return view('be.layout');*/
+    $mien = \App\Models\Order::find(1);
+    echo $mien->product->name;
 });
 require_once __DIR__.'/be.php';//magic constant

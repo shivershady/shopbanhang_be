@@ -13,6 +13,11 @@
                                     <select class="form-control" name="filter">
                                         <option value="" selected hidden>Select Filter</option>
                                         <option value="DESC">Mới Nhất</option>
+                                        <option value="pending">Chờ sác nhận</option>
+                                        <option value="processing">Chờ lấy hàng</option>
+                                        <option value="sent">Đang Giao</option>
+                                        <option value="received">Đã giao </option>
+                                        <option value="cancel">Đã Hủy</option>
                                         <option value="ASC"> ID Tăng Dần</option>
                                         <option value="a-z">Total Tăng Dần</option>
                                         <option value="z-a">Total Giảm Dần</option>
