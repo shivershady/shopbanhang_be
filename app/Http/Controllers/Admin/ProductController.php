@@ -82,7 +82,7 @@ class ProductController extends Controller implements ICRUD
         try {
 
             DB::beginTransaction();
-            $data = request()->except('_token', 'img');
+            $data = request()->except('_token', 'img','removeImages');
             Product::where('id', $id)->update($data);
 
 
@@ -96,8 +96,8 @@ class ProductController extends Controller implements ICRUD
                     //Xoá dữ liệu ảnh trong DB
                     $image = Image::find($removeImageId);
                     if ($image) {
-                        Storage::disk('public')->delete($image->url);//xoả ảnh trong storage
-                        $image->delete();//xoá dữ liệu ảnh trong DB
+                        Storage::disk('local')->delete($image->url);//xoả ảnh trong storage
+                        $image->forceDelete();//xoá dữ liệu ảnh trong DB
                     }
                 }
             }

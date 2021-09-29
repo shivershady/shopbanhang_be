@@ -13,7 +13,7 @@ class Product extends Model
     protected $fillable=[
         'name','slug','category_id','quantity',
         'price','discount_id','active','iHot','iPay','warranty','view',
-        'description','description_seo','title_seo','content','keyword_seo'
+        'description','description_seo','title_seo','content','keyword_seo',
     ];
     public function images()
     {
