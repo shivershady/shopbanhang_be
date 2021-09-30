@@ -64,9 +64,9 @@
                                     </td>
                                     <td>
                                         <a class="btn btn-warning"
-                                           href="{{route('admin.user.edit',['id'=>$item->id])}}">Sửa</a>
+                                           href="{{route('admin.user.edit',['id'=>$item->id])}}">Edit</a>
                                         <a class="btn btn-danger" onclick="return confirm('Bạn có muốn xoá ?')"
-                                           href="{{route('admin.user.delete',['id'=>$item->id])}}">Xoá</a>
+                                           href="{{route('admin.user.delete',['id'=>$item->id])}}">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
