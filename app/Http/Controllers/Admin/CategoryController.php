@@ -26,7 +26,6 @@ class CategoryController extends Controller implements ICRUD
         $request->validate([
             'name' => 'required',
             'slug' => 'required',
-            'parent_id' => 'required',
             'total_product' => 'required',
         ]);
         try {
