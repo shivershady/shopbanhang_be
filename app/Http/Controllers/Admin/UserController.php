@@ -37,6 +37,7 @@ class UserController extends Controller implements ICRUD
                 'phone' => 'required|min:10',
                 'user_seller' => 'required'
             ]);
+           // dd($e);
             return redirect()->back()->with('error', 'thêm thất bại');
         }
 
