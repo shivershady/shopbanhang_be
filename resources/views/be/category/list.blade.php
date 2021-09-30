@@ -7,6 +7,11 @@
                 <div class="card-header">
                     <div class="container">
                         <div class="row">
+                            <div class="col-md-4" >
+                                <a class="btn btn-success" href="{{route('admin.category.add')}}"
+                                >ADD</a>
+                            </div>
+
                             <div class="col-md-4">
                                 <form class="form-group" style="display: flex; justify-content: flex-end"
                                       action="{{route('admin.category.filter')}}" method="get">
@@ -29,10 +34,7 @@
                             </div>
                             <div>
 
-                                <div class="col-md-4" >
-                                    <a class="btn btn-success" href="{{route('admin.category.add')}}"
-                                    >ADD</a>
-                                </div>
+
 
                             </div>
                         </div>

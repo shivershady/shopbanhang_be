@@ -8,6 +8,11 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4">
+                                <a class="btn btn-success" href="{{route('admin.user_address.add')}}"
+                                >ADD</a>
+                            </div>
+
+                            <div class="col-md-4">
                                 <form class="form-group" style="display: flex; justify-content: flex-end"
                                       action="{{route('admin.user_address.filter')}}" method="get">
                                     <select class="form-control" name="filter">
@@ -29,10 +34,7 @@
                             </div>
                             <div>
 
-                                <div class="col-md-4">
-                                    <a class="btn btn-success" href="{{route('admin.user_address.add')}}"
-                                    >ADD</a>
-                                </div>
+
 
                             </div>
                         </div>

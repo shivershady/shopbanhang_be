@@ -7,6 +7,11 @@
                 <div class="card-header">
                     <div class="container">
                         <div class="row">
+                            <div class="col-md-4">
+                                <a class="btn btn-success" href="{{route('admin.statement.add')}}"
+                                >ADD</a>
+                            </div>
+
                             <div class="col-md-4" style="margin-left: 10px">
                                 <form class="form-group" style="display: flex; justify-content: flex-end"
                                       action="{{route('admin.statement.filter')}}" method="get">
@@ -29,10 +34,7 @@
                             </div>
                             <div>
 
-                                <div class="col-md-4">
-                                    <a class="btn btn-success" href="{{route('admin.statement.add')}}"
-                                    >ADD</a>
-                                </div>
+
 
                             </div>
                         </div>
