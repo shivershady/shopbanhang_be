@@ -33,6 +33,12 @@ class ProductController extends Controller
                 $image->url = 'storage/products/' . $fileName;
                 $image->save();
 
+                $discount = new Discount();
+                $discount->name = $product->name;
+                $discount->desc = $product->description;
+                $discount->discount_percent = $product->discount_id;
+                $discount->active = $product->active;
+                $discount->save();
                 DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
