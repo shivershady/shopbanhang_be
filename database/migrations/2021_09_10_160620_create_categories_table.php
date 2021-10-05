@@ -20,7 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->bigInteger('parent_id')->default(0);
             $table->string('status'); // 0 on 1 off
             $table->integer('total_product');
-            $table->bigInteger('author_id');
+            $table->bigInteger('author_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
