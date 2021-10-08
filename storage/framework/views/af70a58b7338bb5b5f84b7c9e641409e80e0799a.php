@@ -11,7 +11,7 @@
                                       action="<?php echo e(route('admin.product.filter')); ?>" method="get">
                                     <select class="form-control" name="filter">
                                         <option value="" selected hidden>Select Filter</option>
-                                        <option value="DESC">Mới Nhất</option>
+                                        <option value="DESC">ID giảm dần</option>
                                         <option value="active">Đang hoạt động</option>
                                         <option value="ASC"> ID Tăng dần</option>
                                         <option value="a-z">Name A-Z</option>

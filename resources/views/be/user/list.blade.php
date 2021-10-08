@@ -16,7 +16,7 @@
                                       action="{{route('admin.user.filter')}}" method="get">
                                     <select class="form-control" name="filter">
                                         <option value="" selected hidden>Select Filter</option>
-                                        <option value="DESC">Mới Nhất</option>
+                                        <option value="DESC">ID giảm dần</option>
                                         <option value="ASC">ID Tăng Dần</option>
                                         <option value="a-z">Name A-Z</option>
                                         <option value="z-a">Name Z-A</option>

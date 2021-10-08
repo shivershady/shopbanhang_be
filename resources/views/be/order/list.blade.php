@@ -12,7 +12,7 @@
                                       action="{{route('admin.order.filter')}}" method="get">
                                     <select class="form-control" name="filter">
                                         <option value="" selected hidden>Select Filter</option>
-                                        <option value="DESC">Mới Nhất</option>
+                                        <option value="DESC">ID giảm dần</option>
                                         <option value="pending">Chờ sác nhận</option>
                                         <option value="processing">Chờ lấy hàng</option>
                                         <option value="sent">Đang Giao</option>
