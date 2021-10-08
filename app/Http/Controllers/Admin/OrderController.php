@@ -20,28 +20,12 @@ class OrderController extends Controller implements ICRUD
     public function add()
     {
         // TODO: Implement add() method.
-        $users = User::all();
-        return view('be.order.add', compact('users'));
+
     }
 
     public function doAdd(Request $request)
     {
         // TODO: Implement doAdd() method.
-        try {
-            $data = request()->except('_token');
-            Order::create($data);
-        } catch (\Exception $e) {
-            $request->validate([
-                'total' => 'required|numeric',
-                'sub_total' => 'required',
-                'user_id' => 'required',
-                'status' => 'required',
-                'payment_type' => 'required'
-            ]);
-            return redirect()->back()->with('error', 'thêm thất bại');
-            //  echo $e->getMessage();
-        }
-        return redirect(route('admin.order.list'))->with('success', 'thêm thành công');
     }
 
     public function edit($id)

@@ -8,9 +8,9 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="{{asset('/adminlte/plugins/fontawesome-free/css/all.min.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('/adminlte/plugins/fontawesome-free/css/all.min.css')); ?>">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('/adminlte/dist/css/adminlte.min.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('/adminlte/dist/css/adminlte.min.css')); ?>">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -160,7 +160,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #3f474e">
         <!-- Brand Logo -->
         <a href="index3.html" class="brand-link">
-            <img src="{{asset('/adminlte/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo"
+            <img src="<?php echo e(asset('/adminlte/dist/img/AdminLTELogo.png')); ?>" alt="AdminLTE Logo"
                  class="brand-image img-circle elevation-3"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">AdminLTE 3</span>
@@ -171,7 +171,7 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="{{asset('/adminlte/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2"
+                    <img src="<?php echo e(asset('/adminlte/dist/img/user2-160x160.jpg')); ?>" class="img-circle elevation-2"
                          alt="User Image">
                 </div>
                 <div class="info">
@@ -200,7 +200,7 @@
                          with font-awesome or any other icon font library -->
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            {{-- <i class="nav-icon fas fa-tachometer-alt"></i>--}}
+                            
                             <p>
                                 Product
                                 <i class="right fas fa-angle-left"></i>
@@ -208,7 +208,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{route('admin.product.list')}}" class="nav-link">
+                                <a href="<?php echo e(route('admin.product.list')); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>List</p>
                                 </a>
@@ -219,7 +219,7 @@
 
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            {{-- <i class="nav-icon fas fa-tachometer-alt"></i>--}}
+                            
                             <p>
                                 Statement
                                 <i class="right fas fa-angle-left"></i>
@@ -227,13 +227,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{route('admin.statement.list')}}" class="nav-link">
+                                <a href="<?php echo e(route('admin.statement.list')); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>List</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('admin.statement.add')}}" class="nav-link">
+                                <a href="<?php echo e(route('admin.statement.add')); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Add</p>
                                 </a>
@@ -244,7 +244,7 @@
 
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            {{-- <i class="nav-icon fas fa-tachometer-alt"></i>--}}
+                            
                             <p>
                                 Order
                                 <i class="right fas fa-angle-left"></i>
@@ -252,7 +252,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{route('admin.order.list')}}" class="nav-link">
+                                <a href="<?php echo e(route('admin.order.list')); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>List</p>
                                 </a>
@@ -263,7 +263,7 @@
 
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            {{-- <i class="nav-icon fas fa-tachometer-alt"></i>--}}
+                            
                             <p>
                                 User
                                 <i class="right fas fa-angle-left"></i>
@@ -271,13 +271,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{route('admin.user.list')}}" class="nav-link">
+                                <a href="<?php echo e(route('admin.user.list')); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>List</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('admin.user.add')}}" class="nav-link">
+                                <a href="<?php echo e(route('admin.user.add')); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Add</p>
                                 </a>
@@ -288,7 +288,7 @@
 
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            {{-- <i class="nav-icon fas fa-tachometer-alt"></i>--}}
+                            
                             <p>
                                 User Address
                                 <i class="right fas fa-angle-left"></i>
@@ -296,13 +296,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{route('admin.user_address.list')}}" class="nav-link">
+                                <a href="<?php echo e(route('admin.user_address.list')); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>List</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('admin.user_address.add')}}" class="nav-link">
+                                <a href="<?php echo e(route('admin.user_address.add')); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Add</p>
                                 </a>
@@ -312,7 +312,7 @@
 
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            {{-- <i class="nav-icon fas fa-tachometer-alt"></i>--}}
+                            
                             <p>
                                 Category
                                 <i class="right fas fa-angle-left"></i>
@@ -320,13 +320,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{route('admin.category.list')}}" class="nav-link">
+                                <a href="<?php echo e(route('admin.category.list')); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>List</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('admin.category.add')}}" class="nav-link">
+                                <a href="<?php echo e(route('admin.category.add')); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Add</p>
                                 </a>
@@ -335,57 +335,13 @@
                     <li/>
 
 
-                    {{--     <li class="nav-item">
-                             <a href="#" class="nav-link">
-                                 --}}{{-- <i class="nav-icon fas fa-tachometer-alt"></i>--}}{{--
-                                 <p>
-                                     Variant
-                                     <i class="right fas fa-angle-left"></i>
-                                 </p>
-                             </a>
-                             <ul class="nav nav-treeview">
-                                 <li class="nav-item">
-                                     <a href="{{route('admin.variant.list')}}" class="nav-link">
-                                         <i class="far fa-circle nav-icon"></i>
-                                         <p>List</p>
-                                     </a>
-                                 </li>
-                                 <li class="nav-item">
-                                     <a href="{{route('admin.variant.add')}}" class="nav-link">
-                                         <i class="far fa-circle nav-icon"></i>
-                                         <p>Add</p>
-                                     </a>
-                                 </li>
-                             </ul>
-                         <li/>--}}
+                    
 
-                    {{--    <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                 <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Variant Value
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{route('admin.variant_value.list')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>List</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{route('admin.variant_value.add')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Add</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        <li/>--}}
+                    
 
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            {{-- <i class="nav-icon fas fa-tachometer-alt"></i>--}}
+                            
                             <p>
                                 Discount
                                 <i class="right fas fa-angle-left"></i>
@@ -393,7 +349,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{route('admin.discount.list')}}" class="nav-link">
+                                <a href="<?php echo e(route('admin.discount.list')); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>List</p>
                                 </a>
@@ -401,29 +357,7 @@
                         </ul>
                     <li/>
 
-                    {{--   <li class="nav-item">
-                           <a href="#" class="nav-link">
-                               --}}{{-- <i class="nav-icon fas fa-tachometer-alt"></i>--}}{{--
-                               <p>
-                                   Keyword
-                                   <i class="right fas fa-angle-left"></i>
-                               </p>
-                           </a>
-                           <ul class="nav nav-treeview">
-                               <li class="nav-item">
-                                   <a href="{{route('admin.keyword.list')}}" class="nav-link">
-                                       <i class="far fa-circle nav-icon"></i>
-                                       <p>List</p>
-                                   </a>
-                               </li>
-                               <li class="nav-item">
-                                   <a href="{{route('admin.keyword.add')}}" class="nav-link">
-                                       <i class="far fa-circle nav-icon"></i>
-                                       <p>Add</p>
-                                   </a>
-                               </li>
-                           </ul>
-                       <li/>--}}
+                    
 
 
                 </ul>
@@ -436,43 +370,31 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        {{--  <section class="content-header">
-              <div class="container-fluid">
-                  <div class="row mb-2">
-                      <div class="col-sm-6">
-                          <h1>title here</h1>
-                      </div>
-                      <div class="col-sm-6">
-                          <ol class="breadcrumb float-sm-right">
-                              <li class="breadcrumb-item"><a href="#">Home</a></li>
-                              <li class="breadcrumb-item active">Widgets</li>
-                          </ol>
-                      </div>
-                  </div>
-              </div><!-- /.container-fluid -->
-          </section>--}}
+        
 
 
         <div class="col-md-12">
             <div style="padding:20px">
 
 
-                @if(\Illuminate\Support\Facades\Session::has('error'))
+                <?php if(\Illuminate\Support\Facades\Session::has('error')): ?>
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-                        {{\Illuminate\Support\Facades\Session::get('error')}}
-                    </div>
-                @endif
+                        <?php echo e(\Illuminate\Support\Facades\Session::get('error')); ?>
 
-                @if(\Illuminate\Support\Facades\Session::has('success'))
+                    </div>
+                <?php endif; ?>
+
+                <?php if(\Illuminate\Support\Facades\Session::has('success')): ?>
                     <div class="alert alert-success alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         <h5><i class="icon fas fa-check"></i> Alert!</h5>
-                        {{\Illuminate\Support\Facades\Session::get('success')}}
+                        <?php echo e(\Illuminate\Support\Facades\Session::get('success')); ?>
+
 
                     </div>
-                @endif
+                <?php endif; ?>
 
             </div>
         </div>
@@ -481,9 +403,9 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                @section('main-content')
+                <?php $__env->startSection('main-content'); ?>
                     <h1>content here</h1>
-                @show()
+                <?php echo $__env->yieldSection(); ?>
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->
@@ -500,10 +422,11 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="{{asset('/adminlte/plugins/jquery/jquery.min.js')}}"></script>
+<script src="<?php echo e(asset('/adminlte/plugins/jquery/jquery.min.js')); ?>"></script>
 <!-- Bootstrap 4 -->
-<script src="{{asset('/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="<?php echo e(asset('/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
 <!-- AdminLTE App -->
-<script src="{{asset('/adminlte/dist/js/adminlte.min.js')}}"></script>
+<script src="<?php echo e(asset('/adminlte/dist/js/adminlte.min.js')); ?>"></script>
 </body>
 </html>
+<?php /**PATH D:\workplace\shopee_backend_cp17\resources\views/be/layout.blade.php ENDPATH**/ ?>

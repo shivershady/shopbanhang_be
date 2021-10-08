@@ -23,48 +23,12 @@ class ProductController extends Controller implements ICRUD
 
     public function add()
     {
-        $categories = Category::all();
-        $discounts = Discount::all();
-        return view('be.product.add', compact('categories', 'discounts'));
+
     }
 
     public function doAdd(Request $request)
     {
-        $files = $request->file('img');
-        if (!$files || count($files) == 0) {
-            return redirect()->back()->with('error', 'Vui lòng chọn ít nhất một hình ảnh');
-        }
-        try {
-            DB::beginTransaction();
-            $data = request()->except('_token', 'img');
-            $product = Product::create($data);
 
-            for ($i = 0; $i < count($files); $i++) {
-                $file = $files[$i];
-                //upload từng file
-                $fileName = time() . $i . $file->getClientOriginalName();
-                $file->storeAs('/products', $fileName, 'public');
-                //chèn vào bảng image
-                $image = new Image();
-                $image->imageable_id = $product->id;
-                $image->imageable_type = Product::class;
-                $image->url = 'storage/products/' . $fileName;
-                $image->save();
-            }
-            DB::commit();
-        } catch (Exception $e) {
-            $request->validate([
-                'name' => 'required', 'slug' => 'required', 'category_id' => 'required',
-                'quantity' => 'required', 'price' => 'required', 'discount_id' => 'required',
-                'active' => 'required', 'iHot' => 'required', 'iPay' => 'required',
-                'warranty' => 'required', 'view' => 'required', 'description' => 'required',
-                'description_seo' => 'required', 'title_seo' => 'required', 'keyword_seo' => 'required'
-            ]);
-            DB::rollBack();
-            return redirect()->back()->with('error', 'thêm thất bại');
-            echo $e->getMessage();
-        }
-        return redirect(route('admin.product.list'))->with('success', 'thêm thành công');
     }
 
     public function edit($id)

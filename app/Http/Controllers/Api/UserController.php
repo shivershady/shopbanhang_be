@@ -25,10 +25,10 @@ class UserController extends Controller
             $data = request()->only(['name', 'email', 'password']);
             $data['password'] = Hash::make($data['password']);
             User::create($data);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json('error', 500);
         }
-        return response()->json(['success', 'thêm thành công'], 200);
+        return response()->json(['success', 'đăng ký thành công'], 200);
     }
 
 
@@ -40,6 +40,7 @@ class UserController extends Controller
             'email' => $email,
             'password' => $password,
         ]);
+
         if ($check) {
             $user = User::where('email', $email)->first();
             $accessToken = $user->createToken('user')->accessToken;
@@ -47,6 +48,7 @@ class UserController extends Controller
         } else {
             return abort(401);
         }
+
     }
 
     public function logout(Request $request)
@@ -57,15 +59,6 @@ class UserController extends Controller
 
     public function changePassword(Request $request)
     {
-        $request->validate([
-            'password' => 'required|min:6',
-            'c_password' => 'required:same:password'
-        ]);
-        try {
-
-        }catch (\Exception $e){
-
-        }
 
     }
 }
