@@ -7,12 +7,16 @@
                 <div class="card-header">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-4" style="margin-left: 10px">
+                                <div class="col" style="margin-left: 10px">
+                                    <a class="btn btn-success" href="{{route('admin.user.add')}}"
+                                    >ADD</a>
+                                </div>
+                            <div class="col" style="margin-left: 10px">
                                 <form class="form-group" style="display: flex; justify-content: flex-end"
                                       action="{{route('admin.user.filter')}}" method="get">
                                     <select class="form-control" name="filter">
                                         <option value="" selected hidden>Select Filter</option>
-                                        <option value="DESC">Mới Nhất</option>
+                                        <option value="DESC">ID giảm dần</option>
                                         <option value="ASC">ID Tăng Dần</option>
                                         <option value="a-z">Name A-Z</option>
                                         <option value="z-a">Name Z-A</option>
@@ -20,21 +24,14 @@
                                     <button class="btn btn-success">filter</button>
                                 </form>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col">
                                 <form class="form-group" style="display: flex; justify-content: flex-end"
                                       action="{{route('admin.user.search')}}" method="get">
                                     <input class="form-control" placeholder="Search" name="q"/>
                                     <button class="btn btn-success">search</button>
                                 </form>
                             </div>
-                            <div>
 
-                                <div class="col-md-4">
-                                    <a class="btn btn-success" href="{{route('admin.user.add')}}"
-                                    >ADD</a>
-                                </div>
-
-                            </div>
                         </div>
                     </div>
                     <!-- ./card-header -->
@@ -64,9 +61,9 @@
                                     </td>
                                     <td>
                                         <a class="btn btn-warning"
-                                           href="{{route('admin.user.edit',['id'=>$item->id])}}">Sửa</a>
+                                           href="{{route('admin.user.edit',['id'=>$item->id])}}">Edit</a>
                                         <a class="btn btn-danger" onclick="return confirm('Bạn có muốn xoá ?')"
-                                           href="{{route('admin.user.delete',['id'=>$item->id])}}">Xoá</a>
+                                           href="{{route('admin.user.delete',['id'=>$item->id])}}">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

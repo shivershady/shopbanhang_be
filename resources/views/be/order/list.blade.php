@@ -12,7 +12,7 @@
                                       action="{{route('admin.order.filter')}}" method="get">
                                     <select class="form-control" name="filter">
                                         <option value="" selected hidden>Select Filter</option>
-                                        <option value="DESC">Mới Nhất</option>
+                                        <option value="DESC">ID giảm dần</option>
                                         <option value="pending">Chờ sác nhận</option>
                                         <option value="processing">Chờ lấy hàng</option>
                                         <option value="sent">Đang Giao</option>
@@ -72,9 +72,9 @@
                                 </td>
                                 <td>
                                     <a class="btn btn-warning"
-                                       href="{{route('admin.order.edit',['id'=>$item->id])}}">Sửa</a>
+                                       href="{{route('admin.order.edit',['id'=>$item->id])}}">Edit</a>
                                     <a class="btn btn-danger" onclick="return confirm('Bạn có muốn xoá ?')"
-                                       href="{{route('admin.order.delete',['id'=>$item->id])}}">Xoá</a>
+                                       href="{{route('admin.order.delete',['id'=>$item->id])}}">Delete</a>
                                 </td>
                             </tr>
                         @endforeach

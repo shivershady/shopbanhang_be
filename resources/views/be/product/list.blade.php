@@ -12,7 +12,7 @@
                                       action="{{route('admin.product.filter')}}" method="get">
                                     <select class="form-control" name="filter">
                                         <option value="" selected hidden>Select Filter</option>
-                                        <option value="DESC">Mới Nhất</option>
+                                        <option value="DESC">ID giảm dần</option>
                                         <option value="active">Đang hoạt động</option>
                                         <option value="ASC"> ID Tăng dần</option>
                                         <option value="a-z">Name A-Z</option>
@@ -80,9 +80,9 @@ C/O https://placeholder.com/"/>
                                 </td>
                                 <td>
                                     <a class="btn btn-warning"
-                                       href="{{route('admin.product.edit',['id'=>$item->id])}}">Sửa</a>
+                                       href="{{route('admin.product.edit',['id'=>$item->id])}}">Edit</a>
                                     <a class="btn btn-danger" onclick="return confirm('Bạn có muốn xoá ?')"
-                                       href="{{route('admin.product.delete',['id'=>$item->id])}}">Xoá</a>
+                                       href="{{route('admin.product.delete',['id'=>$item->id])}}">Delete</a>
                                 </td>
                             </tr>
                         @endforeach

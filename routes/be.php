@@ -27,9 +27,6 @@ Route::prefix('/admin')->group(function () {
 
     Route::prefix('/product')->group(function (){
         Route::get('/', [ProductController::class, 'list'])->name('admin.product.list');
-        Route::get('/search', [ProductController::class, 'search'])->name('admin.product.search');
-        Route::get('/add', [ProductController::class, 'add'])->name('admin.product.add');
-        Route::post('/do-add', [ProductController::class, 'doAdd'])->name('admin.product.doAdd');
         Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
         Route::post('/edit/{id}', [ProductController::class, 'doEdit'])->name('admin.product.doEdit');
         Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('admin.product.delete');
@@ -49,29 +46,6 @@ Route::prefix('/admin')->group(function () {
 
     });
 
-    Route::prefix('/variant')->group(function () {
-        Route::get('/', [VariantController::class, 'list'])->name('admin.variant.list');
-        Route::get('/add', [VariantController::class, 'add'])->name('admin.variant.add');
-        Route::post('/do-add', [VariantController::class, 'doAdd'])->name('admin.variant.doAdd');
-        Route::get('/edit/{id}', [VariantController::class, 'edit'])->name('admin.variant.edit');
-        Route::post('/edit/{id}', [VariantController::class, 'doEdit'])->name('admin.variant.doEdit');
-        Route::get('/delete/{id}', [VariantController::class, 'delete'])->name('admin.variant.delete');
-        Route::get('/search',[VariantValueController::class,'search'])->name('admin.variant.search');
-        Route::get('filter',[VariantValueController::class,'filter'])->name('admin.variant.filter');
-
-    });
-
-    Route::prefix('/variant_value')->group(function () {
-        Route::get('/', [VariantValueController::class, 'list'])->name('admin.variant_value.list');
-        Route::get('/add', [VariantValueController::class, 'add'])->name('admin.variant_value.add');
-        Route::post('/do-add', [VariantValueController::class, 'doAdd'])->name('admin.variant_value.doAdd');
-        Route::get('/edit/{id}', [VariantValueController::class, 'edit'])->name('admin.variant_value.edit');
-        Route::post('/edit/{id}', [VariantValueController::class, 'doEdit'])->name('admin.variant_value.doEdit');
-        Route::get('/delete/{id}', [VariantValueController::class, 'delete'])->name('admin.variant_value.delete');
-        Route::get('/search',[VariantValueController::class,'search'])->name('admin.variant.search');
-        Route::get('/filter',[VariantValueController::class,'filter'])->name('admin.variant.filter');
-
-    });
 
     Route::prefix('/discount')->group(function () {
         Route::get('/', [DiscountController::class, 'list'])->name('admin.discount.list');
@@ -99,8 +73,6 @@ Route::prefix('/admin')->group(function () {
 
     Route::prefix('/order')->group(function () {
         Route::get('/', [OrderController::class, 'list'])->name('admin.order.list');
-        Route::get('/add', [OrderController::class, 'add'])->name('admin.order.add');
-        Route::post('/do-add', [OrderController::class, 'doAdd'])->name('admin.order.doAdd');
         Route::get('/edit/{id}', [OrderController::class, 'edit'])->name('admin.order.edit');
         Route::post('/edit/{id}', [OrderController::class, 'doEdit'])->name('admin.order.doEdit');
         Route::get('/delete/{id}', [OrderController::class, 'delete'])->name('admin.order.delete');

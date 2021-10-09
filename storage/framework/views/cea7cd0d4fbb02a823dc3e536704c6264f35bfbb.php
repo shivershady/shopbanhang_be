@@ -1,5 +1,4 @@
-@extends('be.layout')
-@section('main-content')
+<?php $__env->startSection('main-content'); ?>
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -13,37 +12,35 @@
                         <tr>
                             <th>id</th>
                             <th>name</th>
-                            <th>price</th>
-                            <th>variant</th>
-                            <th>Action</th>
+                            <th>product</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($list as $item)
+                        <?php $__currentLoopData = $list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
-                                <td>{{$item->id}}</td>
-                                <td>{{$item->name}}</td>
-                                <td>{{$item->price}}</td>
+                                <td><?php echo e($item->id); ?></td>
+                                <td><?php echo e($item->name); ?></td>
                                 <td>
-                                    @if($item->variant)
-                                        <span class="badge badge-primary">{{$item->variant->name}}</span>
-                                    @endif
+                                    <?php if($item->product): ?>
+                                        <span class="badge badge-primary"><?php echo e($item->product->name); ?></span>
+                                        <?php endif; ?>
                                 </td>
                                 <td>
                                     <a class="btn btn-warning"
-                                       href="{{route('admin.variant_value.edit',['id'=>$item->id])}}">Sửa</a>
+                                       href="<?php echo e(route('admin.variant.edit',['id'=>$item->id])); ?>">Sửa</a>
                                     <a class="btn btn-danger" onclick="return confirm('Bạn có muốn xoá ?')"
-                                       href="{{route('admin.variant_value.delete',['id'=>$item->id])}}">Xoá</a>
+                                       href="<?php echo e(route('admin.variant.delete',['id'=>$item->id])); ?>">Xoá</a>
                                 </td>
                             </tr>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
                     </table>
                 </div>
                 <div class="card-footer clearfix">
 
                     <div class="float-right">
-                        {{$list->links()}}
+                        <?php echo e($list->links()); ?>
+
                     </div>
                 </div>
                 <!-- /.card-body -->
@@ -51,5 +48,7 @@
             <!-- /.card -->
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
+
+<?php echo $__env->make('be.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\workplace\shopee_backend_cp17\resources\views/be/variant/list.blade.php ENDPATH**/ ?>

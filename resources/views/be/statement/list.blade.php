@@ -7,12 +7,17 @@
                 <div class="card-header">
                     <div class="container">
                         <div class="row">
+                            <div class="col-md-4">
+                                <a class="btn btn-success" href="{{route('admin.statement.add')}}"
+                                >ADD</a>
+                            </div>
+
                             <div class="col-md-4" style="margin-left: 10px">
                                 <form class="form-group" style="display: flex; justify-content: flex-end"
                                       action="{{route('admin.statement.filter')}}" method="get">
                                     <select class="form-control" name="filter">
                                         <option value="" selected hidden>Select Filter</option>
-                                        <option value="DESC">Mới Nhất</option>
+                                        <option value="DESC">ID giảm dần</option>
                                         <option value="ASC">ID Tăng Dần</option>
                                         <option value="a-z">Amount Tăng Dần </option>
                                         <option value="z-a">Amount Giảm Dần</option>
@@ -29,10 +34,7 @@
                             </div>
                             <div>
 
-                                <div class="col-md-4">
-                                    <a class="btn btn-success" href="{{route('admin.statement.add')}}"
-                                    >ADD</a>
-                                </div>
+
 
                             </div>
                         </div>
@@ -72,9 +74,9 @@
                                     <td>{{$item->created_at}}</td>
                                     <td>
                                         <a class="btn btn-warning"
-                                           href="{{route('admin.statement.edit',['id'=>$item->id])}}">Sửa</a>
+                                           href="{{route('admin.statement.edit',['id'=>$item->id])}}">Edit</a>
                                         <a class="btn btn-danger" onclick="return confirm('Bạn có muốn xoá ?')"
-                                           href="{{route('admin.statement.delete',['id'=>$item->id])}}">Xoá</a>
+                                           href="{{route('admin.statement.delete',['id'=>$item->id])}}">Delete</a>
                                     </td>
 
                                 </tr>

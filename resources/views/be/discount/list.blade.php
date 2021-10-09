@@ -12,7 +12,7 @@
                                       action="{{route('admin.discount.filter')}}" method="get">
                                     <select class="form-control" name="filter">
                                         <option value="" selected hidden>Select Filter</option>
-                                        <option value="DESC">Mới Nhất</option>
+                                        <option value="DESC">ID giảm dần</option>
                                         <option value="ASC">ID Tăng Dần</option>
                                         <option value="a-z">Discount Percent Tăng Dần</option>
                                         <option value="z-a">Discount Percent Giảm Dần</option>
@@ -56,9 +56,9 @@
                                 </td>
                                 <td>
                                     <a class="btn btn-warning"
-                                       href="{{route('admin.discount.edit',['id'=>$item->id])}}">Sửa</a>
+                                       href="{{route('admin.discount.edit',['id'=>$item->id])}}">Edit</a>
                                     <a class="btn btn-danger" onclick="return confirm('Bạn có muốn xoá ?')"
-                                       href="{{route('admin.discount.delete',['id'=>$item->id])}}">Xoá</a>
+                                       href="{{route('admin.discount.delete',['id'=>$item->id])}}">Delete</a>
                                 </td>
                             </tr>
                         @endforeach

@@ -7,12 +7,17 @@
                 <div class="card-header">
                     <div class="container">
                         <div class="row">
+                            <div class="col-md-4" >
+                                <a class="btn btn-success" href="{{route('admin.category.add')}}"
+                                >ADD</a>
+                            </div>
+
                             <div class="col-md-4">
                                 <form class="form-group" style="display: flex; justify-content: flex-end"
                                       action="{{route('admin.category.filter')}}" method="get">
                                     <select class="form-control" name="filter">
                                         <option value="" selected hidden>Select Filter</option>
-                                        <option value="DESC">Mới Nhất</option>
+                                        <option value="DESC">ID giảm dần</option>
                                         <option value="ASC"> ID Tăng dần</option>
                                         <option value="a-z">Name A-Z</option>
                                         <option value="z-a">Name Z-A</option>
@@ -29,10 +34,7 @@
                             </div>
                             <div>
 
-                                <div class="col-md-4" >
-                                    <a class="btn btn-success" href="{{route('admin.category.add')}}"
-                                    >ADD</a>
-                                </div>
+
 
                             </div>
                         </div>
@@ -73,9 +75,9 @@
                                 <td>{{$item->total_product}}</td>
                                 <td>
                                     <a class="btn btn-warning"
-                                       href="{{route('admin.category.edit',['id'=>$item->id])}}">Sửa</a>
+                                       href="{{route('admin.category.edit',['id'=>$item->id])}}">Edit</a>
                                     <a class="btn btn-danger" onclick="return confirm('Bạn có muốn xoá ?')"
-                                       href="{{route('admin.category.delete',['id'=>$item->id])}}">Xoá</a>
+                                       href="{{route('admin.category.delete',['id'=>$item->id])}}">Delete</a>
                                 </td>
                             </tr>
                         @endforeach

@@ -8,11 +8,16 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4">
+                                <a class="btn btn-success" href="{{route('admin.user_address.add')}}"
+                                >ADD</a>
+                            </div>
+
+                            <div class="col-md-4">
                                 <form class="form-group" style="display: flex; justify-content: flex-end"
                                       action="{{route('admin.user_address.filter')}}" method="get">
                                     <select class="form-control" name="filter">
                                         <option value="" selected hidden>Select Filter</option>
-                                        <option value="DESC">Mới Nhất</option>
+                                        <option value="DESC">ID giảm dần</option>
                                         <option value="ASC">ID Tăng Dần</option>
                                         <option value="a-z">Address A-Z</option>
                                         <option value="z-a">Address Z-A</option>
@@ -29,10 +34,7 @@
                             </div>
                             <div>
 
-                                <div class="col-md-4">
-                                    <a class="btn btn-success" href="{{route('admin.user_address.add')}}"
-                                    >ADD</a>
-                                </div>
+
 
                             </div>
                         </div>
@@ -66,9 +68,9 @@
                                 <td>{{$item->province}}</td>
                                 <td>
                                     <a class="btn btn-warning"
-                                       href="{{route('admin.user_address.edit',['id'=>$item->id])}}">Sửa</a>
+                                       href="{{route('admin.user_address.edit',['id'=>$item->id])}}">Edit</a>
                                     <a class="btn btn-danger" onclick="return confirm('Bạn có muốn xoá ?')"
-                                       href="{{route('admin.user_address.delete',['id'=>$item->id])}}">Xoá</a>
+                                       href="{{route('admin.user_address.delete',['id'=>$item->id])}}">Delete</a>
                                 </td>
                             </tr>
                         @endforeach

@@ -18,7 +18,6 @@ class CreateStatementsTable extends Migration
             $table->tinyInteger('is_sub');
             $table->integer('amount');
             $table->tinyInteger('status');
-            $table->dateTime('day_trading');
             $table->bigInteger('order_id');
             $table->softDeletes();
             $table->timestamps();
