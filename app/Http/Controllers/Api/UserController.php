@@ -14,13 +14,18 @@ use PHPUnit\Util\Exception;
 
 
 class UserController extends Controller
+
 {
+    public function show (Request $request){
+         return $request->user();
+    }
+
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required',
+            'password' => 'required|min:6',
             'c_password' => 'required|same:password',
         ]);
 
@@ -75,10 +80,16 @@ class UserController extends Controller
 
     public function logout(Request $request)
     {
-        $request->user()->token()->revoke();//cập nhật lại cái token của user
-        //Auth::logout();
-        //return redirect(route('user.login'));
-        return response()->json(['token' => 'Đăng xuất thành công'], 200);
+        if (auth()->user()) {
+            $user = auth()->user();
+            $user->token()->revoke(); // clear api token
+            $user->save();
+
+            return response()->json([
+                'message' => 'đăng xuất thành công',
+            ]);
+        }
+
     }
 
     public function changePassword(Request $request)
