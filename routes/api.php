@@ -17,7 +17,7 @@ use App\Http\Controllers\Api\UserController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
@@ -31,5 +31,5 @@ Route::get('/category',[CategoryController::class,'list']);
 //user
 Route::post('user/register',[UserController::class,'register']);
 Route::post('user/login',[UserController::class,'login'])->name('user.login');
-Route::post('user/logout',[UserController::class,'logout']);
-Route::post('user/changePassword',[UserController::class,'changePassword']);
+Route::middleware('auth:api')->get('user/logout',[UserController::class,'logout']);
+Route::post('user/change-password',[UserController::class,'changePassword']);
