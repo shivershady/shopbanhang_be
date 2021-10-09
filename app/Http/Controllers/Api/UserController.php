@@ -29,7 +29,7 @@ class UserController extends Controller
             $data['email_verified_at'] = Carbon::now();
             User::create($data);
             //GỬI EMAIL MÃ OTP VỀ ĐỊA CHỈ MAIL NGƯỜI DÙNG
-            $random = Str::random(6);
+//            $random = Str::random(6);
             //gọi đến gửi mail
         } catch (Exception $e) {
             return response()->json('error', 500);
@@ -37,18 +37,18 @@ class UserController extends Controller
         return response()->json(['success', 'đăng ký thành công'], 200);
     }
 
-    public function resendOTP(Request $request)
+  /*  public function resendOTP(Request $request)
     {
         //gửi lại OTP dựa theo email
-    }
+    }*/
 
 
-    public function verifyEmail(Request $request)
+  /*  public function verifyEmail(Request $request)
     {
         $email = $request->input('email');
         $otp = $request->input('otp');
         return response()->json(['success', 'Xác thực email thành công'], 200);
-    }
+    }*/
 
 
     public function login(Request $request)
