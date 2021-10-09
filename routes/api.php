@@ -30,6 +30,6 @@ Route::get('/category',[CategoryController::class,'list']);
 Route::post('user/register',[UserController::class,'register']);
 Route::post('user/login',[UserController::class,'login'])->name('user.login');
 Route::middleware('auth:api')->get('user/logout',[UserController::class,'logout']);
-Route::post('user/change-password',[UserController::class,'changePassword']);
+Route::middleware('auth:api')->post('user/change-password',[UserController::class,'changePassword']);
 Route::middleware('auth:api')->get('/user',[UserController::class,'show']);
 
