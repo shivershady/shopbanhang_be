@@ -24,20 +24,19 @@ class UserController extends Controller implements ICRUD
 
     public function doAdd(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:5',
+            'phone' => 'required|min:10',
+            'user_seller' => 'required'
+        ]);
 
         try {
             $data = request()->except(['_token']);
             $data['password'] = bcrypt($request->password);
             User::create($data);
         } catch (\Exception $e) {
-            $request->validate([
-                'name' => 'required',
-                'email' => 'required|email|unique:users',
-                'password' => 'required|min:5',
-                'phone' => 'required|min:10',
-                'user_seller' => 'required'
-            ]);
-           // dd($e);
             return redirect()->back()->with('error', 'thêm thất bại');
         }
 
@@ -55,7 +54,7 @@ class UserController extends Controller implements ICRUD
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email',
             'password' => 'required|min:5',
             'phone' => 'required|min:10',
             'user_seller' => 'required'
@@ -83,6 +82,35 @@ class UserController extends Controller implements ICRUD
             return redirect()->back()->with('error', 'Xoá thất bại');
         }
         return redirect()->back()->with('success', 'Xoá thành công');
+    }
+
+    public function search(Request $request)
+    {
+        // TODO: Implement search() method.
+        $q = $request->q;
+        // TODO: Implement list() method.
+        $list = User::where('name', 'LIKE', '%' . $q . '%')->orWhere('email', 'LIKE', '%' . $q . '%')->orderBy('updated_at', 'DESC')->paginate($this->paginateItems);
+        return view('be.user.list', compact('list'));
+    }
+
+    public function filter(Request $request)
+    {
+        $filter = $request->filter;
+        switch ($filter){
+            case 'DESC':
+                $list = User::orderBy('id', 'DESC')->paginate($this->paginateItems);
+                return view('be.user.list', compact('list'));
+
+            case 'ASC':
+                $list = User::orderBy('id', 'ASC')->paginate($this->paginateItems);
+                return view('be.user.list', compact('list'));
+            case 'a-z':
+                $list = User::orderBy('name', 'ASC')->paginate($this->paginateItems);
+                return view('be.user.list', compact('list'));
+            case 'z-a':
+                    $list = User::orderBy('name', 'DESC')->paginate($this->paginateItems);
+                    return view('be.user.list', compact('list'));
+        }
     }
 
 }

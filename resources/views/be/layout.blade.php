@@ -4,17 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AdminLTE 3 | Widgets</title>
-    <base href="{{ \URL::to('/') }}">
-    <!-- Google Font: Source Sans Pro -->
-    <!-- Google Font: Source Sans Pro -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{{asset('/adminlte/plugins/fontawesome-free/css/all.min.css')}}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/adminlte.min.css">
-    <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="{{asset('/adminlte/dist/css/adminlte.min.css')}}">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -164,7 +160,8 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #3f474e">
         <!-- Brand Logo -->
         <a href="index3.html" class="brand-link">
-            <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            <img src="{{asset('/adminlte/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo"
+                 class="brand-image img-circle elevation-3"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">AdminLTE 3</span>
         </a>
@@ -174,7 +171,8 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    <img src="{{asset('/adminlte/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2"
+                         alt="User Image">
                 </div>
                 <div class="info">
                     <a href="#" class="d-block">Alexander Pierce</a>
@@ -215,8 +213,27 @@
                                     <p>List</p>
                                 </a>
                             </li>
+                        </ul>
+                    <li/>
+
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            {{-- <i class="nav-icon fas fa-tachometer-alt"></i>--}}
+                            <p>
+                                Statement
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{route('admin.product.add')}}" class="nav-link">
+                                <a href="{{route('admin.statement.list')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>List</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.statement.add')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Add</p>
                                 </a>
@@ -240,12 +257,6 @@
                                     <p>List</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{route('admin.order.add')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Add</p>
-                                </a>
-                            </li>
                         </ul>
                     <li/>
 
@@ -267,6 +278,31 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{{route('admin.user.add')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Add</p>
+                                </a>
+                            </li>
+                        </ul>
+                    <li/>
+
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            {{-- <i class="nav-icon fas fa-tachometer-alt"></i>--}}
+                            <p>
+                                User Address
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.user_address.list')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>List</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.user_address.add')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Add</p>
                                 </a>
@@ -299,53 +335,53 @@
                     <li/>
 
 
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            {{-- <i class="nav-icon fas fa-tachometer-alt"></i>--}}
-                            <p>
-                                Variant
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{route('admin.variant.list')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>List</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('admin.variant.add')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Add</p>
-                                </a>
-                            </li>
-                        </ul>
-                    <li/>
+                    {{--     <li class="nav-item">
+                             <a href="#" class="nav-link">
+                                 --}}{{-- <i class="nav-icon fas fa-tachometer-alt"></i>--}}{{--
+                                 <p>
+                                     Variant
+                                     <i class="right fas fa-angle-left"></i>
+                                 </p>
+                             </a>
+                             <ul class="nav nav-treeview">
+                                 <li class="nav-item">
+                                     <a href="{{route('admin.variant.list')}}" class="nav-link">
+                                         <i class="far fa-circle nav-icon"></i>
+                                         <p>List</p>
+                                     </a>
+                                 </li>
+                                 <li class="nav-item">
+                                     <a href="{{route('admin.variant.add')}}" class="nav-link">
+                                         <i class="far fa-circle nav-icon"></i>
+                                         <p>Add</p>
+                                     </a>
+                                 </li>
+                             </ul>
+                         <li/>--}}
 
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            {{-- <i class="nav-icon fas fa-tachometer-alt"></i>--}}
-                            <p>
-                                Variant Value
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{route('admin.variant_value.list')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>List</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('admin.variant_value.add')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Add</p>
-                                </a>
-                            </li>
-                        </ul>
-                    <li/>
+                    {{--    <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                 <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Variant Value
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{route('admin.variant_value.list')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>List</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('admin.variant_value.add')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        <li/>--}}
 
                     <li class="nav-item">
                         <a href="#" class="nav-link">
@@ -362,18 +398,12 @@
                                     <p>List</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{route('admin.discount.add')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Add</p>
-                                </a>
-                            </li>
                         </ul>
                     <li/>
 
-                    <li class="nav-item">
+                 {{--   <li class="nav-item">
                         <a href="#" class="nav-link">
-                            {{-- <i class="nav-icon fas fa-tachometer-alt"></i>--}}
+                            --}}{{-- <i class="nav-icon fas fa-tachometer-alt"></i>--}}{{--
                             <p>
                                 Keyword
                                 <i class="right fas fa-angle-left"></i>
@@ -393,7 +423,7 @@
                                 </a>
                             </li>
                         </ul>
-                    <li/>
+                    <li/>--}}
 
 
                 </ul>
@@ -406,49 +436,49 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-    {{--  <section class="content-header">
-          <div class="container-fluid">
-              <div class="row mb-2">
-                  <div class="col-sm-6">
-                      <h1>title here</h1>
+        {{--  <section class="content-header">
+              <div class="container-fluid">
+                  <div class="row mb-2">
+                      <div class="col-sm-6">
+                          <h1>title here</h1>
+                      </div>
+                      <div class="col-sm-6">
+                          <ol class="breadcrumb float-sm-right">
+                              <li class="breadcrumb-item"><a href="#">Home</a></li>
+                              <li class="breadcrumb-item active">Widgets</li>
+                          </ol>
+                      </div>
                   </div>
-                  <div class="col-sm-6">
-                      <ol class="breadcrumb float-sm-right">
-                          <li class="breadcrumb-item"><a href="#">Home</a></li>
-                          <li class="breadcrumb-item active">Widgets</li>
-                      </ol>
-                  </div>
-              </div>
-          </div><!-- /.container-fluid -->
-      </section>--}}
+              </div><!-- /.container-fluid -->
+          </section>--}}
 
 
-            <div class="col-md-12">
-                <div style="padding:20px">
+        <div class="col-md-12">
+            <div style="padding:20px">
 
 
-                    @if(\Illuminate\Support\Facades\Session::has('error'))
-                        <div class="alert alert-danger alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" >×</button>
-                            <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-                            {{\Illuminate\Support\Facades\Session::get('error')}}
-                        </div>
-                    @endif
+                @if(\Illuminate\Support\Facades\Session::has('error'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                        {{\Illuminate\Support\Facades\Session::get('error')}}
+                    </div>
+                @endif
 
-                    @if(\Illuminate\Support\Facades\Session::has('success'))
-                        <div class="alert alert-success alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" >×</button>
-                            <h5><i class="icon fas fa-check"></i> Alert!</h5>
-                            {{\Illuminate\Support\Facades\Session::get('success')}}
+                @if(\Illuminate\Support\Facades\Session::has('success'))
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fas fa-check"></i> Alert!</h5>
+                        {{\Illuminate\Support\Facades\Session::get('success')}}
 
-                        </div>
-                    @endif
+                    </div>
+                @endif
 
-                </div>
             </div>
+        </div>
 
 
-    <!-- Main content -->
+        <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
                 @section('main-content')
@@ -470,26 +500,10 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="{{asset('/adminlte/plugins/jquery/jquery.min.js')}}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{asset('/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.js"></script>
-
-<!-- PAGE PLUGINS -->
-<!-- jQuery Mapael -->
-<script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-<script src="plugins/raphael/raphael.min.js"></script>
-<script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-<!-- ChartJS -->
-<script src="plugins/chart.js/Chart.min.js"></script>
-
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard2.js"></script>
+<script src="{{asset('/adminlte/dist/js/adminlte.min.js')}}"></script>
 </body>
 </html>

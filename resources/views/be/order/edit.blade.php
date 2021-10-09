@@ -7,20 +7,20 @@
                 <h3 class="card-title">Form Edit Order</h3>
             </div>
             <!-- form start -->
-            <form method="post" action="{{route('admin.order.doEdit',['id'=>$obj->id])}}" enctype="multipart/form-data">
+            <form method="post" action="{{route('admin.order.doEdit',['id'=>$obj->id])}}" enctype="multipart/form-data" >
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
                         <label>Total</label>
                         <input type="number" class="form-control" id="" placeholder="Total" name="total"
-                               value="{{$obj->total}}">
+                               value="{{$obj->total}}" step="any">
                         <span style="color: red"> @error('total') {{$message}} @enderror </span>
                     </div>
 
                     <div class="form-group">
                         <label>Sub Total</label>
                         <input type="number" class="form-control" id="" placeholder="Sub total" name="sub_total"
-                               value="{{$obj->sub_total}}">
+                               value="{{$obj->sub_total}}" step="any">
                         <span style="color: red"> @error('sub_total') {{$message}} @enderror </span>
                     </div>
 
@@ -55,8 +55,9 @@
 
                     <div class="form-group">
                         <label>Payment</label>
-                        <input type="number" class="form-control" id="" placeholder="Payment" name="payment_type"
-                               value="{{$obj->payment_type}}">
+                        <select name="payment_type" class="form-control">
+                         <option value="1">stripe</option>
+                        </select>
                         <span style="color: red"> @error('payment_type') {{$message}} @enderror </span>
                     </div>
 

@@ -82,7 +82,7 @@ class ProductController extends Controller implements ICRUD
         try {
 
             DB::beginTransaction();
-            $data = $data = request()->except('_token', 'img');
+            $data = request()->except('_token', 'img','removeImages');
             Product::where('id', $id)->update($data);
 
 
@@ -96,7 +96,7 @@ class ProductController extends Controller implements ICRUD
                     //Xoá dữ liệu ảnh trong DB
                     $image = Image::find($removeImageId);
                     if ($image) {
-                        Storage::disk('public')->delete($image->url);//xoả ảnh trong storage
+                        Storage::disk('local')->delete($image->url);//xoả ảnh trong storage
                         $image->forceDelete();//xoá dữ liệu ảnh trong DB
                     }
                 }
@@ -145,9 +145,41 @@ class ProductController extends Controller implements ICRUD
         }
         return redirect()->back()->with('success', 'xóa thành công');
     }
+      public function search(Request $request)
+      {
+          // TODO: Implement search() method.
+          $q = $request->q;
+          // TODO: Implement list() method.
+          $list = Product::where('name', 'LIKE', '%' . $q . '%')->orWhere('content', 'LIKE', '%' . $q . '%')->orderBy('updated_at', 'DESC')->paginate($this->paginateItems);
+          return view('be.product.list', compact('list'));
+      }
 
-    public function search()
+    public function filter(Request $request)
     {
-
+        // TODO: Implement filter() method.
+        $filter = $request->filter;
+        switch ($filter){
+            case 'DESC':
+                $list = Product::orderBy('id', 'DESC')->paginate($this->paginateItems);
+                return view('be.product.list', compact('list'));
+            case 'ASC':
+                $list = Product::orderBy('id', 'ASC')->paginate($this->paginateItems);
+                return view('be.product.list', compact('list'));
+            case 'a-z':
+                $list = Product::orderBy('name', 'ASC')->paginate($this->paginateItems);
+                return view('be.product.list', compact('list'));
+            case 'z-a':
+                $list = Product::orderBy('name', 'DESC')->paginate($this->paginateItems);
+                return view('be.product.list', compact('list'));
+            case 'price-tang':
+                $list = Product::orderBy('price', 'ASC')->paginate($this->paginateItems);
+                return view('be.product.list', compact('list'));
+            case 'price-giam':
+                $list = Product::orderBy('price', 'DESC')->paginate($this->paginateItems);
+                return view('be.product.list', compact('list'));
+            case 'active':
+                $list = Product::where('active',0)->paginate($this->paginateItems);
+                return view('be.product.list', compact('list'));
+        }
     }
 }

@@ -69,4 +69,12 @@ class KeywordController extends Controller implements ICRUD
         }
         return redirect(route('admin.keyword.list'))->with('success', 'xóa thành công');
     }
+    public function search(Request $request)
+    {
+        // TODO: Implement search() method.
+    }
+    public function filter(Request $request)
+    {
+        // TODO: Implement filter() method.
+    }
 }

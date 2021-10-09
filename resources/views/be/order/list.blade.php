@@ -2,9 +2,38 @@
 @section('main-content')
     <div class="row">
         <div class="col-12">
+            <h2>Order List</h2>
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Order</h3>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <form class="form-group" style="display: flex; justify-content: flex-end"
+                                      action="{{route('admin.order.filter')}}" method="get">
+                                    <select class="form-control" name="filter">
+                                        <option value="" selected hidden>Select Filter</option>
+                                        <option value="DESC">Mới Nhất</option>
+                                        <option value="pending">Chờ sác nhận</option>
+                                        <option value="processing">Chờ lấy hàng</option>
+                                        <option value="sent">Đang Giao</option>
+                                        <option value="received">Đã giao </option>
+                                        <option value="cancel">Đã Hủy</option>
+                                        <option value="ASC"> ID Tăng Dần</option>
+                                        <option value="a-z">Total Tăng Dần</option>
+                                        <option value="z-a">Total Giảm Dần</option>
+                                    </select>
+                                    <button class="btn btn-success">filter</button>
+                                </form>
+                            </div>
+                            <div class="col-md-4">
+                                <form class="form-group" style="display: flex; justify-content: flex-end"
+                                      action="{{route('admin.order.search')}}" method="get">
+                                    <input class="form-control" placeholder="Search" name="q"/>
+                                    <button class="btn btn-success">search</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- ./card-header -->
                 <div class="card-body">
@@ -14,9 +43,10 @@
                             <th>id</th>
                             <th>Total</th>
                             <th>Sub Total</th>
-                            <th>User </th>
+                            <th>User</th>
                             <th>Status</th>
-                            <th>Payment</th>
+                            <th>Payment Type</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -25,13 +55,21 @@
                                 <td>{{$item->id}}</td>
                                 <td>{{$item->total}}</td>
                                 <td>{{$item->sub_total}}</td>
-                                 <td>
-                                     @if($item->user)
-                                         <span class="badge badge-primary">{{$item->user->name}}</span>
-                                     @endif
-                                 </td>
-                                <td>{{$item->status}}</td>
-                                <td>{{$item->payment_type}}</td>
+                                <td>
+                                    @if($item->user)
+                                        <span class="badge badge-primary" value="{{$item->user->id}}">{{$item->user->name}}</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <span class="badge badge-primary">@if($item->status==1) Pending @endif</span>
+                                    <span class="badge badge-primary">@if($item->status==2) Processing @endif</span>
+                                    <span class="badge badge-primary">@if($item->status==3) Sent @endif</span>
+                                    <span class="badge badge-primary">@if($item->status==4) Received @endif</span>
+                                    <span class="badge badge-primary">@if($item->status==5) Cancel @endif</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-primary">@if($item->payment_type==1) Stripe @endif</span>
+                                </td>
                                 <td>
                                     <a class="btn btn-warning"
                                        href="{{route('admin.order.edit',['id'=>$item->id])}}">Sửa</a>

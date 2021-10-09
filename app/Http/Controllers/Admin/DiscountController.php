@@ -71,5 +71,35 @@ class DiscountController extends Controller implements ICRUD
         }
         return redirect()->back()->with('success','xóa thành công');
     }
+    public function search(Request $request)
+    {
+        // TODO: Implement search() method.
+        $q = $request->q;
+        // TODO: Implement list() method.
+        $list = Discount::where('name','LIKE','%'.$q.'%')->orWhere('desc','LIKE','%'.$q.'%')->orderBy('updated_at', 'DESC')->paginate($this->paginateItems);
+        return view('be.discount.list', compact('list'));
+
+    }
+    public function filter(Request $request)
+    {
+        // TODO: Implement filter() method.
+        $filter = $request->filter;
+        switch ($filter){
+            case 'DESC':
+                $list = Discount::orderBy('id', 'DESC')->paginate($this->paginateItems);
+                return view('be.discount.list', compact('list'));
+
+            case 'ASC':
+                $list = Discount::orderBy('id', 'ASC')->paginate($this->paginateItems);
+                return view('be.discount.list', compact('list'));
+            case 'a-z':
+                $list = Discount::orderBy('discount_percent', 'ASC')->paginate($this->paginateItems);
+                return view('be.discount.list', compact('list'));
+            case 'z-a':
+                $list = Discount::orderBy('discount_percent', 'DESC')->paginate($this->paginateItems);
+                return view('be.discount.list', compact('list'));
+
+        }
+    }
 
 }

@@ -47,7 +47,7 @@
                         <div class="form-group">
                             <label for="price">Price</label>
                             <input type="number" name="price" placeholder="price" class="form-control"
-                                   value="{{old('price')}}"/>
+                                   value="{{old('price')}}" step="any"/>
                             <span style="color: red">@error('price') {{$message}} @enderror</span>
 
                         </div>
@@ -149,7 +149,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Content</label>
-                            <textarea name="content" class="form-control" placeholder="Content" >{{old('content')}}</textarea>
+                            <textarea name="content" placeholder="Content" >{{old('content')}}</textarea>
 
                             <span style="color: red">@error('content') {{$message}} @enderror</span>
 

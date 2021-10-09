@@ -78,4 +78,12 @@ class VariantValueController extends Controller implements ICRUD
         }
         return redirect()->back()->with('success', 'xóa thành công');
     }
+    public function search(Request $request)
+    {
+        // TODO: Implement search() method.
+    }
+    public function filter(Request $request)
+    {
+        // TODO: Implement filter() method.
+    }
 }
