@@ -8,7 +8,12 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function list(){
-        return Category::all();
+    public function list()
+    {
+        $categories = Category::all();
+        foreach ($categories as $category) {
+            $category->images;
+        }
+        return response()->json([$categories]);
     }
 }
