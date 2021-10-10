@@ -14,6 +14,6 @@ class CategoryController extends Controller
         foreach ($categories as $category) {
             $category->images;
         }
-        return response()->json([$categories]);
+        return response()->json(['category'=>$categories]);
     }
 }
