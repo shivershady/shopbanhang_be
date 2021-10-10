@@ -10,6 +10,17 @@
                 <!-- form start -->
                 <form method="post" action="{{route('admin.category.doAdd')}}" enctype="multipart/form-data">
                     @csrf
+
+                    <div class="card-body">
+
+                        <div class="preview" style="display:flex;">
+
+                        </div>
+                        <br>
+                        <input type="file" name="img[]" class="img-select" multiple
+                               accept="image/png, image/gif, image/jpeg" onchange="previewImages()">
+                    </div>
+
                     <div class="card-body">
                         <div class="form-group">
                             <label for="">Name</label>
@@ -47,7 +58,7 @@
                         <div class="form-group">
                             <label for="">Total product</label>
                             <input type="number" name="total_product" class="form-control"
-                                   placeholder="Enter Total product"  step="any"
+                                   placeholder="Enter Total product" step="any"
                                    value="{{old('total_product')}}">
                             <span style="color: red">@error('total_product') {{$message}} @enderror</span>
                         </div>
@@ -62,5 +73,31 @@
             </div>
         </div>
     </div>
+    <script>
+        async function previewImages() {
 
+            for (let i = 0; i < document.querySelector('.img-select').files.length; i++) {
+                const reader = new FileReader();
+                await reader.readAsDataURL(document.querySelector('.img-select').files[i]);
+
+                reader.onload = function (file) {
+                    const preview = document.querySelector('.preview');
+                    const img = document.createElement('img');
+                    img.setAttribute('src', file.target.result);
+                    img.classList.add('thumb');
+                    preview.appendChild(img);
+                }
+            }
+        }
+
+        CKEDITOR.replace('content');
+    </script>
+
+    <style>
+        .thumb {
+            width: 100px;
+            height: 80px;
+            object-font: cover;
+        }
+    </style>
 @endsection

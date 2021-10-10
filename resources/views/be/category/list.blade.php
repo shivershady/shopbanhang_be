@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-4" >
+                            <div class="col-md-4">
                                 <a class="btn btn-success" href="{{route('admin.category.add')}}"
                                 >ADD</a>
                             </div>
@@ -35,7 +35,6 @@
                             <div>
 
 
-
                             </div>
                         </div>
                     </div>
@@ -46,6 +45,7 @@
                         <thead>
                         <tr>
                             <th>id</th>
+                            <th>image</th>
                             <th>name</th>
                             <th>slug</th>
                             <th>parent category</th>
@@ -58,6 +58,15 @@
                         @foreach($list as $item)
                             <tr>
                                 <td>{{$item->id}}</td>
+                               <td>
+                                   @if($item->images && count($item->images)>0)
+                                       <img width="100px" src="{{asset($item->images[0]->url)}}"
+                                            alt="{{$item->name}}"/>
+                                   @else
+                                       <img src="https://via.placeholder.com/150
+C/O https://placeholder.com/"/>
+                                   @endif
+                               </td>
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->slug}}</td>
                                 <td>

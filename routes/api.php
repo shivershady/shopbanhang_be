@@ -24,12 +24,13 @@ Route::get('/product',[ProductController::class,'list']);
 Route::post('/product/add',[ProductController::class,'add']);
 
 //category
-Route::get('/category',[CategoryController::class,'list']);
 
-//user
+//đăng nhập, đăng ký, profile
 Route::post('user/register',[UserController::class,'register']);
 Route::post('user/login',[UserController::class,'login'])->name('user.login');
 Route::middleware('auth:api')->get('user/logout',[UserController::class,'logout']);
 Route::middleware('auth:api')->post('user/change-password',[UserController::class,'changePassword']);
 Route::middleware('auth:api')->get('/user',[UserController::class,'show']);
 
+// api trang home
+Route::get('/category',[CategoryController::class,'list']);

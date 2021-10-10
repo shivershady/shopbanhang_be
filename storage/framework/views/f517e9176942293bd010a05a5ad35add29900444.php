@@ -6,7 +6,7 @@
                 <div class="card-header">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-4" >
+                            <div class="col-md-4">
                                 <a class="btn btn-success" href="<?php echo e(route('admin.category.add')); ?>"
                                 >ADD</a>
                             </div>
@@ -16,7 +16,7 @@
                                       action="<?php echo e(route('admin.category.filter')); ?>" method="get">
                                     <select class="form-control" name="filter">
                                         <option value="" selected hidden>Select Filter</option>
-                                        <option value="DESC">Mới Nhất</option>
+                                        <option value="DESC">ID giảm dần</option>
                                         <option value="ASC"> ID Tăng dần</option>
                                         <option value="a-z">Name A-Z</option>
                                         <option value="z-a">Name Z-A</option>
@@ -34,7 +34,6 @@
                             <div>
 
 
-
                             </div>
                         </div>
                     </div>
@@ -45,6 +44,7 @@
                         <thead>
                         <tr>
                             <th>id</th>
+                            <th>image</th>
                             <th>name</th>
                             <th>slug</th>
                             <th>parent category</th>
@@ -57,6 +57,15 @@
                         <?php $__currentLoopData = $list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
                                 <td><?php echo e($item->id); ?></td>
+                               <td>
+                                   <?php if($item->images && count($item->images)>0): ?>
+                                       <img width="100px" src="<?php echo e(asset($item->images[0]->url)); ?>"
+                                            alt="<?php echo e($item->name); ?>"/>
+                                   <?php else: ?>
+                                       <img src="https://via.placeholder.com/150
+C/O https://placeholder.com/"/>
+                                   <?php endif; ?>
+                               </td>
                                 <td><?php echo e($item->name); ?></td>
                                 <td><?php echo e($item->slug); ?></td>
                                 <td>

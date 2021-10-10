@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use PHPUnit\Exception;
 
 class CategoryController extends Controller implements ICRUD
@@ -28,10 +31,33 @@ class CategoryController extends Controller implements ICRUD
             'slug' => 'required',
             'total_product' => 'required',
         ]);
+
+        $files = $request->file('img');
+        if (!$files || count($files) == 0) {
+            return redirect()->back()->with('error', 'Vui lòng chọn ít nhất một hình ảnh');
+        }
+
         try {
-            $data = request()->except(['_token']);
-            Category::create($data);
+            DB::beginTransaction();
+
+            $data = request()->except(['_token', 'img']);
+            $category = Category::create($data);
+
+            for ($i = 0; $i < count($files); $i++) {
+                $file = $files[$i];
+                //upload từng file
+                $fileName = time() . $i . $file->getClientOriginalName();
+                $file->storeAs('/products', $fileName, 'public');
+                //chèn vào bảng image
+                $image = new Image();
+                $image->imageable_id = $category->id;
+                $image->imageable_type = Category::class;
+                $image->url = 'storage/products/' . $fileName;
+                $image->save();
+            }
+            DB::commit();
         } catch (\Exception $e) {
+            DB::rollBack();
             return redirect()->back()->with('error', 'thêm thất bại');
         }
 
@@ -56,11 +82,45 @@ class CategoryController extends Controller implements ICRUD
             'total_product' => 'required',
         ]);
         try {
-
-            $data = request()->except(['_token']);
+            DB::beginTransaction();
+            $data = request()->except(['_token', 'img','removeImages']);
             Category::where('id', $id)->update($data);
-        } catch (\Exception $e) {
 
+            $removeImages = $request->removeImages;
+            if ($removeImages && $removeImages != "") {
+                //convert removeImages thành mảng
+                $removeImages = explode("|", $removeImages);
+                // dd($removeImages);
+                foreach ($removeImages as $removeImageId) {
+                    //Xoá ảnh trong storage đi
+                    //Xoá dữ liệu ảnh trong DB
+                    $image = Image::find($removeImageId);
+                    if ($image) {
+                        Storage::disk('local')->delete($image->path);//xoả ảnh trong storage
+                        $image->forceDelete();//xoá dữ liệu ảnh trong DB
+                    }
+                }
+            }
+
+            $files = $request->file('img');
+            if ($files && count($files) != 0) {
+                for ($i = 0; $i < count($files); $i++) {
+                    $file = $files[$i];
+                    //upload từng file
+                    $fileName = time() . $i . $file->getClientOriginalName();
+                    $file->storeAs('/products', $fileName, 'public');
+                    //chèn vào bảng image
+                    $image = new Image();
+                    $image->imageable_id = $id;
+                    $image->imageable_type = Category::class;
+                    $image->url = 'storage/products/' . $fileName;
+                    $image->save();
+                }
+            }
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            echo $e->getMessage();
             return redirect()->back()->with('error', 'Sửa thất bại');
         }
         return redirect(route('admin.category.list'))->with('success', 'Sửa thành công');
@@ -77,19 +137,21 @@ class CategoryController extends Controller implements ICRUD
         return redirect()->back()->with('success', 'Xoá thành công');
 
     }
+
     public function search(Request $request)
     {
         // TODO: Implement search() method.
         $q = $request->q;
         // TODO: Implement list() method.
-        $list = Category::where('name','LIKE','%'.$q.'%')->orWhere('slug','LIKE','%'.$q.'%')->orderBy('updated_at', 'DESC')->paginate($this->paginateItems);
+        $list = Category::where('name', 'LIKE', '%' . $q . '%')->orWhere('slug', 'LIKE', '%' . $q . '%')->orderBy('updated_at', 'DESC')->paginate($this->paginateItems);
         return view('be.category.list', compact('list'));
     }
+
     public function filter(Request $request)
     {
         // TODO: Implement filter() method.
         $filter = $request->filter;
-        switch ($filter){
+        switch ($filter) {
             case 'DESC':
                 $list = Category::orderBy('id', 'DESC')->paginate($this->paginateItems);
                 return view('be.category.list', compact('list'));
