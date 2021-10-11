@@ -22,22 +22,31 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
+//        $validator = Validator::make($request->all(), [
+//            'name' => 'required',
+//            'email' => 'required|email|unique:users',
+//            'password' => 'required|min:6',
+//            'c_password' => 'required|same:password',
+//        ]);
+//
+//        if ($validator->fails()) {
+//            return response()->json(['error' => $validator->errors()], 401);
+//        }
+
+        $request->validate([
+            'name' => 'required|max:50',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
-            'c_password' => 'required|same:password',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 401);
+        try {
+            $data = request()->only(['name', 'email', 'password']);
+            $data['password'] = Hash::make($data['password']);
+            $data['email_verified_at'] = Carbon::now();
+            User::create($data);
+        } catch (Exception $e) {
+            return response()->json(['error','đăng lý thất bại'],500);
         }
-
-        $data = request()->only(['name', 'email', 'password']);
-        $data['password'] = Hash::make($data['password']);
-        $data['email_verified_at'] = Carbon::now();
-        User::create($data);
-
         return response()->json(['success', 'đăng ký thành công'], 200);
 
         //GỬI EMAIL MÃ OTP VỀ ĐỊA CHỈ MAIL NGƯỜI DÙNG
@@ -94,10 +103,10 @@ class UserController extends Controller
 
     public function changePassword(Request $request)
     {
-       $request->validate([
-           'current_password'=>'required',
-           'new_password'=>'required|min:6'
-       ]);
+//       $request->validate([
+//           'current_password'=>'required',
+//           'new_password'=>'required|min:6'
+//       ]);
         if (!(Hash::check($request->get('current_password'), Auth::user()->password))) {
             // The passwords matches
             return response()->json(['message','mật khẩu hiện tại của bạn không khớp với mật khẩu cung cấp'],400);

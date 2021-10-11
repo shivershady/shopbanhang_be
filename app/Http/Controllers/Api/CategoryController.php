@@ -11,9 +11,10 @@ class CategoryController extends Controller
     public function list()
     {
         $categories = Category::all();
-        foreach ($categories as $category) {
-            $category->images;
-        }
+      /*  foreach ($categories as $category) {
+             $category->images;
+        }*/
         return response()->json(['category'=>$categories]);
     }
+
 }

@@ -1,1 +1,1 @@
-a:3:{s:6:"_token";s:40:"P77Q6zJ2MvoExBLXJcgRuL9f5LbsStQYxtNv2PLC";s:9:"_previous";a:1:{s:3:"url";s:36:"http://127.0.0.1:8000/admin/category";}s:6:"_flash";a:2:{s:3:"old";a:0:{}s:3:"new";a:0:{}}}
+a:3:{s:6:"_token";s:40:"P77Q6zJ2MvoExBLXJcgRuL9f5LbsStQYxtNv2PLC";s:9:"_previous";a:1:{s:3:"url";s:54:"http://127.0.0.1:8000/admin/category/filter?filter=ASC";}s:6:"_flash";a:2:{s:3:"old";a:0:{}s:3:"new";a:0:{}}}
