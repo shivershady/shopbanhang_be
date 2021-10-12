@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Image;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -43,6 +44,7 @@ class UserController extends Controller implements ICRUD
             DB::beginTransaction();
             $data = request()->except(['_token','img']);
             $data['password'] = bcrypt($request->password);
+            $data['email_verified_at'] = Carbon::now();
           $user =   User::create($data);
 
             for ($i = 0; $i < count($files); $i++) {
@@ -88,6 +90,7 @@ class UserController extends Controller implements ICRUD
 
             $data = request()->except(['_token','img','removeImages']);
             $data['password'] = Hash::make($data['password']);
+            $data['email_verified_at'] = Carbon::now();
             User::where('id', $id)->update($data);
 
 
