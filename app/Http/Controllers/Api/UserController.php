@@ -17,7 +17,12 @@ class UserController extends Controller
 
 {
     public function list (Request $request){
-         return $request->user();
+        $categories = User::all();
+        foreach ($categories as $category){
+            $img = $category->images;
+        }
+        //  $data = array_merge($categories,$img);
+        return response()->json(['user' => $categories,$img]);
     }
 
     public function register(Request $request)
