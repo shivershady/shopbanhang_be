@@ -39,6 +39,7 @@
                             <thead>
                             <tr>
                                 <th>id</th>
+                                <th>image</th>
                                 <th>Username</th>
                                 <th>Email</th>
                                 <th>Phone</th>
@@ -50,6 +51,15 @@
                             <?php $__currentLoopData = $list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
                                     <td><?php echo e($item->id); ?></td>
+                                    <td>
+                                        <?php if($item->images && count($item->images)>0): ?>
+                                            <img width="100px" src="<?php echo e(asset($item->images[0]->url)); ?>"
+                                                 alt="<?php echo e($item->name); ?>"/>
+                                        <?php else: ?>
+                                            <img src="https://via.placeholder.com/150
+C/O https://placeholder.com/"/>
+                                        <?php endif; ?>
+                                    </td>
                                     <td><?php echo e($item->name); ?></td>
                                     <td><?php echo e($item->email); ?></td>
                                     <td><?php echo e($item->phone); ?></td>

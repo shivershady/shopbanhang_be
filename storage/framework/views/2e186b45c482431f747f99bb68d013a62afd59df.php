@@ -8,6 +8,18 @@
             <!-- form start -->
             <form method="post" action="<?php echo e(route('admin.user.doAdd')); ?>" enctype="multipart/form-data">
                 <?php echo csrf_field(); ?>
+
+                <div class="card-body">
+
+                    <div class="preview" style="display:flex;">
+
+                    </div>
+                    <br>
+                    <input type="file" name="img[]" class="img-select" multiple
+                           accept="image/png, image/gif, image/jpeg" onchange="previewImages()">
+                </div>
+
+
                 <div class="card-body">
                     <div class="form-group">
                         <label>Name</label>
@@ -89,6 +101,34 @@ unset($__errorArgs, $__bag); ?> </span>
                 </div>
             </form>
         </div>
+
+        <script>
+            async function previewImages() {
+
+                for (let i = 0; i < document.querySelector('.img-select').files.length; i++) {
+                    const reader = new FileReader();
+                    await reader.readAsDataURL(document.querySelector('.img-select').files[i]);
+
+                    reader.onload = function (file) {
+                        const preview = document.querySelector('.preview');
+                        const img = document.createElement('img');
+                        img.setAttribute('src', file.target.result);
+                        img.classList.add('thumb');
+                        preview.appendChild(img);
+                    }
+                }
+            }
+
+            CKEDITOR.replace('content');
+        </script>
+
+        <style>
+            .thumb {
+                width: 100px;
+                height: 80px;
+                object-font: cover;
+            }
+        </style>
         <!-- /.card -->
 <?php $__env->stopSection(); ?>
 

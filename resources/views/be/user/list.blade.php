@@ -40,6 +40,7 @@
                             <thead>
                             <tr>
                                 <th>id</th>
+                                <th>image</th>
                                 <th>Username</th>
                                 <th>Email</th>
                                 <th>Phone</th>
@@ -51,6 +52,15 @@
                             @foreach($list as $item)
                                 <tr>
                                     <td>{{$item->id}}</td>
+                                    <td>
+                                        @if($item->images && count($item->images)>0)
+                                            <img width="100px" src="{{asset($item->images[0]->url)}}"
+                                                 alt="{{$item->name}}"/>
+                                        @else
+                                            <img src="https://via.placeholder.com/150
+C/O https://placeholder.com/"/>
+                                        @endif
+                                    </td>
                                     <td>{{$item->name}}</td>
                                     <td>{{$item->email}}</td>
                                     <td>{{$item->phone}}</td>

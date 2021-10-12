@@ -14,6 +14,10 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
     use SoftDeletes;
 
+    public function  images(){
+        return $this->morphMany(Image::class,'imageable');
+    }
+
     public function order(){
         return $this->hasMany(Order::class);
     }

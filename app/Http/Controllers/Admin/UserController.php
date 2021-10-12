@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use PHPUnit\Exception;
 
 class UserController extends Controller implements ICRUD
@@ -32,11 +34,33 @@ class UserController extends Controller implements ICRUD
             'user_seller' => 'required'
         ]);
 
+        $files = $request->file('img');
+        if (!$files || count($files) == 0) {
+            return redirect()->back()->with('error', 'Vui lòng chọn ít nhất một hình ảnh');
+        }
+
         try {
-            $data = request()->except(['_token']);
+            DB::beginTransaction();
+            $data = request()->except(['_token','img']);
             $data['password'] = bcrypt($request->password);
-            User::create($data);
+          $user =   User::create($data);
+
+            for ($i = 0; $i < count($files); $i++) {
+                $file = $files[$i];
+                //upload từng file
+                $fileName = time() . $i . $file->getClientOriginalName();
+                $file->storeAs('/products', $fileName, 'public');
+                //chèn vào bảng image
+                $image = new Image();
+                $image->imageable_id = $user->id;
+                $image->imageable_type = User::class;
+                $image->url = 'storage/products/' . $fileName;
+                $image->save();
+            }
+            DB::commit();
+
         } catch (\Exception $e) {
+            DB::rollBack();
             return redirect()->back()->with('error', 'thêm thất bại');
         }
 
@@ -62,11 +86,45 @@ class UserController extends Controller implements ICRUD
         // TODO: Implement doEdit() method.
         try {
 
-            $data = request()->except(['_token']);
+            $data = request()->except(['_token','img','removeImages']);
             $data['password'] = Hash::make($data['password']);
             User::where('id', $id)->update($data);
-        } catch (\Exception $e) {
 
+
+            $removeImages = $request->removeImages;
+            if ($removeImages && $removeImages != "") {
+                //convert removeImages thành mảng
+                $removeImages = explode("|", $removeImages);
+                // dd($removeImages);
+                foreach ($removeImages as $removeImageId) {
+                    //Xoá ảnh trong storage đi
+                    //Xoá dữ liệu ảnh trong DB
+                    $image = Image::find($removeImageId);
+                    if ($image) {
+                        Storage::disk('local')->delete($image->path);//xoả ảnh trong storage
+                        $image->forceDelete();//xoá dữ liệu ảnh trong DB
+                    }
+                }
+            }
+
+            $files = $request->file('img');
+            if ($files && count($files) != 0) {
+                for ($i = 0; $i < count($files); $i++) {
+                    $file = $files[$i];
+                    //upload từng file
+                    $fileName = time() . $i . $file->getClientOriginalName();
+                    $file->storeAs('/products', $fileName, 'public');
+                    //chèn vào bảng image
+                    $image = new Image();
+                    $image->imageable_id = $id;
+                    $image->imageable_type = User::class;
+                    $image->url = 'storage/products/' . $fileName;
+                    $image->save();
+                }
+            }
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
             return redirect()->back()->with('error', 'Sửa thất bại');
         }
         return redirect(route('admin.user.list'))->with('success', 'Sửa thành công');
