@@ -15,7 +15,13 @@ class ProductController extends Controller
 {
     public function list()
     {
-        return Product::all();
+        $products = Product::all();
+        foreach ($products as $product){
+            $img = $product->images;
+        }
+        //  $data = array_merge($categories,$img);
+        return response()->json(['category' => $products]);
+
     }
 
     public function add(Request $request)
@@ -41,18 +47,12 @@ class ProductController extends Controller
             $discount->active = $product->active;
             $discount->save();
 
-            $variants = $request->input('variants');
-            foreach ($variants as $variant) {
-                $variantArr = explode('|', $variant);
-                $variantValue = array();
-                $variantValue['name'] = $variantArr[1];
-                $variantValue['variant_id'] = $variantArr[0];
-                }
+
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
-            return reponse()->json('error', 500);
+            return response()->json(['error','thêm thất bại'],500);
         }
-        return response()->json('success', 200);
+        return response()->json(['success','thêm thành công'],200);
     }
 }

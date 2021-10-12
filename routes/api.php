@@ -20,7 +20,6 @@ use App\Http\Controllers\Api\UserController;
 
 
 // product
-Route::get('/product',[ProductController::class,'list']);
 Route::post('/product/add',[ProductController::class,'add']);
 
 //category
@@ -33,4 +32,5 @@ Route::middleware('auth:api')->post('user/change-password',[UserController::clas
 Route::middleware('auth:api')->get('/user',[UserController::class,'list']);
 
 // api trang home
-Route::get('/category',[CategoryController::class,'list']);
+Route::get('/home/category',[CategoryController::class,'list']);
+Route::get('/home/product',[ProductController::class,'list']);
