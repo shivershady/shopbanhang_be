@@ -7,6 +7,7 @@ use App\Models\Discount;
 use App\Models\Image;
 use App\Models\Product;
 use App\Models\Variant;
+use App\Models\Variant_value;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Exception;
@@ -16,7 +17,7 @@ class ProductController extends Controller
     public function list()
     {
         $products = Product::all();
-        foreach ($products as $product){
+        foreach ($products as $product) {
             $img = $product->images;
         }
         //  $data = array_merge($categories,$img);
@@ -47,12 +48,22 @@ class ProductController extends Controller
             $discount->active = $product->active;
             $discount->save();
 
+            $variant = new Variant();
+            $variant->name = $request->variant;
+            $variant->product_id = $product->id;
+            $variant->save();
+
+            $variant_value = new Variant_value();
+            $variant_value->name = $request->variant_value;
+            $variant_value->variant_id = $variant->id;
+            $variant_value->price = $request->variant_value_price;
+            $variant_value->save();
 
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
-            return response()->json(['error','thêm thất bại'],500);
+            return response()->json(['error', 'thêm thất bại'], 500);
         }
-        return response()->json(['success','thêm thành công'],200);
+        return response()->json(['success', 'thêm thành công'], 200);
     }
 }

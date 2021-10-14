@@ -95,7 +95,6 @@ class UserController extends Controller
             $user = auth()->user();
             $user->token()->revoke(); // clear api token
             $user->save();
-
             return response()->json([
                 'message' => 'đăng xuất thành công',
             ]);
