@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Discount;
 use App\Models\Image;
 use App\Models\Product;
+use App\Models\Product_category;
 use App\Models\Variant;
 use App\Models\Variant_value;
 use Illuminate\Http\Request;
@@ -58,6 +59,11 @@ class ProductController extends Controller
             $variant_value->variant_id = $variant->id;
             $variant_value->price = $request->variant_value_price;
             $variant_value->save();
+
+            $product_category = new Product_category();
+            $product_category->product_id = $product->id;
+            $product_category->category_id = $product->category_id;
+            $product_category->save();
 
             DB::commit();
         } catch (Exception $e) {
