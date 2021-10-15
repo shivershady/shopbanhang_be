@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 
 /*
@@ -22,14 +23,15 @@ use App\Http\Controllers\Api\UserController;
 // product
 Route::post('/product/add',[ProductController::class,'add']);
 
-//category
+// api users
+Route::middleware('auth:api')->post('/user/add',[UserController::class,'add']);
 
 //đăng nhập, đăng ký, profile
-Route::post('user/register',[UserController::class,'register']);
-Route::post('user/login',[UserController::class,'login'])->name('user.login');
-Route::middleware('auth:api')->get('user/logout',[UserController::class,'logout']);
-Route::middleware('auth:api')->post('user/change-password',[UserController::class,'changePassword']);
-Route::middleware('auth:api')->get('/user',[UserController::class,'list']);
+Route::post('user/register',[AuthController::class,'register']);
+Route::post('user/login',[AuthController::class,'login'])->name('user.login');
+Route::middleware('auth:api')->get('user/logout',[AuthController::class,'logout']);
+Route::middleware('auth:api')->post('user/change-password',[AuthController::class,'changePassword']);
+Route::middleware('auth:api')->get('/user',[AuthController::class,'list']);
 
 // api trang home
 Route::get('/home/category',[CategoryController::class,'list']);

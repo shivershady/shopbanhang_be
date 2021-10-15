@@ -51,12 +51,12 @@ class UserController extends Controller implements ICRUD
                 $file = $files[$i];
                 //upload từng file
                 $fileName = time() . $i . $file->getClientOriginalName();
-                $file->storeAs('/products', $fileName, 'public');
+                $file->storeAs('/users', $fileName, 'public');
                 //chèn vào bảng image
                 $image = new Image();
                 $image->imageable_id = $user->id;
                 $image->imageable_type = User::class;
-                $image->url = 'storage/products/' . $fileName;
+                $image->url = 'storage/users/' . $fileName;
                 $image->save();
             }
             DB::commit();
@@ -116,12 +116,12 @@ class UserController extends Controller implements ICRUD
                     $file = $files[$i];
                     //upload từng file
                     $fileName = time() . $i . $file->getClientOriginalName();
-                    $file->storeAs('/products', $fileName, 'public');
+                    $file->storeAs('/users', $fileName, 'public');
                     //chèn vào bảng image
                     $image = new Image();
                     $image->imageable_id = $id;
                     $image->imageable_type = User::class;
-                    $image->url = 'storage/products/' . $fileName;
+                    $image->url = 'storage/users/' . $fileName;
                     $image->save();
                 }
             }

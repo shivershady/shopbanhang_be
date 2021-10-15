@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart_item;
 use App\Models\Discount;
 use App\Models\Image;
+use App\Models\Order_product;
 use App\Models\Product;
 use App\Models\Product_category;
 use App\Models\Variant;
@@ -23,7 +25,6 @@ class ProductController extends Controller
         }
         //  $data = array_merge($categories,$img);
         return response()->json(['category' => $products]);
-
     }
 
     public function add(Request $request)
@@ -64,6 +65,7 @@ class ProductController extends Controller
             $product_category->product_id = $product->id;
             $product_category->category_id = $product->category_id;
             $product_category->save();
+
 
             DB::commit();
         } catch (Exception $e) {
