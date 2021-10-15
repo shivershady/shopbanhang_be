@@ -82,6 +82,7 @@ class AuthController extends Controller
         if ($check) {
             $user = User::where('email', $email)->first();
             $accessToken = $user->createToken('user')->accessToken;
+
             return response()->json(['token' => $accessToken], 200);
         } else {
            return response()->json([
