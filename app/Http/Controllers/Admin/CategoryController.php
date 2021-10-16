@@ -47,12 +47,12 @@ class CategoryController extends Controller implements ICRUD
                 $file = $files[$i];
                 //upload từng file
                 $fileName = time() . $i . $file->getClientOriginalName();
-                $file->storeAs('/products', $fileName, 'public');
+                $file->storeAs('/category', $fileName, 'public');
                 //chèn vào bảng image
                 $image = new Image();
                 $image->imageable_id = $category->id;
                 $image->imageable_type = Category::class;
-                $image->url = 'storage/products/' . $fileName;
+                $image->url = 'storage/category/' . $fileName;
                 $image->save();
             }
             DB::commit();
@@ -108,12 +108,12 @@ class CategoryController extends Controller implements ICRUD
                     $file = $files[$i];
                     //upload từng file
                     $fileName = time() . $i . $file->getClientOriginalName();
-                    $file->storeAs('/products', $fileName, 'public');
+                    $file->storeAs('/category', $fileName, 'public');
                     //chèn vào bảng image
                     $image = new Image();
                     $image->imageable_id = $id;
                     $image->imageable_type = Category::class;
-                    $image->url = 'storage/products/' . $fileName;
+                    $image->url = 'storage/category/' . $fileName;
                     $image->save();
                 }
             }

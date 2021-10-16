@@ -18,7 +18,7 @@ class UserController extends Controller
             DB::beginTransaction();
             $id =  $request->user();
             $data = $request->all();
-            $users = User::find($id->id)->update($data);
+             User::find($id->id)->update($data);
             $file = $request->file('img');
             //upload từng file
             $fileName = time() . $file->getClientOriginalName();
