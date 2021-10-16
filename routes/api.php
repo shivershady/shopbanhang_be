@@ -24,7 +24,7 @@ use App\Http\Controllers\Api\UserController;
 Route::post('/product/add',[ProductController::class,'add']);
 
 // api users
-Route::middleware('auth:api')->post('/user/add',[UserController::class,'add']);
+Route::middleware('auth:api')->post('/user/update',[UserController::class,'update']);
 
 //đăng nhập, đăng ký, profile
 Route::post('user/register',[AuthController::class,'register']);
