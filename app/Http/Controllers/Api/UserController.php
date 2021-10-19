@@ -7,6 +7,7 @@ use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use PHPUnit\Exception;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,9 +17,17 @@ class UserController extends Controller
     {
         try {
             DB::beginTransaction();
-            $id =  $request->user();
+            $id = $request->user();
             $data = $request->all();
-             User::find($id->id)->update($data);
+            User::find($id->id)->update($data);
+            $image = Image::all();
+            foreach ($image as $img) {
+                $img = Image::find($img->id);
+                if ($img) {
+                    Storage::disk('local')->delete($img->url);
+                    $img->forceDelete();
+                }
+            }
             $file = $request->file('img');
             //upload từng file
             $fileName = time() . $file->getClientOriginalName();
@@ -38,8 +47,8 @@ class UserController extends Controller
             ]);
         }
         return response()->json([
-           'status'=>200,
-           'message'=>'cập nhật thông tin thành công'
+            'status' => 200,
+            'message' => 'cập nhật thông tin thành công'
         ]);
     }
 
