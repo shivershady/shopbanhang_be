@@ -29,6 +29,14 @@ class ProductController extends Controller
 
     public function add(Request $request)
     {
+        $request->validate([
+            'name' => 'required', 'slug' => 'required', 'category_id' => 'required',
+            'quantity' => 'required', 'price' => 'required', 'discount_id' => 'required',
+            'active' => 'required', 'iHot' => 'required', 'iPay' => 'required',
+            'warranty' => 'required', 'view' => 'required', 'description' => 'required',
+            'description_seo' => 'required', 'title_seo' => 'required', 'keyword_seo' => 'required'
+        ]);
+
         try {
             DB::beginTransaction();
             $product = Product::create($request->all());

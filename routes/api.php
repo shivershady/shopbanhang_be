@@ -25,6 +25,7 @@ Route::post('/product/add',[ProductController::class,'add']);
 
 // api users
 Route::middleware('auth:api')->post('/user/update',[UserController::class,'update']);
+Route::middleware('auth:api')->post('/user/update-shop',[UserController::class,'updateShop']);
 
 //đăng nhập, đăng ký, profile
 Route::post('user/register',[AuthController::class,'register']);

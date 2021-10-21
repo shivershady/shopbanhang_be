@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\User_address;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -45,8 +47,10 @@ class AuthController extends Controller
             $data = request()->only(['name', 'email', 'password']);
             $data['password'] = Hash::make($data['password']);
             $data['email_verified_at'] = Carbon::now();
-            User::create($data);
+            $user =  User::create($data);
+
         } catch (Exception $e) {
+
             return response()->json(['error','đăng lý thất bại'],500);
         }
         return response()->json(['success', 'đăng ký thành công'], 200);

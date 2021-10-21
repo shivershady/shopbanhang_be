@@ -11,7 +11,7 @@ class User_address extends Model
     use HasFactory;
     use SoftDeletes;
     protected  $fillable = [
-      'address_line1','address_line2','city','province','user_id'
+      'address_line1','address_line2','city','province','description'
     ];
     public function user(){
         return $this->belongsTo(User::class);
