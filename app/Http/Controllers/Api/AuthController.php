@@ -90,7 +90,7 @@ class AuthController extends Controller
             return response()->json(['token' => $accessToken], 200);
         } else {
            return response()->json([
-               'status'=>401,404,403,
+               'status'=>400,
                'message'=>'đăng nhập thất bại'
            ]);
         }
