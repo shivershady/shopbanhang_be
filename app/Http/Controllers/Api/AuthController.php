@@ -93,10 +93,7 @@ class AuthController extends Controller
 
             return response()->json(['token' => $accessToken], 200);
         } else {
-           return response()->json([
-               'status'=>400,
-               'message'=>'đăng nhập thất bại'
-           ]);
+          return response()->json(['message','đăng nhập thất bại'],400);
         }
 
     }
@@ -107,10 +104,7 @@ class AuthController extends Controller
             $user = auth()->user();
             $user->token()->revoke(); // clear api token
             $user->save();
-            return response()->json([
-                'status'=>200,
-                'message' => 'đăng xuất thành công',
-            ]);
+           return response()->json(['message','đăng xuất thành công'],200);
         }
 
     }
