@@ -20,7 +20,6 @@ class AuthController extends Controller
 {
     public function list (Request $request){
         $user = $request->user();
-        $img = $user->images;
         return response()->json(['user'=>$user]);
     }
 

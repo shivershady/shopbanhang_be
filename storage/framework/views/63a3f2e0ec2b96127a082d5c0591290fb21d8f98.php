@@ -1,5 +1,4 @@
-@extends('be.layout')
-@section('main-content')
+<?php $__env->startSection('main-content'); ?>
 
     <div class="row">
         <div class="col-12">
@@ -8,13 +7,13 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4">
-                                <a class="btn btn-success" href="{{route('admin.category.add')}}"
+                                <a class="btn btn-success" href="<?php echo e(route('admin.category.add')); ?>"
                                 >ADD</a>
                             </div>
 
                             <div class="col-md-4">
                                 <form class="form-group" style="display: flex; justify-content: flex-end"
-                                      action="{{route('admin.category.filter')}}" method="get">
+                                      action="<?php echo e(route('admin.category.filter')); ?>" method="get">
                                     <select class="form-control" name="filter">
                                         <option value="" selected hidden>Select Filter</option>
                                         <option value="DESC">ID giảm dần</option>
@@ -27,7 +26,7 @@
                             </div>
                             <div class="col-md-4">
                                 <form class="form-group" style="display: flex; justify-content: flex-end"
-                                      action="{{route('admin.category.search')}}" method="get">
+                                      action="<?php echo e(route('admin.category.search')); ?>" method="get">
                                     <input class="form-control" placeholder="Search" name="q"/>
                                     <button class="btn btn-success">search</button>
                                 </form>
@@ -55,48 +54,49 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($list as $item)
+                        <?php $__currentLoopData = $list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
-                                <td>{{$item->id}}</td>
+                                <td><?php echo e($item->id); ?></td>
                                 <td>
-                                    @if($item->images && count($item->images)>0)
-                                        <img width="100px" src="{{asset($item->images[0]->url)}}"
-                                             alt="{{$item->name}}"/>
-                                    @else
+                                    <?php if($item->images && count($item->images)>0): ?>
+                                        <img width="100px" src="<?php echo e(asset($item->images[0]->url)); ?>"
+                                             alt="<?php echo e($item->name); ?>"/>
+                                    <?php else: ?>
                                         <img src="https://via.placeholder.com/150
 C/O https://placeholder.com/"/>
-                                    @endif
+                                    <?php endif; ?>
                                 </td>
-                                <td>{{$item->name}}</td>
-                                <td>{{$item->slug}}</td>
+                                <td><?php echo e($item->name); ?></td>
+                                <td><?php echo e($item->slug); ?></td>
                                 <td>
-                                    @if($item->parentCategory)
-                                        <span class="badge badge-primary">{{$item->parentCategory->name}}</span>
-                                    @endif
-                                    @if(!$item->parentCategory)
+                                    <?php if($item->parentCategory): ?>
+                                        <span class="badge badge-primary"><?php echo e($item->parentCategory->name); ?></span>
+                                    <?php endif; ?>
+                                    <?php if(!$item->parentCategory): ?>
                                         <span class="badge badge-primary">Do not have parent</span>
-                                    @endif
+                                    <?php endif; ?>
                                 </td>
                                 <td>
-                                    <span class="badge badge-primary">@if($item->status==0) On @endif</span>
-                                    <span class="badge badge-primary">@if($item->status==1) Off @endif</span>
+                                    <span class="badge badge-primary"><?php if($item->status==0): ?> On <?php endif; ?></span>
+                                    <span class="badge badge-primary"><?php if($item->status==1): ?> Off <?php endif; ?></span>
                                 </td>
-                                <td>{{$item->total_product}}</td>
+                                <td><?php echo e($item->total_product); ?></td>
                                 <td>
                                     <a class="btn btn-warning"
-                                       href="{{route('admin.category.edit',['id'=>$item->id])}}">Edit</a>
+                                       href="<?php echo e(route('admin.category.edit',['id'=>$item->id])); ?>">Edit</a>
                                     <a class="btn btn-danger" onclick="return confirm('Bạn có muốn xoá ?')"
-                                       href="{{route('admin.category.delete',['id'=>$item->id])}}">Delete</a>
+                                       href="<?php echo e(route('admin.category.delete',['id'=>$item->id])); ?>">Delete</a>
                                 </td>
                             </tr>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
                     </table>
                 </div>
                 <div class="card-footer clearfix">
 
                     <div class="float-right">
-                        {{$list->links()}}
+                        <?php echo e($list->links()); ?>
+
                     </div>
                 </div>
                 <!-- /.card-body -->
@@ -104,5 +104,7 @@ C/O https://placeholder.com/"/>
             <!-- /.card -->
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
+
+<?php echo $__env->make('be.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\workplace\shopbanhang_be\resources\views/be/category/list.blade.php ENDPATH**/ ?>

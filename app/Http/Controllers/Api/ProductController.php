@@ -20,11 +20,7 @@ class ProductController extends Controller
     public function list()
     {
         $products = Product::all();
-        foreach ($products as $product) {
-            $img = $product->images;
-        }
-        //  $data = array_merge($categories,$img);
-        return response()->json(['category' => $products]);
+        return response()->json(['products' => $products]);
     }
 
     public function add(Request $request)
