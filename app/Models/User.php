@@ -15,7 +15,7 @@ class User extends Authenticatable
     use SoftDeletes;
 
     public function  images(){
-        return $this->morphMany(Image::class,'imageable');
+        return $this->morphOne(Image::class,'imageable');
     }
 
     public function order(){

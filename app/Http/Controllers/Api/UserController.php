@@ -21,6 +21,7 @@ class UserController extends Controller
             $id = $request->user();
             $data = $request->all();
             User::find($id->id)->update($data);
+
             $image = Image::all();
             foreach ($image as $img) {
                 $img = Image::find($img->id);
@@ -53,38 +54,56 @@ class UserController extends Controller
         ]);
     }
 
-    public function updateShop(Request $request)
+    public function addShop(Request $request)
     {
-        $request->validate([
-            'address_line1'=>'required',
-            'city'=>'required',
-            'province'=>'required',
-            'description'=>'required'
-        ]);
-        try {
-
-            $id = $request->user();
-            $user_address = new User_address();
-            $user_address->user_id = $id->id;
-            $user_address->city = $request->city;
-            $user_address->province = $request->province;
-            $user_address->address_line1 = $request->address_line1;
-            $user_address->address_line2 = $request->address_line2;
-            $user_address->save();
-
-        } catch (Exception $e) {
-
-            return response()->json([
-                'status' => 400,
-                'message' => 'thêm thất bại'
-            ]);
-
-        }
-
-        return response()->json([
-            'status' => 200,
-            'message' => 'thêm thành công'
-        ]);
+//        $request->validate([
+//            'address_line1' => 'required',
+//            'city' => 'required',
+//            'province' => 'required',
+//            'description' => 'required',
+//        ]);
+//        try {
+//
+//            $id = $request->user();
+//            $user_address = new User_address();
+//            $user_address->user_id = $id->id;
+//            $user_address->city = $request->city;
+//            $user_address->province = $request->province;
+//            $user_address->address_line1 = $request->address_line1;
+//            $user_address->address_line2 = $request->address_line2;
+//            $user_address->save();
+//
+//        } catch (Exception $e) {
+//
+//            return response()->json([
+//                'status' => 400,
+//                'message' => 'thêm thất bại'
+//            ]);
+//
+//        }
+//
+//        return response()->json([
+//            'status' => 200,
+//            'message' => 'thêm thành công'
+//        ]);
     }
 
+    public function updateShop(Request $request)
+    {
+        try {
+            $id = $request->user();
+            $data = $request->all();
+            User_address::where('user_id', $id->id)->update($data);
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 400,
+                'message' => 'sửa thất bại'
+            ]);
+        }
+        return response()->json([
+            'status' => 200,
+            'message' => 'sửa thành công'
+        ]);
+
+    }
 }

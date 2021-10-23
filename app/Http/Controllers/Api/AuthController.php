@@ -43,13 +43,18 @@ class AuthController extends Controller
         ]);
 
         try {
+            DB::beginTransaction();
             $data = request()->only(['name', 'email', 'password']);
             $data['password'] = Hash::make($data['password']);
             $data['email_verified_at'] = Carbon::now();
             $user =  User::create($data);
 
+            $user_address = new User_address();
+            $user_address->user_id = $user->id;
+            $user_address->save();
+            DB::commit();
         } catch (Exception $e) {
-
+           DB::rollBack();
             return response()->json(['error','đăng lý thất bại'],500);
         }
         return response()->json(['success', 'đăng ký thành công'], 200);
