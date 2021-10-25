@@ -21,8 +21,8 @@ use App\Http\Controllers\Api\UserController;
 
 
 // product
-Route::post('/product/add',[ProductController::class,'add']);
-Route::middleware('auth:api')->get('/product',[ProductController::class,'list']);
+Route::middleware('auth:api')->post('/product/add',[ProductController::class,'add']);
+Route::get('/product',[ProductController::class,'list']);
 
 // api users
 Route::middleware('auth:api')->post('/user/update-profile',[UserController::class,'update']);

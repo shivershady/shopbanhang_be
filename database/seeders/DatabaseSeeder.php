@@ -16,12 +16,6 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         for($m=0; $m<20; $m++){
-            $user = new User();
-            $user->name='name'.$m;
-            $user->email='2502mien@gmail.com'.$m;
-            $user->phone='086745416'.$m;
-            $user->password='123456'.$m;
-            $user->save();
 
         }
     }
