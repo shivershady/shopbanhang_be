@@ -10,4 +10,7 @@ class Cart extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $fillable = [
+      'total'
+    ];
 }

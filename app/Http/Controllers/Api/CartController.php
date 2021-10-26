@@ -41,4 +41,17 @@ class CartController extends Controller
         }
         return response()->json(['message', 'thêm thành công'], 200);
     }
+
+    public function delete($id)
+    {
+        try {
+         $mien = Cart_item::where('product_id',$id)->first();
+         Cart_item::find($mien->id)->cart->delete();
+         Cart_item::where('product_id',$id)->delete();
+        } catch (Exception $e) {
+
+            return response()->json(['message', 'xóa thất bại'],500);
+        }
+        return response()->json(['message', 'xóa thành công'], 200);
+    }
 }

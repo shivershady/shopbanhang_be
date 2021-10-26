@@ -27,6 +27,7 @@ Route::get('/product',[ProductController::class,'list']);
 
 //cart
 Route::middleware('auth:api')->post('/cart/add/{id}',[CartController::class,'addToCart']);
+Route::middleware('auth:api')->post('/cart/delete/{id}',[CartController::class,'delete']);
 
 // api users
 Route::middleware('auth:api')->post('/user/update-profile',[UserController::class,'update']);
