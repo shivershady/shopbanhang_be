@@ -54,4 +54,8 @@ class CartController extends Controller
         }
         return response()->json(['message', 'xóa thành công'], 200);
     }
+    public function list(){
+        $cart = Cart::all();
+        return response()->json(['cart'=>$cart]);
+    }
 }

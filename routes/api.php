@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\CartController;
+use App\Http\Controllers\Api\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,10 @@ Route::get('/product',[ProductController::class,'list']);
 //cart
 Route::middleware('auth:api')->post('/cart/add/{id}',[CartController::class,'addToCart']);
 Route::middleware('auth:api')->post('/cart/delete/{id}',[CartController::class,'delete']);
+Route::get('/cart',[CartController::class,'list']);
+
+//orsers
+Route::middleware('auth:api')->post('/orders/add/{id}',[OrderController::class,'add']);
 
 // api users
 Route::middleware('auth:api')->post('/user/update-profile',[UserController::class,'update']);
