@@ -43,6 +43,12 @@ class ProductController extends Controller implements ICRUD
     public function doEdit($id, Request $request)
     {
         // TODO: Implement doEdit() method.
+        $request->validate([
+            'name' => 'required', 'slug' => 'required', 'category_id' => 'required',
+            'quantity' => 'required', 'price' => 'required', 'discount_id' => 'required',
+            'active' => 'required', 'iHot' => 'required', 'iPay' => 'required',
+            'warranty' => 'required', 'view' => 'required', 'description' => 'required'
+        ]);
         try {
 
             DB::beginTransaction();
@@ -86,15 +92,8 @@ class ProductController extends Controller implements ICRUD
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
-            $request->validate([
-                'name' => 'required', 'slug' => 'required', 'category_id' => 'required',
-                'quantity' => 'required', 'price' => 'required', 'discount_id' => 'required',
-                'active' => 'required', 'iHot' => 'required', 'iPay' => 'required',
-                'warranty' => 'required', 'view' => 'required', 'description' => 'required',
-                'description_seo' => 'required', 'title_seo' => 'required', 'keyword_seo' => 'required'
-            ]);
             return redirect()->back()->with('error','sửa thất bại');
-            echo $e->getMessage();
+          //  echo $e->getMessage();
         }
         return redirect(route('admin.product.list'))->with('success','sửa thành công');
     }

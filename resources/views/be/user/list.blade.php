@@ -53,8 +53,8 @@
                                 <tr>
                                     <td>{{$item->id}}</td>
                                     <td>
-                                        @if($item->images && count($item->images)>0)
-                                            <img width="100px" src="{{asset($item->images[0]->url)}}"
+                                        @if($item->image )
+                                            <img width="100px" src="{{asset($item->image->url)}}"
                                                  alt="{{$item->name}}"/>
                                         @else
                                             <img src="https://via.placeholder.com/150

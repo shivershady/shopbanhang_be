@@ -58,8 +58,8 @@
                             <tr>
                                 <td><?php echo e($item->id); ?></td>
                                 <td>
-                                    <?php if($item->images && count($item->images)>0): ?>
-                                        <img width="100px" src="<?php echo e(asset($item->images[0]->url)); ?>"
+                                    <?php if($item->image ): ?>
+                                        <img width="100px" src="<?php echo e(asset($item->image->url)); ?>"
                                              alt="<?php echo e($item->name); ?>"/>
                                     <?php else: ?>
                                         <img src="https://via.placeholder.com/150

@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('main-content'); ?>
     <div class="col-md-12">
         <!-- general form elements -->
@@ -13,12 +12,12 @@
                 <div class="card-body">
                     <input type="hidden" name="removeImages" class="removeImages"/>
                     <div class="preview" style="display:flex;">
-                        <?php $__currentLoopData = $obj->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
                             <div class="thumb-wrapper">
-                                <img class="thumb" src="<?php echo e(asset($image->url)); ?>" alt="<?php echo e($obj->name); ?>"/>
-                                <a class="remove-image" onclick="removeImage(<?php echo e($image->id); ?>,event)">Remove</a>
+                                <img class="thumb" src="<?php echo e(asset($obj->image->url)); ?>" alt="<?php echo e($obj->name); ?>"/>
+                                <a class="remove-image" onclick="removeImage(<?php echo e($obj->image->id); ?>,event)">Remove</a>
                             </div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
                     </div>
                     <br>
                     <input type="file" name="img[]" class="img-select" multiple

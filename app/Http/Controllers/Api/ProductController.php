@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function list()
     {
         $products = Product::all();
-        return response()->json(['products' => $products]);
+        return response()->json(['products'=>$products]);
     }
 
     public function add(Request $request)

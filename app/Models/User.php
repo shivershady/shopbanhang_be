@@ -14,7 +14,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
     use SoftDeletes;
 
-    public function  images(){
+    public function  image(){
         return $this->morphOne(Image::class,'imageable');
     }
 
