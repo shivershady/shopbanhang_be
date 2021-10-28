@@ -7,12 +7,12 @@
                 <div class="card-header">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col" style="margin-left: 10px">
                                 <a class="btn btn-success" href="{{route('admin.statement.add')}}"
                                 >ADD</a>
                             </div>
 
-                            <div class="col-md-4" style="margin-left: 10px">
+                            <div class="col" style="margin-left: 10px">
                                 <form class="form-group" style="display: flex; justify-content: flex-end"
                                       action="{{route('admin.statement.filter')}}" method="get">
                                     <select class="form-control" name="filter">
@@ -25,18 +25,14 @@
                                     <button class="btn btn-success">filter</button>
                                 </form>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col">
                                 <form class="form-group" style="display: flex; justify-content: flex-end"
                                       action="{{route('admin.statement.search')}}" method="get">
                                     <input class="form-control" placeholder="Search" name="q"/>
                                     <button class="btn btn-success">search</button>
                                 </form>
                             </div>
-                            <div>
 
-
-
-                            </div>
                         </div>
                     </div>
                     <!-- ./card-header -->

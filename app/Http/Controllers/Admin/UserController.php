@@ -45,7 +45,7 @@ class UserController extends Controller implements ICRUD
             $data = request()->except(['_token','img']);
             $data['password'] = bcrypt($request->password);
             $data['email_verified_at'] = Carbon::now();
-          $user =   User::create($data);
+            $user =   User::create($data);
 
             for ($i = 0; $i < count($files); $i++) {
                 $file = $files[$i];

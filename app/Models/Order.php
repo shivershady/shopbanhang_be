@@ -11,7 +11,7 @@ class Order extends Model
     use HasFactory;
     use SoftDeletes;
     protected  $fillable = [
-       'total','sub_total','status','payment_type','warranty'
+       'total','sub_total','user_id','status','payment_type','warranty'
     ];
     public  function user(){
       return   $this->belongsTo(User::class);
