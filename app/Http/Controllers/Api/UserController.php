@@ -18,9 +18,9 @@ class UserController extends Controller
     {
         try {
             DB::beginTransaction();
-            $id = $request->user();
+            $id = Auth::id();
             $data = $request->all();
-            User::find($id->id)->update($data);
+            User::find($id)->update($data);
 
             $image = Image::all();
             foreach ($image as $img) {
@@ -91,9 +91,9 @@ class UserController extends Controller
     public function updateShop(Request $request)
     {
         try {
-            $id = $request->user();
+            $id = Auth::id();
             $data = $request->all();
-            User_address::where('user_id', $id->id)->update($data);
+            User_address::where('user_id', $id)->update($data);
         } catch (Exception $e) {
             return response()->json([
                 'status' => 400,

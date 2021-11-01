@@ -45,7 +45,7 @@
                                 <th>Amount</th>
                                 <th>Status</th>
                                 <th>Order</th>
-                                <th>Created At</th>
+                                <th>Day trading</th>
                                 <th>Action</th>
                             </tr>
                             </thead>

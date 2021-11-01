@@ -184,7 +184,7 @@
     <style>
         .thumb {
             width: 100px;
-            object-font: cover;
+            object-fit: cover;
         }
 
         .thumb-wrapper {
