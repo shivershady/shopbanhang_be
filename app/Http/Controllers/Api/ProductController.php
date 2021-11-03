@@ -20,8 +20,13 @@ class ProductController extends Controller
     public function list()
     {
         $products = Product::with('image')->get();
-        return response()->json(['products'=>$products->toArray()]);
+        return response()->json(['products' => $products->toArray()]);
+    }
 
+    public function productDetails($id)
+    {
+        $productDetails = Product::with('image')->where('id',$id)->get();
+        return response()->json(['productDetails'=>$productDetails->toArray()]);
     }
 
     public function add(Request $request)
