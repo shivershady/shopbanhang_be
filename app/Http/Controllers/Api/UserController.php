@@ -43,15 +43,9 @@ class UserController extends Controller
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
-            return response()->json([
-                'status' => 400,
-                'message' => 'cập nhật thông tin thất bại'
-            ]);
+          return response()->json(['message','cập nhật thông tin thất bại'],500);
         }
-        return response()->json([
-            'status' => 200,
-            'message' => 'cập nhật thông tin thành công'
-        ]);
+       return response()->json(['message','cập nhật thông tin thành công'],200);
     }
 
     public function addShop(Request $request)
@@ -95,15 +89,9 @@ class UserController extends Controller
             $data = $request->all();
             User_address::where('user_id', $id)->update($data);
         } catch (Exception $e) {
-            return response()->json([
-                'status' => 400,
-                'message' => 'sửa thất bại'
-            ]);
+          return response()->json(['message','sửa thất bại'],500);
         }
-        return response()->json([
-            'status' => 200,
-            'message' => 'sửa thành công'
-        ]);
+      return response()->json(['message','sửa thành công'],200);
 
     }
 }
