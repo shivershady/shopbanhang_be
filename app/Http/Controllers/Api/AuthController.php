@@ -92,7 +92,7 @@ class AuthController extends Controller
            return response()->json([
                'status'=>401,404,403,
                'message'=>'đăng nhập thất bại'
-           ]);
+           ],400);
         }
 
     }
