@@ -45,5 +45,7 @@ Route::middleware('auth:api')->get('user/logout',[AuthController::class,'logout'
 Route::middleware('auth:api')->post('user/change-password',[AuthController::class,'changePassword']);
 Route::middleware('auth:api')->get('/user',[AuthController::class,'list']);
 
+//category
 Route::get('/category',[CategoryController::class,'list']);
-
+Route::get('/parent-category/',[CategoryController::class,'listByParentId']);
+Route::get('/category-details/{id}',[CategoryController::class,'categoryDetails']);
