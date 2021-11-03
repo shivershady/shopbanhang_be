@@ -10,8 +10,8 @@ class CategoryController extends Controller
 {
     public function list()
     {
-        $categories = Category::all();
-       return response()->json(['category' => $categories]);
+        $categories = Category::with('image')->get();
+       return response()->json(['category' => $categories->toArray()]);
     }
 
 }

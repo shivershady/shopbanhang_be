@@ -19,8 +19,9 @@ class AuthController extends Controller
 
 {
     public function list (Request $request){
-        $user = $request->user();
-        return response()->json(['user'=>$user]);
+        $users = $request->user();
+        $user = User::with('image')->where('id',$users->id)->get();
+        return response()->json(['user'=>$user->toArray()]);
     }
 
     public function register(Request $request)

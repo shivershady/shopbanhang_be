@@ -19,8 +19,8 @@ class ProductController extends Controller
 {
     public function list()
     {
-        $products = Product::all();
-        return response()->json(['products'=>$products]);
+        $products = Product::with('image')->get();
+        return response()->json(['products'=>$products->toArray()]);
 
     }
 
