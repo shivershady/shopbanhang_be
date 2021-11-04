@@ -15,8 +15,8 @@
                         <div class="preview" style="display:flex;">
 
                                 <div class="thumb-wrapper">
-                                    <img class="thumb" src="<?php echo e(asset($obj->images->url)); ?>" alt="<?php echo e($obj->name); ?>"/>
-                                    <a class="remove-image" onclick="removeImage(<?php echo e($obj->images->id); ?>,event)">Remove</a>
+                                    <img class="thumb" src="<?php echo e(asset($obj->image->url)); ?>" alt="<?php echo e($obj->name); ?>"/>
+                                    <a class="remove-image" onclick="removeImage(<?php echo e($obj->image->id); ?>,event)">Remove</a>
                                 </div>
 
                         </div>
@@ -274,7 +274,7 @@ unset($__errorArgs, $__bag); ?></span>
     <style>
         .thumb {
             width: 100px;
-            object-font: cover;
+            object-fit: cover;
         }
 
         .thumb-wrapper {

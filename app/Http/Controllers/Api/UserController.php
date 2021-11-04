@@ -50,13 +50,14 @@ class UserController extends Controller
     }
 
 
-    public function updateShop(Request $request)
+    public function addShop(Request $request)
     {
         try {
             DB::beginTransaction();
             $id = Auth::id();
             $data = $request->all();
-            $shop = Shop::where('user_id', $id)->update($data);
+            $data['user_id'] = $id;
+            $shop = Shop::create($data);
 
             $file = $request->file('img');
             $fileName = time() . $file->getClientOriginalName();
@@ -71,9 +72,22 @@ class UserController extends Controller
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
-            return response()->json(['message', 'sửa thất bại'], 500);
+            return response()->json(['message', 'thêm thất bại'], 500);
         }
-        return response()->json(['message', 'sửa thành công'], 200);
+        return response()->json(['message', 'thêm thành công'], 200);
 
     }
+
+    public function upDateShop()
+    {
+        try {
+            DB::beginTransaction();
+
+DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([]);
+        }
+    }
+
 }

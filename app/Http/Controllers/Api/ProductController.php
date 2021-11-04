@@ -14,6 +14,7 @@ use App\Models\Variant_value;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use PHPUnit\Exception;
 
 class ProductController extends Controller
@@ -42,8 +43,10 @@ class ProductController extends Controller
         try {
             DB::beginTransaction();
             $data = $request->request->all();
+            $data['slug'] = Str::slug($request->slug.Str::random(3));
             $product = Product::create($data);
             $files = $request->file('img');
+
             for ($i = 0; $i < count($files); $i++) {
                 $file = $files[$i];
                 $fileName = time() . $file->getClientOriginalName();
