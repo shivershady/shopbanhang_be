@@ -12,6 +12,7 @@ use App\Models\Product_category;
 use App\Models\Variant;
 use App\Models\Variant_value;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Exception;
 
@@ -25,8 +26,8 @@ class ProductController extends Controller
 
     public function productDetails($id)
     {
-        $productDetails = Product::with('image')->where('id',$id)->get();
-        return response()->json(['productDetails'=>$productDetails->toArray()]);
+        $productDetails = Product::with('image')->where('id', $id)->get();
+        return response()->json(['productDetails' => $productDetails->toArray()]);
     }
 
     public function add(Request $request)
@@ -40,17 +41,20 @@ class ProductController extends Controller
 
         try {
             DB::beginTransaction();
-            $product = Product::create($request->all());
-            $file = $request->file('img');
-            //upload từng file
-            $fileName = time() . $file->getClientOriginalName();
-            $file->storeAs('/products', $fileName, 'public');
-            //chèn vào bảng image
-            $image = new Image();
-            $image->imageable_id = $product->id;
-            $image->imageable_type = Product::class;
-            $image->url = 'storage/products/' . $fileName;
-            $image->save();
+            $data = $request->request->all();
+            $product = Product::create($data);
+            $files = $request->file('img');
+            for ($i = 0; $i < count($files); $i++) {
+                $file = $files[$i];
+                $fileName = time() . $file->getClientOriginalName();
+                $file->storeAs('/products', $fileName, 'public');
+                //chèn vào bảng image
+                $image = new Image();
+                $image->imageable_id = $product->id;
+                $image->imageable_type = Product::class;
+                $image->url = 'storage/products/' . $fileName;
+                $image->save();
+            }
 
             $discount = new Discount();
             $discount->name = $product->name;
