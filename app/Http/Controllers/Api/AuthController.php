@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Shop;
 use App\Models\User;
 use App\Models\User_address;
 use Carbon\Carbon;
@@ -50,9 +51,9 @@ class AuthController extends Controller
             $data['email_verified_at'] = Carbon::now();
             $user =  User::create($data);
 
-            $user_address = new User_address();
-            $user_address->user_id = $user->id;
-            $user_address->save();
+            $shops = new Shop();
+            $shops->user_id = $user->id;
+            $shops->save();
             DB::commit();
         } catch (Exception $e) {
            DB::rollBack();

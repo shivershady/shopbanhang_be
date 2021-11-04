@@ -35,7 +35,7 @@ class ProductController extends Controller
             'name' => 'required', 'slug' => 'required', 'category_id' => 'required',
             'quantity' => 'required', 'price' => 'required', 'discount_id' => 'required',
             'active' => 'required', 'iHot' => 'required', 'iPay' => 'required',
-            'warranty' => 'required', 'view' => 'required', 'description' => 'required'
+            'description' => 'required'
         ]);
 
         try {
