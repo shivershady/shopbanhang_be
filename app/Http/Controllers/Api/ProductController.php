@@ -43,7 +43,7 @@ class ProductController extends Controller
         try {
             DB::beginTransaction();
             $data = $request->request->all();
-            $data['slug'] = Str::slug($request->slug.Str::random(3));
+            $data['slug'] = Str::slug($request->name . Str::random(3));
             $product = Product::create($data);
             $files = $request->file('img');
 
