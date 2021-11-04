@@ -23,24 +23,16 @@ class UserController extends Controller
             $data = $request->all();
             User::find($id)->update($data);
 
-            $image = Image::all();
-            foreach ($image as $img) {
-                $img = Image::find($img->id);
-                if ($img) {
-                    Storage::disk('local')->delete($img->url);
-                    $img->forceDelete();
-                }
-            }
-            $file = $request->file('img');
-            //upload từng file
-            $fileName = time() . $file->getClientOriginalName();
-            $file->storeAs('/users', $fileName, 'public');
-            //chèn vào bảng image
-            $image = new Image();
-            $image->imageable_id = $id->id;
-            $image->imageable_type = User::class;
-            $image->url = 'storage/users/' . $fileName;
-            $image->save();
+//
+//            $file = $request->file('img');
+//            $fileName = time() . $file->getClientOriginalName();
+//            $file->storeAs('/users', $fileName, 'public');
+//            //chèn vào bảng image
+//            $image = new Image();
+//            $image->imageable_id = $id;
+//            $image->imageable_type = User::class;
+//            $image->url = 'storage/users/' . $fileName;
+//            $image->save();
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
@@ -58,6 +50,7 @@ class UserController extends Controller
             $data = $request->all();
             $data['user_id'] = $id;
             $shop = Shop::create($data);
+
 
             $file = $request->file('img');
             $fileName = time() . $file->getClientOriginalName();
@@ -78,18 +71,20 @@ class UserController extends Controller
 
     }
 
-    public function upDateShop(Request $request)
+    public function updateShop(Request $request)
     {
         try {
             DB::beginTransaction();
             $id = Auth::id();
             $data = $request->all();
             $shop = Shop::find($id)->update($data);
+
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json([]);
+            return response()->json(['message', 'cập nhật thất bại'], 500);
         }
+        return response()->json(['message', 'cập nhật thành công'], 200);
     }
 
 }

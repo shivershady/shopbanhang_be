@@ -38,7 +38,7 @@ Route::middleware('auth:api')->post('/orders/add/{id}',[OrderController::class,'
 // api users
 Route::middleware('auth:api')->post('/user/update-profile',[UserController::class,'update']);
 Route::middleware('auth:api')->post('/user/add-shop',[UserController::class,'addShop']);
-Route::middleware('auth:api')->post('/user/update-shop',[UserController::class,'upDateShop']);
+Route::middleware('auth:api')->post('/user/update-shop',[UserController::class,'updateShop']);
 
 //đăng nhập, đăng ký, profile
 Route::post('user/register',[AuthController::class,'register']);
