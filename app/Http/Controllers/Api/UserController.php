@@ -78,12 +78,14 @@ class UserController extends Controller
 
     }
 
-    public function upDateShop()
+    public function upDateShop(Request $request)
     {
         try {
             DB::beginTransaction();
-
-DB::commit();
+            $id = Auth::id();
+            $data = $request->all();
+            $shop = Shop::find($id)->update($data);
+            DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json([]);

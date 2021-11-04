@@ -34,7 +34,7 @@ class ProductController extends Controller
     public function add(Request $request)
     {
         $request->validate([
-            'name' => 'required', 'slug' => 'required', 'category_id' => 'required',
+            'name' => 'required', 'category_id' => 'required',
             'quantity' => 'required', 'price' => 'required', 'discount_id' => 'required',
             'active' => 'required', 'iHot' => 'required', 'iPay' => 'required',
             'description' => 'required'
