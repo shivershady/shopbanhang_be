@@ -10,4 +10,10 @@ class Cart_item extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $fillable = [
+      'quantity'
+    ];
+    public function cart(){
+        return $this->belongsTo(Cart::class);
+    }
 }

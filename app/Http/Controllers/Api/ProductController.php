@@ -20,11 +20,8 @@ class ProductController extends Controller
     public function list()
     {
         $products = Product::all();
-        foreach ($products as $product) {
-            $img = $product->images;
-        }
-        //  $data = array_merge($categories,$img);
-        return response()->json(['category' => $products]);
+        return response()->json(['products'=>$products]);
+
     }
 
     public function add(Request $request)
@@ -33,8 +30,7 @@ class ProductController extends Controller
             'name' => 'required', 'slug' => 'required', 'category_id' => 'required',
             'quantity' => 'required', 'price' => 'required', 'discount_id' => 'required',
             'active' => 'required', 'iHot' => 'required', 'iPay' => 'required',
-            'warranty' => 'required', 'view' => 'required', 'description' => 'required',
-            'description_seo' => 'required', 'title_seo' => 'required', 'keyword_seo' => 'required'
+            'warranty' => 'required', 'view' => 'required', 'description' => 'required'
         ]);
 
         try {
@@ -58,22 +54,21 @@ class ProductController extends Controller
             $discount->active = $product->active;
             $discount->save();
 
-            $variant = new Variant();
-            $variant->name = $request->variant;
-            $variant->product_id = $product->id;
-            $variant->save();
-
-            $variant_value = new Variant_value();
-            $variant_value->name = $request->variant_value;
-            $variant_value->variant_id = $variant->id;
-            $variant_value->price = $request->variant_value_price;
-            $variant_value->save();
+//            $variant = new Variant();
+//            $variant->name = $request->variant;
+//            $variant->product_id = $product->id;
+//            $variant->save();
+//
+//            $variant_value = new Variant_value();
+//            $variant_value->name = $request->variant_value;
+//            $variant_value->variant_id = $variant->id;
+//            $variant_value->price = $request->variant_value_price;
+//            $variant_value->save();
 
             $product_category = new Product_category();
             $product_category->product_id = $product->id;
             $product_category->category_id = $product->category_id;
             $product_category->save();
-
 
             DB::commit();
         } catch (Exception $e) {

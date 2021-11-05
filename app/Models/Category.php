@@ -16,7 +16,13 @@ class Category extends Model
     public function parentCategory(){
         return $this->belongsTo(Category::class,'parent_id','id');
     }
-    public function image(){
+
+    public function subCategory()
+    {
+        return $this->hasMany(Category::class, 'id', 'parent_id');
+    }
+
+    public  function image(){
         return $this->morphOne(Image::class,'imageable');
     }
 }

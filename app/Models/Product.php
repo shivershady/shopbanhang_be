@@ -15,9 +15,9 @@ class Product extends Model
         'price','discount_id','active','iHot','iPay','warranty','view',
         'description','description_seo','title_seo','content','keyword_seo',
     ];
-    public function images()
+    public function image()
     {
-        return $this->morphMany(Image::class, 'imageable');
+        return $this->morphOne(Image::class, 'imageable');
     }
     public function category(){
         return $this->belongsTo(Category::class);

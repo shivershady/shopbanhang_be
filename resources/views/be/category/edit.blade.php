@@ -14,12 +14,12 @@
                     <div class="card-body">
                         <input type="hidden" name="removeImages" class="removeImages"/>
                         <div class="preview" style="display:flex;">
-                            @foreach($obj->images as $image)
+
                                 <div class="thumb-wrapper">
-                                    <img class="thumb" src="{{asset($image->url)}}" alt="{{$obj->name}}"/>
-                                    <a class="remove-image" onclick="removeImage({{$image->id}},event)">Remove</a>
+                                    <img class="thumb" src="{{asset($obj->image->url)}}" alt="{{$obj->name}}"/>
+                                    <a class="remove-image" onclick="removeImage({{$obj->image->id}},event)">Remove</a>
                                 </div>
-                            @endforeach
+
                         </div>
                         <br>
                         <input type="file" name="img[]" class="img-select" multiple

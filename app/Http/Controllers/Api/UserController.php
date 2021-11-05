@@ -18,9 +18,10 @@ class UserController extends Controller
     {
         try {
             DB::beginTransaction();
-            $id = $request->user();
+            $id = Auth::id();
             $data = $request->all();
-            User::find($id->id)->update($data);
+            User::find($id)->update($data);
+
             $image = Image::all();
             foreach ($image as $img) {
                 $img = Image::find($img->id);
@@ -42,49 +43,55 @@ class UserController extends Controller
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
-            return response()->json([
-                'status' => 400,
-                'message' => 'cập nhật thông tin thất bại'
-            ]);
+          return response()->json(['message','cập nhật thông tin thất bại'],500);
         }
-        return response()->json([
-            'status' => 200,
-            'message' => 'cập nhật thông tin thành công'
-        ]);
+       return response()->json(['message','cập nhật thông tin thành công'],200);
+    }
+
+    public function addShop(Request $request)
+    {
+//        $request->validate([
+//            'address_line1' => 'required',
+//            'city' => 'required',
+//            'province' => 'required',
+//            'description' => 'required',
+//        ]);
+//        try {
+//
+//            $id = $request->user();
+//            $user_address = new User_address();
+//            $user_address->user_id = $id->id;
+//            $user_address->city = $request->city;
+//            $user_address->province = $request->province;
+//            $user_address->address_line1 = $request->address_line1;
+//            $user_address->address_line2 = $request->address_line2;
+//            $user_address->save();
+//
+//        } catch (Exception $e) {
+//
+//            return response()->json([
+//                'status' => 400,
+//                'message' => 'thêm thất bại'
+//            ]);
+//
+//        }
+//
+//        return response()->json([
+//            'status' => 200,
+//            'message' => 'thêm thành công'
+//        ]);
     }
 
     public function updateShop(Request $request)
     {
-        $request->validate([
-            'address_line1'=>'required',
-            'city'=>'required',
-            'province'=>'required',
-            'description'=>'required'
-        ]);
         try {
-
-            $id = $request->user();
-            $user_address = new User_address();
-            $user_address->user_id = $id->id;
-            $user_address->city = $request->city;
-            $user_address->province = $request->province;
-            $user_address->address_line1 = $request->address_line1;
-            $user_address->address_line2 = $request->address_line2;
-            $user_address->save();
-
+            $id = Auth::id();
+            $data = $request->all();
+            User_address::where('user_id', $id)->update($data);
         } catch (Exception $e) {
-
-            return response()->json([
-                'status' => 400,
-                'message' => 'thêm thất bại'
-            ]);
-
+          return response()->json(['message','sửa thất bại'],500);
         }
+      return response()->json(['message','sửa thành công'],200);
 
-        return response()->json([
-            'status' => 200,
-            'message' => 'thêm thành công'
-        ]);
     }
-
 }

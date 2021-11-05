@@ -10,13 +10,13 @@ class CategoryController extends Controller
 {
     public function list()
     {
-        $categories = Category::all();
-     /*   foreach ($categories as $category){
-            $img = $category->images;
-        }*/
-      //  $data = array_merge($categories,$img);
-      return response()->json(['category' => $categories]);
-
+        $categories = Category::with('image')->get();
+        return response()->json(['category' => $categories->toArray()]);
     }
 
+    public function listByParentId($id)
+    {
+        $categories = Category::with('image')->where('parent_id',$id);
+        return response()->json(['category' => $categories]);
+    }
 }

@@ -14,12 +14,12 @@
                     <div class="card-body">
                         <input type="hidden" name="removeImages" class="removeImages"/>
                         <div class="preview" style="display:flex;">
-                            @foreach($obj->images as $image)
+
                                 <div class="thumb-wrapper">
-                                    <img class="thumb" src="{{asset($image->url)}}" alt="{{$obj->name}}"/>
-                                    <a class="remove-image" onclick="removeImage({{$image->id}},event)">Remove</a>
+                                    <img class="thumb" src="{{asset($obj->image->url)}}" alt="{{$obj->name}}"/>
+                                    <a class="remove-image" onclick="removeImage({{$obj->image->id}},event)">Remove</a>
                                 </div>
-                            @endforeach
+
                         </div>
                         <br>
                         <input type="file" name="img[]" class="img-select" multiple
@@ -88,30 +88,6 @@
                             <input type="text" name="view" class="form-control" placeholder="View"
                                    value="{{$obj->view}}">
                             <span style="color: red">@error('view') {{$message}} @enderror</span>
-
-                        </div>
-
-                        <div class="form-group">
-                            <label for="">Description_seo</label>
-                            <input type="text" name="description_seo" class="form-control" placeholder="description_seo"
-                                   value="{{$obj->description_seo}}">
-                            <span style="color: red">@error('description_seo') {{$message}} @enderror</span>
-
-                        </div>
-
-                        <div class="form-group">
-                            <label for="">keyword_seo</label>
-                            <input type="text" name="keyword_seo" class="form-control" placeholder="keyword_seo"
-                                   value="{{$obj->keyword_seo}}">
-                            <span style="color: red">@error('keyword_seo') {{$message}} @enderror</span>
-
-                        </div>
-
-                        <div class="form-group">
-                            <label for="">title_seo</label>
-                            <input type="text" name="title_seo" class="form-control" placeholder="title_seo"
-                                   value="{{$obj->title_seo}}">
-                            <span style="color: red">@error('title_seo') {{$message}} @enderror</span>
 
                         </div>
 
@@ -208,7 +184,7 @@
     <style>
         .thumb {
             width: 100px;
-            object-font: cover;
+            object-fit: cover;
         }
 
         .thumb-wrapper {
