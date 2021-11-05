@@ -14,9 +14,11 @@ class CategoryController extends Controller
         return response()->json(['category' => $categories->toArray()]);
     }
 
-    public function listByParentId($id)
+    public function listByParentId(Request $request)
     {
-        $categories = Category::with('image')->where('parent_id',$id);
-        return response()->json(['category' => $categories]);
+        $parentId = $request->get('id') ?? 0;
+        $parentCategory = Category::with('image')->where('parent_id', $parentId)->get();
+        return response()->json(['parentCategory' => $parentCategory]);
     }
+
 }

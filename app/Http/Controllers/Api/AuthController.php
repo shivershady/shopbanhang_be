@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Shop;
 use App\Models\User;
 use App\Models\User_address;
 use Carbon\Carbon;
@@ -18,10 +19,11 @@ use PHPUnit\Util\Exception;
 class AuthController extends Controller
 
 {
-    public function list (Request $request){
-        $user = $request->user();
-        $newUser = User::with('')->where('id',$user->id)->get();
-        return response()->json(['user'=>$user]);
+    public function list(Request $request)
+    {
+        $users = $request->user();
+        $user = User::with('image')->where('id', $users->id)->get();
+        return response()->json(['user' => $user->toArray()]);
     }
 
     public function register(Request $request)
@@ -44,19 +46,14 @@ class AuthController extends Controller
         ]);
 
         try {
-            DB::beginTransaction();
             $data = request()->only(['name', 'email', 'password']);
             $data['password'] = Hash::make($data['password']);
             $data['email_verified_at'] = Carbon::now();
-            $user =  User::create($data);
+            User::create($data);
 
-            $user_address = new User_address();
-            $user_address->user_id = $user->id;
-            $user_address->save();
-            DB::commit();
         } catch (Exception $e) {
-           DB::rollBack();
-            return response()->json(['error','đăng lý thất bại'],500);
+
+            return response()->json(['error', 'đăng lý thất bại'], 500);
         }
         return response()->json(['success', 'đăng ký thành công'], 200);
 
@@ -94,7 +91,7 @@ class AuthController extends Controller
 
             return response()->json(['token' => $accessToken], 200);
         } else {
-          return response()->json(['message','đăng nhập thất bại'],400);
+            return response()->json(['message', 'đăng nhập thất bại'], 400);
         }
 
     }
@@ -105,7 +102,7 @@ class AuthController extends Controller
             $user = auth()->user();
             $user->token()->revoke(); // clear api token
             $user->save();
-           return response()->json(['message','đăng xuất thành công'],200);
+            return response()->json(['message', 'đăng xuất thành công'], 200);
         }
 
     }
@@ -118,11 +115,11 @@ class AuthController extends Controller
 //       ]);
         if (!(Hash::check($request->get('current_password'), Auth::user()->password))) {
             // The passwords matches
-            return response()->json(['message','mật khẩu hiện tại của bạn không khớp với mật khẩu cung cấp'],400);
+            return response()->json(['message', 'mật khẩu hiện tại của bạn không khớp với mật khẩu cung cấp'], 400);
         }
         $user = Auth::user();
         $user->password = Hash::make($request->new_password);
         $user->save();
-        return response()->json(['message','thay đổi mật khẩu thành công'],200);
+        return response()->json(['message', 'thay đổi mật khẩu thành công'], 200);
     }
 }
