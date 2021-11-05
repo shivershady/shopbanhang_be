@@ -13,7 +13,7 @@ class CreateTableAddColumnCartItem extends Migration
      */
     public function up()
     {
-        Schema::table('cart_item',function (Blueprint $table){
+        Schema::table('cart_items',function (Blueprint $table){
             $table->bigInteger('user_id');
             $table->decimal('total');
         });

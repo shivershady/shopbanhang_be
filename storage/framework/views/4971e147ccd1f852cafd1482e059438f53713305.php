@@ -9,6 +9,17 @@
                 <!-- form start -->
                 <form method="post" action="<?php echo e(route('admin.category.doAdd')); ?>" enctype="multipart/form-data">
                     <?php echo csrf_field(); ?>
+
+                    <div class="card-body">
+
+                        <div class="preview" style="display:flex;">
+
+                        </div>
+                        <br>
+                        <input type="file" name="img[]" class="img-select" multiple
+                               accept="image/png, image/gif, image/jpeg" onchange="previewImages()">
+                    </div>
+
                     <div class="card-body">
                         <div class="form-group">
                             <label for="">Name</label>
@@ -74,7 +85,7 @@ unset($__errorArgs, $__bag); ?> </span>
                         <div class="form-group">
                             <label for="">Total product</label>
                             <input type="number" name="total_product" class="form-control"
-                                   placeholder="Enter Total product"  step="any"
+                                   placeholder="Enter Total product" step="any"
                                    value="<?php echo e(old('total_product')); ?>">
                             <span style="color: red"><?php $__errorArgs = ['total_product'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -96,7 +107,33 @@ unset($__errorArgs, $__bag); ?></span>
             </div>
         </div>
     </div>
+    <script>
+        async function previewImages() {
 
+            for (let i = 0; i < document.querySelector('.img-select').files.length; i++) {
+                const reader = new FileReader();
+                await reader.readAsDataURL(document.querySelector('.img-select').files[i]);
+
+                reader.onload = function (file) {
+                    const preview = document.querySelector('.preview');
+                    const img = document.createElement('img');
+                    img.setAttribute('src', file.target.result);
+                    img.classList.add('thumb');
+                    preview.appendChild(img);
+                }
+            }
+        }
+
+        CKEDITOR.replace('content');
+    </script>
+
+    <style>
+        .thumb {
+            width: 100px;
+            height: 80px;
+            object-font: cover;
+        }
+    </style>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('be.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/lrandom/Desktop/laravel/shopbanhang_be/resources/views/be/category/add.blade.php ENDPATH**/ ?>
