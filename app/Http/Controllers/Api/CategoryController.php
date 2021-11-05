@@ -12,7 +12,7 @@ class CategoryController extends Controller
     public function list()
     {
         $categories = Category::all();
-        return fractal()
+         return fractal()
             ->collection($categories)
             ->transformWith(new CategoryTransformer)
             ->toArray();

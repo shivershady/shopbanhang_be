@@ -16,13 +16,18 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use PHPUnit\Exception;
+use App\Transformers\ProductTransformer;
 
 class ProductController extends Controller
 {
     public function list()
     {
-        $products = Product::with('image')->get();
-        return response()->json(['products' => $products->toArray()]);
+        $product = Product::all();
+        return fractal()
+            ->collection($product)
+            ->transformWith(new ProductTransformer())
+            ->toArray();
+
     }
 
     public function productDetails($id)
