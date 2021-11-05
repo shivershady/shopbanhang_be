@@ -48,4 +48,5 @@ class CartController extends Controller
         $cart = Cart_item::all();
         return response()->json(['cart'=>$cart]);
     }
+
 }

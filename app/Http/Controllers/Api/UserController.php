@@ -22,7 +22,11 @@ class UserController extends Controller
             $id = Auth::id();
             $data = $request->all();
             User::find($id)->update($data);
-
+//            $imgage = Image::where('user_id',$id)->first();
+//            if($imgage){
+//                Storage::delete($imgage->path);
+//                $imgage->delete();
+//            }
 //
 //            $file = $request->file('img');
 //            $fileName = time() . $file->getClientOriginalName();
