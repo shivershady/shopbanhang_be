@@ -22,19 +22,11 @@ class ProductController extends Controller
 {
     public function list()
     {
-        $products = Product::all();
-
-//    foreach ($products as $product){
-//        $product->image_tf =
-//            Image::where('imageable_id', $product->id)
-//                ->where('imageable_type',Product::class)
-//                ->get()
-//                ->map(function ($image) {
-//                    return $image->path;
-//                });
-//    }
-//    return response()->json(['data'=>$products],200);
-
+        $products = Product::with('image')->get();
+        return fractal()
+            ->collection($products)
+            ->transformWith(new ProductTransformer)
+            ->toArray();
     }
 
 
