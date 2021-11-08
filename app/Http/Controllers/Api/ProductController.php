@@ -22,13 +22,21 @@ class ProductController extends Controller
 {
     public function list()
     {
-        $product = Product::all();
-        return fractal()
-            ->collection($product)
-            ->transformWith(new ProductTransformer())
-            ->toArray();
+        $products = Product::all();
+
+//    foreach ($products as $product){
+//        $product->image_tf =
+//            Image::where('imageable_id', $product->id)
+//                ->where('imageable_type',Product::class)
+//                ->get()
+//                ->map(function ($image) {
+//                    return $image->path;
+//                });
+//    }
+//    return response()->json(['data'=>$products],200);
 
     }
+
 
     public function productDetails($id)
     {
@@ -49,12 +57,13 @@ class ProductController extends Controller
             DB::beginTransaction();
             $data = $request->request->all();
             $data['slug'] = Str::slug($request->name . Str::random(3));
+            $data['user_id'] = Auth::id();
             $product = Product::create($data);
             $files = $request->file('img');
 
             for ($i = 0; $i < count($files); $i++) {
                 $file = $files[$i];
-                $fileName = time() . $file->getClientOriginalName();
+                $fileName = time() . $i . $file->getClientOriginalName();
                 $file->storeAs('/products', $fileName, 'public');
                 //chèn vào bảng image
                 $image = new Image();
