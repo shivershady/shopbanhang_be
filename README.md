@@ -23,7 +23,7 @@ return về biến $parentCategory, note: mặc đinh để là 0 rồi nên ch�
 api: list category details, url: /api/category-details, methob:GET, params: id, notes :
 
 api: add product, url: /api/product/add, methob: POST, params: không có, success response 200 thêm thành công, error response 500 thêm thất bại, note:các cột cần thêm
-name ,slug ,category_id , quantity, price , discount_id , user_id , active, iHot, iPay, warranty, view, description, content, img
+name ,slug ,category_id , quantity, price , discount_id , user_id , active, iHot, iPay, warranty(có thể null), view(có thể null), description, content, img
 
 api: list product, url:/api/product, method: get, params: không có, success response : không, error response: không
 
