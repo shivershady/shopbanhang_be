@@ -32,8 +32,8 @@ class ProductController extends Controller
 
     public function productDetails($id)
     {
-        $productDetails = Product::with('image')->where('id', $id)->get();
-        return response()->json(['productDetails' => $productDetails->toArray()]);
+        $productDetails = Product::with('image')->find($id);
+
     }
 
     public function add(Request $request)
@@ -47,7 +47,7 @@ class ProductController extends Controller
 
         try {
             DB::beginTransaction();
-            $data = $request->request->all();
+            $data = request()->all();
             $data['slug'] = Str::slug($request->name . Str::random(3));
             $data['user_id'] = Auth::id();
             $product = Product::create($data);
@@ -87,7 +87,6 @@ class ProductController extends Controller
             $product_category->product_id = $product->id;
             $product_category->category_id = $product->category_id;
             $product_category->save();
-
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();

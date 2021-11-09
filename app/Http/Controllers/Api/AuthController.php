@@ -14,16 +14,19 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use PHPUnit\Util\Exception;
-
+use App\Transformers\UserTransformer;
 
 class AuthController extends Controller
 
 {
     public function list(Request $request)
     {
-        $users = $request->user();
-        $user = User::with('image')->where('id', $users->id)->get();
-        return response()->json(['user' => $user->toArray()]);
+        $id = Auth::id();
+        $user = User::with('image')->where('id',$id)->get();
+         return fractal()
+             ->collection($user)
+             ->transformWith(new UserTransformer())
+             ->toArray();
     }
 
     public function register(Request $request)

@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\User_address;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use PHPUnit\Exception;
 use Illuminate\Support\Facades\Auth;
@@ -20,23 +21,28 @@ class UserController extends Controller
         try {
             DB::beginTransaction();
             $id = Auth::id();
-            $data = $request->all();
+            $data = request()->all();
+            $data['password'] = Hash::make($data['password']);
             User::find($id)->update($data);
-//            $imgage = Image::where('user_id',$id)->first();
-//            if($imgage){
-//                Storage::delete($imgage->path);
-//                $imgage->delete();
-//            }
-//
-//            $file = $request->file('img');
-//            $fileName = time() . $file->getClientOriginalName();
-//            $file->storeAs('/users', $fileName, 'public');
-//            //chèn vào bảng image
-//            $image = new Image();
-//            $image->imageable_id = $id;
-//            $image->imageable_type = User::class;
-//            $image->url = 'storage/users/' . $fileName;
-//            $image->save();
+            $image = Image::where('imageable_id', $id)
+                ->where('imageable_type', User::class)
+                ->get();
+            if ($image->count() > 0) {
+                foreach ($image as $item) {
+                    Storage::disk('public')->delete($item->url);
+                    $item->forceDelete();
+                }
+            }
+            $file = $request->file('img');
+            $fileName = time() . $file->getClientOriginalName();
+            $file->storeAs('/users', $fileName, 'public');
+            //chèn vào bảng image
+            $image = new Image();
+            $image->imageable_id = $id;
+            $image->imageable_type = User::class;
+            $image->url = 'storage/users/' . $fileName;
+            $image->save();
+
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
@@ -90,5 +96,5 @@ class UserController extends Controller
         }
         return response()->json(['message', 'cập nhật thành công'], 200);
     }
-    
+
 }

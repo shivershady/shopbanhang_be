@@ -26,7 +26,7 @@ class CartController extends Controller
                 $cartItem->product_id = $product->id;
                 $cartItem->quantity = $request->quantity;
                 $cartItem->user_id = $userId;
-                $cartItem->total = $request->total; //$request->quantity * $product->price;
+                $cartItem->total = $request->quantity * $product->price;
                 $cartItem->save();
             }
         } catch (Exception $e) {
@@ -34,6 +34,7 @@ class CartController extends Controller
         }
         return response()->json(['message', 'sản phẩm đã được thêm vào giỏ hàng'], 200);
     }
+
 
     public function delete($id)
     {
@@ -52,7 +53,9 @@ class CartController extends Controller
         $userId = Auth::id();
         $cart = Cart_item::where('user_id', $userId)->get();
         //lấy ra sản phẩm trong giỏ hàng
+        // get product in cart
         //lấy ra được shop bán hàng trong giỏ hàng
+        // Get the shop from the shopping cart
         /*        [
                     {shop: shop_info
                         {
