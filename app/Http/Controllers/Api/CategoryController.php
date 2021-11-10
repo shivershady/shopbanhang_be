@@ -12,7 +12,7 @@ class CategoryController extends Controller
     public function list()
     {
         $categories = Category::all();
-         return fractal()
+        return fractal()
             ->collection($categories)
             ->transformWith(new CategoryTransformer)
             ->toArray();
@@ -21,8 +21,11 @@ class CategoryController extends Controller
     public function listByParentId(Request $request)
     {
         $parentId = $request->get('id') ?? 0;
-        $parentCategory = Category::with('image')->where('parent_id', $parentId)->get();
-        return response()->json(['parentCategory' => $parentCategory]);
+        $parentCategory = Category::where('parent_id', $parentId)->get();
+        return fractal()
+            ->collection($parentCategory)
+            ->transformWith(new CategoryTransformer)
+            ->toArray();
     }
 
 }

@@ -22,7 +22,7 @@ class AuthController extends Controller
     public function list(Request $request)
     {
         $id = Auth::id();
-        $user = User::with('image')->where('id',$id)->get();
+        $user = User::where('id',$id)->get();
          return fractal()
              ->collection($user)
              ->transformWith(new UserTransformer())
