@@ -22,11 +22,11 @@ class AuthController extends Controller
     public function list(Request $request)
     {
         $id = Auth::id();
-        $user = User::where('id',$id)->get();
-         return fractal()
-             ->collection($user)
-             ->transformWith(new UserTransformer())
-             ->toArray();
+        $user = User::where('id', $id)->get();
+        return fractal()
+            ->collection($user)
+            ->transformWith(new UserTransformer())
+            ->toArray();
     }
 
     public function register(Request $request)
@@ -49,13 +49,18 @@ class AuthController extends Controller
         ]);
 
         try {
+            DB::beginTransaction();
             $data = request()->only(['name', 'email', 'password']);
             $data['password'] = Hash::make($data['password']);
             $data['email_verified_at'] = Carbon::now();
-            User::create($data);
+            $user = User::create($data);
 
+            $user_address = new User_address();
+            $user_address->user_id = $user->id;
+            $user_address->save();
+            DB::commit();
         } catch (Exception $e) {
-
+            DB::rollBack();
             return response()->json(['error', 'đăng lý thất bại'], 500);
         }
         return response()->json(['success', 'đăng ký thành công'], 200);

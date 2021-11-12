@@ -52,30 +52,21 @@ class CartController extends Controller
     {
         $userId = Auth::id();
         $cart = Cart_item::where('user_id', $userId)->get();
+
         //lấy ra sản phẩm trong giỏ hàng
-        // get product in cart
-        $products = [];
-        foreach ($cart as $item) {
-            $product = Product::find($item->product_id);
-            $product->quantity = $item->quantity;
-            $product->total = $item->total;
-            $products[] = $product;
-        }
-        return response()->json($products, 200);
         //lấy ra được shop bán hàng trong giỏ hàng
         /*        [
-                    {shop: shop_info
+                    {shop: shop_name,
                         {
                             product
                         }
                     },
-                  {shop: shop_info
+                  {shop: shop_name,
                         {
                             product
                         }
                     }
                 ]*/
-        return response()->json(['cart' => $cart]);
     }
 
 }

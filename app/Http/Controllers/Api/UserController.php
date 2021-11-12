@@ -51,50 +51,15 @@ class UserController extends Controller
         return response()->json(['message', 'cập nhật thông tin thành công'], 200);
     }
 
-
-    public function addShop(Request $request)
+    public function updateShop()
     {
         try {
-            DB::beginTransaction();
             $id = Auth::id();
-            $data = $request->all();
-            $data['user_id'] = $id;
-            $shop = Shop::create($data);
-
-
-            $file = $request->file('img');
-            $fileName = time() . $file->getClientOriginalName();
-            $file->storeAs('/users', $fileName, 'public');
-
-            $image = new Image();
-            $image->imageable_id = $shop->id;
-            $image->imageable_type = Shop::class;
-            $image->url = 'storage/shops/' . $fileName;
-            $image->save();
-
-            DB::commit();
+            User_address::where('user_id',$id)->update(request()->all());
         } catch (Exception $e) {
-            DB::rollBack();
-            return response()->json(['message', 'thêm thất bại'], 500);
+        response()->json(['message', 'cập nhật thông tin thất bại'], 500);
         }
-        return response()->json(['message', 'thêm thành công'], 200);
-
+        return response()->json(['message','cập nhật thông tin  thành công'],200);
     }
-
-    public function updateShop(Request $request)
-    {
-        try {
-            DB::beginTransaction();
-            $id = Auth::id();
-            $data = $request->all();
-            $shop = Shop::find($id)->update($data);
-
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return response()->json(['message', 'cập nhật thất bại'], 500);
-        }
-        return response()->json(['message', 'cập nhật thành công'], 200);
-    }
-
 }
+
