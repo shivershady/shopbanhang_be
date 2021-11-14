@@ -13,4 +13,7 @@ class Cart_item extends Model
     protected $fillable = [
       'quantity','total'
     ];
+    public function product(){
+        return $this->hasMany(Product::class);
+    }
 }

@@ -25,5 +25,8 @@ class Product extends Model
     public function discount(){
         return $this->belongsTo(Discount::class);
     }
+    public function cart(){
+        return $this->belongsTo(Cart::class);
+    }
 
 }

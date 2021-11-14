@@ -52,7 +52,6 @@ class CartController extends Controller
     {
         $userId = Auth::id();
         $cart = Cart_item::where('user_id', $userId)->get();
-
         //lấy ra sản phẩm trong giỏ hàng
         //lấy ra được shop bán hàng trong giỏ hàng
         /*        [
@@ -67,6 +66,9 @@ class CartController extends Controller
                         }
                     }
                 ]*/
+        foreach ($cart as $item){
+            echo $item->product;
+        }
     }
 
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Image;
 use App\Models\Shop;
 use App\Models\User;
 use App\Models\User_address;
@@ -58,6 +59,12 @@ class AuthController extends Controller
             $user_address = new User_address();
             $user_address->user_id = $user->id;
             $user_address->save();
+
+            $image = new Image();
+            $image->imageable_id = $user->id;
+            $image->imageable_type = User::class;
+            $image->url = 'http://windows79.com/wp-content/uploads/2021/02/Thay-the-hinh-dai-dien-tai-khoan-nguoi-dung-mac.png';
+            $image->save();
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();

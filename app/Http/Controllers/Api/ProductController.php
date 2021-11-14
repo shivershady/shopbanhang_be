@@ -32,8 +32,11 @@ class ProductController extends Controller
 
     public function productDetails($id)
     {
-        $productDetails = Product::with('image')->find($id);
-
+        $productDetails = Product::find($id);
+       return fractal()
+            ->item($productDetails)
+            ->transformWith(new ProductTransformer)
+            ->toArray();
     }
 
     public function add(Request $request)
