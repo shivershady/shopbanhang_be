@@ -32,7 +32,13 @@ class ProductController extends Controller
 
     public function productDetails($id)
     {
-        $productDetails = Product::find($id);
+        $productDetails = Product::with('image')->where('id',$id)->first();
+        $imgs = [];
+        foreach ($productDetails->images as $img){
+            $img->url = asset($img->url);
+            $imgs[] = $img;
+        }
+        $productDetails->images = $imgs;
        return fractal()
             ->item($productDetails)
             ->transformWith(new ProductTransformer)
@@ -54,7 +60,7 @@ class ProductController extends Controller
             $data['slug'] = Str::slug($request->name . Str::random(3));
             $data['user_id'] = Auth::id();
             $product = Product::create($data);
-            $files = $request->file('img');
+            $files = $request->file('file_name');
 
             for ($i = 0; $i < count($files); $i++) {
                 $file = $files[$i];

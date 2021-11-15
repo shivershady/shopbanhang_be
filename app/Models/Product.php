@@ -19,6 +19,11 @@ class Product extends Model
     {
         return $this->morphOne(Image::class, 'imageable');
     }
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
     public function category(){
         return $this->belongsTo(Category::class);
     }

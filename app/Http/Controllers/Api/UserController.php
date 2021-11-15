@@ -61,5 +61,6 @@ class UserController extends Controller
         }
         return response()->json(['message','cập nhật thông tin  thành công'],200);
     }
+
 }
 
