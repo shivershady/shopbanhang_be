@@ -23,7 +23,8 @@ use App\Http\Controllers\Api\OrderController;
 
 // product
 Route::middleware('auth:api')->post('/product/add', [ProductController::class, 'add']);
-Route::get('/product', [ProductController::class, 'list']);
+Route::get('/product-random', [ProductController::class, 'listRandom']);
+Route::get('/product',[ProductController::class, 'list']);
 Route::get('/product-details/{id}', [ProductController::class, 'productDetails']);
 
 //cart

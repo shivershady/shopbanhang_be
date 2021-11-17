@@ -21,7 +21,7 @@ use App\Transformers\ProductDetailsTransformer;
 
 class ProductController extends Controller
 {
-    public function list()
+    public function listRandom()
     {
         $products =  Product::inRandomOrder()->take(10)->get();
         return fractal()
@@ -29,7 +29,14 @@ class ProductController extends Controller
             ->transformWith(new ProductTransformer)
             ->toArray();
     }
-
+ public function list()
+    {
+        $products =  Product::with('image')->get();
+        return fractal()
+            ->collection($products)
+            ->transformWith(new ProductTransformer)
+            ->toArray();
+    }
 
     public function productDetails($id)
     {
