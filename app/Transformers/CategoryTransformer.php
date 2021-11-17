@@ -20,7 +20,8 @@ class CategoryTransformer extends TransformerAbstract
             'description' => $category->description,
             'created_at' => $category->created_at,
             'updated_at' => $category->updated_at,
-            'url' => asset($category->image->url),
+            'url' => $category->image?asset($category->image->url):'https://via.placeholder.com/150
+C/O https://placeholder.com/',
         ];
     }
 }

@@ -16,7 +16,7 @@ class UserTransformer extends  TransformerAbstract {
             'user_seller'=>$user->user_seller,
             'created_at' => $user->created_at,
             'updated_at' => $user->updated_at,
-            'url'=>asset($user->image->url),
+            'url'=>$user->image?asset($user->image->url):'http://windows79.com/wp-content/uploads/2021/02/Thay-the-hinh-dai-dien-tai-khoan-nguoi-dung-mac.png',
         ];
     }
 

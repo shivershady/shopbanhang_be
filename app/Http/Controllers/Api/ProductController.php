@@ -17,12 +17,13 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use PHPUnit\Exception;
 use App\Transformers\ProductTransformer;
+use App\Transformers\ProductDetailsTransformer;
 
 class ProductController extends Controller
 {
     public function list()
     {
-        $products = Product::with('image')->get();
+        $products = Product::all();
         return fractal()
             ->collection($products)
             ->transformWith(new ProductTransformer)
@@ -32,10 +33,15 @@ class ProductController extends Controller
 
     public function productDetails($id)
     {
-        $productDetails = Product::find($id);
-       return fractal()
+        $productDetails = Product::where('id', $id)->first();
+        $imgs=[];
+        foreach ($productDetails->images as $img) {
+            $img->url = asset($img->url);
+            $imgs[] = $img;
+        }
+      return fractal()
             ->item($productDetails)
-            ->transformWith(new ProductTransformer)
+            ->transformWith(new ProductDetailsTransformer)
             ->toArray();
     }
 
@@ -49,6 +55,7 @@ class ProductController extends Controller
         ]);
 
         try {
+
             DB::beginTransaction();
             $data = request()->all();
             $data['slug'] = Str::slug($request->name . Str::random(3));

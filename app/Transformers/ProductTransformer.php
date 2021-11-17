@@ -28,7 +28,8 @@ class ProductTransformer extends TransformerAbstract
             'view' => $product->view,
             'created_at' => $product->created_at,
             'updated_at' => $product->updated_at,
-            'url' => asset($product->image->url),
+            'url' =>$product->image? asset($product->image->url):'https://via.placeholder.com/150
+C/O https://placeholder.com/',
         ];
     }
 }
