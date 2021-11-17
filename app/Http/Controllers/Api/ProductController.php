@@ -23,7 +23,7 @@ class ProductController extends Controller
 {
     public function list()
     {
-        $products = Product::all();
+        $products =  Product::inRandomOrder()->take(10)->get();
         return fractal()
             ->collection($products)
             ->transformWith(new ProductTransformer)
