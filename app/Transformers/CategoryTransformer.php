@@ -21,7 +21,6 @@ class CategoryTransformer extends TransformerAbstract
             'created_at' => $category->created_at,
             'updated_at' => $category->updated_at,
             'url' => $category->image?asset($category->image->url):'https://via.placeholder.com/150
-
 C/O https://placeholder.com/',
         ];
     }

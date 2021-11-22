@@ -1,5 +1,7 @@
 Document API
+api: list random product, url:/api/product-random, methob: get
 
+api: list shop, url :/api/user/shop, methob get
 api: add cart , url:/api/cart/add , method: POST , params: id , success: response 200 thêm thành công , error:  response 500 thêm thất bại, note:
 
 api: delete cart, url:/api/cart/delete, method: POST, params: id, success: remove cart success, error :response 500 thêm thất bại, note: 

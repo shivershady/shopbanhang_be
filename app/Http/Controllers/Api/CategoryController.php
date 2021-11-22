@@ -11,7 +11,7 @@ class CategoryController extends Controller
 {
     public function list()
     {
-        $categories = Category::all();
+        $categories = Category::with('image')->get();
         return fractal()
             ->collection($categories)
             ->transformWith(new CategoryTransformer)

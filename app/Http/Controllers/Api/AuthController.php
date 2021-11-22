@@ -60,11 +60,6 @@ class AuthController extends Controller
             $user_address->user_id = $user->id;
             $user_address->save();
 
-            $image = new Image();
-            $image->imageable_id = $user->id;
-            $image->imageable_type = User::class;
-            $image->url = 'http://windows79.com/wp-content/uploads/2021/02/Thay-the-hinh-dai-dien-tai-khoan-nguoi-dung-mac.png';
-            $image->save();
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();

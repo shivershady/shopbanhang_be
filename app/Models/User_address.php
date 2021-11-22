@@ -14,7 +14,5 @@ class User_address extends Model
       'address_line1','address_line2','city','province',
         'description','user_id','shop_name','district'
     ];
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
+
 }

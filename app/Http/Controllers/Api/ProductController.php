@@ -17,31 +17,38 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use PHPUnit\Exception;
 use App\Transformers\ProductTransformer;
+use App\Transformers\ProductDetailsTransformer;
 
 class ProductController extends Controller
 {
-    public function list()
+    public function listRandom()
     {
-        $products = Product::with('image')->get();
+        $products =  Product::inRandomOrder()->take(10)->get();
+        return fractal()
+            ->collection($products)
+            ->transformWith(new ProductTransformer)
+            ->toArray();
+    }
+ public function list()
+    {
+        $products =  Product::with('image')->get();
         return fractal()
             ->collection($products)
             ->transformWith(new ProductTransformer)
             ->toArray();
     }
 
-
     public function productDetails($id)
     {
-        $productDetails = Product::with('image')->where('id',$id)->first();
-        $imgs = [];
-        foreach ($productDetails->images as $img){
+        $productDetails = Product::where('id', $id)->first();
+        $imgs=[];
+        foreach ($productDetails->images as $img) {
             $img->url = asset($img->url);
             $imgs[] = $img;
         }
-        $productDetails->images = $imgs;
-       return fractal()
+      return fractal()
             ->item($productDetails)
-            ->transformWith(new ProductTransformer)
+            ->transformWith(new ProductDetailsTransformer)
             ->toArray();
     }
 
@@ -55,12 +62,13 @@ class ProductController extends Controller
         ]);
 
         try {
+
             DB::beginTransaction();
             $data = request()->all();
             $data['slug'] = Str::slug($request->name . Str::random(3));
             $data['user_id'] = Auth::id();
             $product = Product::create($data);
-            $files = $request->file('file_name');
+            $files = $request->file('img');
 
             for ($i = 0; $i < count($files); $i++) {
                 $file = $files[$i];

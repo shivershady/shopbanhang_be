@@ -55,11 +55,18 @@ class UserController extends Controller
     {
         try {
             $id = Auth::id();
-            User_address::where('user_id',$id)->update(request()->all());
+            User_address::where('user_id', $id)->update(request()->all());
         } catch (Exception $e) {
-        response()->json(['message', 'cập nhật thông tin thất bại'], 500);
+            response()->json(['message', 'cập nhật thông tin thất bại'], 500);
         }
-        return response()->json(['message','cập nhật thông tin  thành công'],200);
+        return response()->json(['message', 'cập nhật thông tin  thành công'], 200);
+    }
+
+    public function listShop()
+    {
+        $id = Auth::id();
+        $shop = User_address::where('user_id', $id)->get();
+        return response()->json($shop, 200);
     }
 
 }
