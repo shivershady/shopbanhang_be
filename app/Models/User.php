@@ -14,16 +14,21 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
     use SoftDeletes;
 
-    public function  image(){
-        return $this->morphOne(Image::class,'imageable');
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
     }
 
-    public function order(){
+    public function order()
+    {
         return $this->hasMany(Order::class);
     }
-    public function userAddress(){
+
+    public function address()
+    {
         return $this->hasMany(User_address::class);
     }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -32,7 +37,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password','phone','email_verified_at','user_seller'
+        'password', 'phone', 'email_verified_at', 'user_seller'
     ];
 
     /**
