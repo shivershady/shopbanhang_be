@@ -1,4 +1,6 @@
 Document API
+api: change password, url:/api/user/change-password, methob: post, success: 200, error: 400 , note: current_password là mật khẩu cũ, new_password là mật khẩu mới
+
 api: list random product, url:/api/product-random, methob: get
 
 api: list shop, url :/api/user/shop, methob get
