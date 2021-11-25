@@ -67,5 +67,6 @@ class UserController extends Controller
         $shop = User_address::where('user_id', $id)->get();
         return response()->json($shop, 200);
     }
+
 }
 
