@@ -21,8 +21,7 @@ class UserController extends Controller
         try {
             DB::beginTransaction();
             $id = Auth::id();
-            $data = request()->all();
-            $data['password'] = Hash::make($data['password']);
+            $data = request()->except('password');
             User::find($id)->update($data);
             $image = Image::where('imageable_id', $id)
                 ->where('imageable_type', User::class)
