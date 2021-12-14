@@ -125,11 +125,11 @@ class AuthController extends Controller
 //       ]);
         if (!(Hash::check($request->get('current_password'), Auth::user()->password))) {
             // The passwords matches
-            return response()->json(['message', 'mật khẩu hiện tại của bạn không khớp với mật khẩu cung cấp'], 400);
+            return response()->json(['message'=> 'mật khẩu hiện tại của bạn không khớp với mật khẩu cung cấp'], 400);
         }
         $user = Auth::user();
         $user->password = Hash::make($request->new_password);
         $user->save();
-        return response()->json(['message', 'thay đổi mật khẩu thành công'], 200);
+        return response()->json(['message'=> 'thay đổi mật khẩu thành công'], 200);
     }
 }

@@ -32,15 +32,18 @@ class UserController extends Controller
                     $item->forceDelete();
                 }
             }
-            $file = $request->file('img');
-            $fileName = time() . $file->getClientOriginalName();
-            $file->storeAs('/users', $fileName, 'public');
-            //chèn vào bảng image
-            $image = new Image();
-            $image->imageable_id = $id;
-            $image->imageable_type = User::class;
-            $image->url = 'storage/users/' . $fileName;
-            $image->save();
+
+            if($request->file('img')) {
+                $file = $request->file('img');
+                $fileName = time() . $file->getClientOriginalName();
+                $file->storeAs('/users', $fileName, 'public');
+                //chèn vào bảng image
+                $image = new Image();
+                $image->imageable_id = $id;
+                $image->imageable_type = User::class;
+                $image->url = 'storage/users/' . $fileName;
+                $image->save();
+            }
 
             DB::commit();
         } catch (Exception $e) {
