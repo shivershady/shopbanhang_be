@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Cart_item;
+
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
