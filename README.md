@@ -8,7 +8,7 @@ api: add cart , url:/api/cart/add , method: POST , params: id , success: respons
 
 api: delete cart, url:/api/cart/delete, method: POST, params: id, success: remove cart success, error :response 500 thêm thất bại, note: 
 
-api: list cart, url:/api/cart/, method: GET, params: không có, note: return về biến $cart
+api: list cart, url:/api/cart/, method: GET, params: không có, 
 
 api: add order, url: /api/orders/add, method: POST, params: id, success: response 200 thêm thành công, error response 500 thêm thất bại, 
 note: các cột cần thêm: total, sub_total, status, payment_type, warranty
