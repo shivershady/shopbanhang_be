@@ -31,6 +31,7 @@ Route::get('/product-details/{id}', [ProductController::class, 'productDetails']
 Route::middleware('auth:api')->post('/cart/add/{id}', [CartController::class, 'addToCart']);
 Route::middleware('auth:api')->post('/cart/delete/{id}', [CartController::class, 'delete']);
 Route::middleware('auth:api')->get('/cart', [CartController::class, 'list']);
+Route::middleware('auth:api')->post('/cart/update/{id}', [CartController::class, 'update']);
 
 //orsers
 Route::middleware('auth:api')->post('/orders/add/{id}', [OrderController::class, 'add']);

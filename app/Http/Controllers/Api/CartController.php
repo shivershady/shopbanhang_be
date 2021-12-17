@@ -39,6 +39,22 @@ class CartController extends Controller
         return response()->json(['message', ' sản phẩm đã được thêm vào giỏ hàng'], 200);
     }
 
+    public function update(Request $request, $id)
+    {
+        try {
+            $userId = Auth::id();
+            $data = request()->only('quantity');
+            if ($data['quantity'] == 0 || $data['quantity'] < 0) {
+                return response()->json(['message', 'số lượng không được bằng 0'], 500);
+            } else {
+                Cart_item::where('user_id', $userId)->where('product_id', $id)->update($data);
+            }
+        } catch (Exception $e) {
+            return response()->json(['message', 'cập nhật  thất bại'], 500);
+        }
+        return response()->json(['message', 'cập nhật  thành công'], 200);
+    }
+
 
     public function delete($id)
     {
@@ -62,7 +78,7 @@ class CartController extends Controller
             return $item;
         });
         $grouped = $data->groupBy('shop_name');
-        return response()->json(['data'=>$grouped], 200);
+        return response()->json(['data' => $grouped], 200);
     }
 
 }
