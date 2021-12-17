@@ -56,26 +56,13 @@ class CartController extends Controller
     {
         $userId = Auth::id();
         $cart = Cart_item::where('user_id', $userId)->get();
-        //lấy ra sản phẩm trong giỏ hàng
-        //lấy ra được shop bán hàng trong giỏ hàng
         $data = $cart->map(function ($item) {
-            $item->product->image->url = asset( $item->product->image->url);
+            $item->product->image->url = asset($item->product->image->url);
             $item->shop_name = User::find($item->shop_name)->name;
             return $item;
         });
-      return response()->json(['data' => $data], 200);
-        /*        [
-                    {shop: shop_name,
-                        {
-                            product
-                        }
-                    },
-                  {shop: shop_name,
-                        {
-                            product
-                        }
-                    }
-                ]*/
+        $grouped = $data->groupBy('shop_name');
+        return response()->json(['data'=>$grouped], 200);
     }
 
 }
