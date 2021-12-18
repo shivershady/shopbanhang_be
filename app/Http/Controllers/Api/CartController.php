@@ -23,7 +23,7 @@ class CartController extends Controller
             $check = Cart_item::where('user_id', $userId)->where('product_id', $id)->first();
             $product = Product::find($id);
             if ($check) {
-                return response()->json(['message', 'sản phẩm đã có trong giỏ hàng']);
+                return response()->json(['message'=> 'sản phẩm đã có trong giỏ hàng']);
             } else {
                 $cartItem = new Cart_item();
                 $cartItem->product_id = $product->id;
@@ -34,9 +34,9 @@ class CartController extends Controller
                 $cartItem->save();
             }
         } catch (Exception $e) {
-            return response()->json(['message', 'thêm sản phẩm vào giỏ hàng thất bại'], 500);
+            return response()->json(['message'=> 'thêm sản phẩm vào giỏ hàng thất bại'], 500);
         }
-        return response()->json(['message', ' sản phẩm đã được thêm vào giỏ hàng'], 200);
+        return response()->json(['message'=> ' sản phẩm đã được thêm vào giỏ hàng'], 200);
     }
 
     public function update(Request $request, $id)
@@ -45,14 +45,14 @@ class CartController extends Controller
             $userId = Auth::id();
             $data = request()->only('quantity');
             if ($data['quantity'] == 0 || $data['quantity'] < 0) {
-                return response()->json(['message', 'số lượng không được bằng 0'], 500);
+                return response()->json(['message'=> 'số lượng không được bằng 0'], 500);
             } else {
                 Cart_item::where('user_id', $userId)->where('product_id', $id)->update($data);
             }
         } catch (Exception $e) {
-            return response()->json(['message', 'cập nhật  thất bại'], 500);
+            return response()->json(['message'=> 'cập nhật  thất bại'], 500);
         }
-        return response()->json(['message', 'cập nhật  thành công'], 200);
+        return response()->json(['message'=> 'cập nhật  thành công'], 200);
     }
 
 
@@ -63,9 +63,9 @@ class CartController extends Controller
             //Cart_item::where('product_id',$id)->where('user_id',$userId)->delete();
             Cart_item::where('id', $id)->delete();
         } catch (Exception $e) {
-            return response()->json(['message', 'xóa sản phẩm khỏi giỏ hàng thất bại'], 500);
+            return response()->json(['message'=>'xóa sản phẩm khỏi giỏ hàng thất bại'], 500);
         }
-        return response()->json(['message', 'sản phẩm đã được xóa khỏi giỏ hàng'], 200);
+        return response()->json(['message'=> 'sản phẩm đã được xóa khỏi giỏ hàng'], 200);
     }
 
     public function list()
