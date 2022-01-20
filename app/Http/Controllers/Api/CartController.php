@@ -118,7 +118,7 @@ class CartController extends Controller
                 'user_id' => $product->user_id,
             ];
         }
-        $data = collect($data)->groupBy('shop_name.id');
+        $data = collect($data)->groupBy('shop_name.id')->values()->all();
         return response()->json( $data, 200);
     }
 
