@@ -91,9 +91,9 @@ class CartController extends Controller
         $userId = Auth::id();
         $cart = Cart_item::where('user_id', $userId)->get();
         $data = [];
-        foreach ($cart as $key => $value) {
+           foreach ($cart as $key => $value) {
             $product = Product::find($value->product_id);
-            $shop = User::find($product->user_id);
+            $shop = User::find($value->shop_name);
             $data[$key]['shop_name'] = [
                 'id' => $shop->id,
                 'name' => $shop->name,
@@ -118,8 +118,8 @@ class CartController extends Controller
                 'user_id' => $product->user_id,
             ];
         }
-        return response()->json($data, 200);
-
+        $data = collect($data)->groupBy('shop_name.id');
+        return response()->json( $data, 200);
     }
 
 }
