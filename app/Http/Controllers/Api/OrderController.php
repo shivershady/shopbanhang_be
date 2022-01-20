@@ -38,4 +38,5 @@ class OrderController extends Controller
         }
         return response()->json(['message','thêm thành công'],200);
     }
+
 }
