@@ -50,3 +50,5 @@ Route::middleware('auth:api')->get('/user', [AuthController::class, 'list']);
 //category
 Route::get('/category', [CategoryController::class, 'list']);
 Route::get('/parent-category', [CategoryController::class, 'listByParentId']);
+Route::get('/list-product-byCategory/{id}', [CategoryController::class, 'listProductByCategory']);
+

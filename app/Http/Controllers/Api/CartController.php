@@ -23,7 +23,7 @@ class CartController extends Controller
             $check = Cart_item::where('user_id', $userId)->where('product_id', $id)->first();
             $product = Product::find($id);
             if ($check) {
-                return response()->json(['message' => 'sản phẩm đã có trong giỏ hàng']);
+                return response()->json(['message' => 'sản phẩm đã có trong giỏ hàng vui lòng truy cập giỏ hàng để thay đổi số lượng'], 400);
             } else {
                 $cartItem = new Cart_item();
                 $cartItem->product_id = $product->id;
@@ -34,7 +34,7 @@ class CartController extends Controller
                 $cartItem->save();
             }
         } catch (Exception $e) {
-            return response()->json(['message' => 'thêm sản phẩm vào giỏ hàng thất bại'], 500);
+            return response()->json(['message' => 'thêm sản phẩm vào giỏ hàng thất bại'], 400);
         }
         return response()->json(['message' => ' sản phẩm đã được thêm vào giỏ hàng'], 200);
     }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
+use App\Transformers\ProductTransformer;
 use Illuminate\Http\Request;
 use App\Transformers\CategoryTransformer;
 
@@ -28,4 +30,12 @@ class CategoryController extends Controller
             ->toArray();
     }
 
+    public function listProductByCategory($id)
+    {
+        $product = Product::with('image')->where('category_id', $id)->get();
+        return fractal()
+            ->collection($product)
+            ->transformWith(new ProductTransformer())
+            ->toArray();
+    }
 }
