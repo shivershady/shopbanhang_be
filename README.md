@@ -1,5 +1,7 @@
 Document API
 
+api: list product byCategory, url:/api/list-product-byCategory/1, methob: get, params: id
+
 api: update cart, url: /api/cart/update/1, methob: post, success: 200, error: 500, params: id 
 
 api: change password, url:/api/user/change-password, methob: post, success: 200, error: 400 , note: current_password là mật khẩu cũ, new_password là mật khẩu mới
