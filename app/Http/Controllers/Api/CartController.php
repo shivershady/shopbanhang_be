@@ -59,9 +59,9 @@ class CartController extends Controller
     public function delete($id)
     {
         try {
-            //$userId = Auth::id();
-            //Cart_item::where('product_id',$id)->where('user_id',$userId)->delete();
-            Cart_item::where('id', $id)->delete();
+            $userId = Auth::id();
+            Cart_item::where('product_id',$id)->where('user_id',$userId)->delete();
+           // Cart_item::where('id', $id)->delete();
         } catch (Exception $e) {
             return response()->json(['message' => 'xóa sản phẩm khỏi giỏ hàng thất bại'], 500);
         }
